@@ -10,7 +10,7 @@ export function AllUpdates({updates} : {updates: update[]}){
       <div className="mt-4 w-full">
          {
             updates.map((u) => (
-               <PropUpdate data={u}/>
+               <PropUpdate key={u.id} data={u}/>
             ))
          }
       </div>
