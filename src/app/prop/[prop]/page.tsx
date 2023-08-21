@@ -1,40 +1,35 @@
 'use client'
 
 import { IBM_Plex_Mono } from "next/font/google";
-import { update } from "@/utils/update";
-import { Address, useEnsName } from "wagmi";
+import {  useEnsName } from "wagmi";
 import Link from "next/link";
-import useGetPropAdmin from "@/hooks/useGetPropAdmin";
-import { useSearchParams } from "next/navigation";
+import useGetProp from "@/hooks/useGetProp";
 import { LoadingNoggles } from "@/components/LoadingNoggles";
-import { formatTimestampString } from "@/utils/funcs";
-import useGetUpdates from "@/hooks/useGetUpdates";
 import { AllUpdates } from "@/components/AllUpdates";
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700']
 })
 
+const zeroAddress = '0x0000000000000000000000000000000000000000'
+
 export default function PropPage({ params } : {params: {prop: string}}) {
-   console.log('here in proppage')
-   const prop = Number(params.prop)
-   const { data } = useGetPropAdmin(Number(prop), prop != -1000)
-   console.log(data ?? '')
+   const propId = Number(params.prop)
+   const { prop } = useGetProp(Number(propId), propId != -1000)
+   console.log(prop ?? '')
 
    const {data : adminENS} = useEnsName({
-      address: data?.propUpdateAdmin,
-      enabled: data != undefined && data.propUpdateAdmin != '0x0000000000000000000000000000000000000000'
-   })
-
-   const { updates } = useGetUpdates(prop)
-   
-   if (data == undefined) return <main className="flex min-h-screen flex-col w-3/4"><LoadingNoggles/></main>
-   const unclaimed = data.propUpdateAdmin == '0x0000000000000000000000000000000000000000'
+      address: (prop ? prop.admin : zeroAddress),
+      enabled: prop != undefined && prop.admin != zeroAddress
+   })   
+   if (prop == undefined) return <main className="flex min-h-screen flex-col w-3/4"><LoadingNoggles/></main>
+   const unclaimed = prop.admin == zeroAddress
+   const { updates } = prop
 
    return (
       <main className="flex min-h-screen flex-col w-3/4">
          <div className={`${mono.className} text-4xl mt-8 font-semibold`}>
-            Proposal {prop}
+            Proposal {propId}
             </div>
             {
                unclaimed ?
@@ -47,8 +42,8 @@ export default function PropPage({ params } : {params: {prop: string}}) {
                :
                (
                   <div className="flex flex-col space-y-1 text-md">
-                     <div>Admin: {adminENS ?? data.propUpdateAdmin}</div>
-                     <div>{data.isCompleted ? '✅ Completed' : '⏳ Incomplete'}</div>
+                     <div>Admin: {adminENS ?? prop.admin}</div>
+                     <div>{prop.isCompleted ? '✅ Completed' : '⏳ Incomplete'}</div>
                   </div>
                )
             }

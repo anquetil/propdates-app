@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client'
 import '@rainbow-me/rainbowkit/styles.css';
 
 import {
@@ -16,7 +16,7 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 const client = new ApolloClient({
-   uri: 'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.0.3/gn',
+   uri: 'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.0.7/gn',
    cache: new InMemoryCache(),
 })
 

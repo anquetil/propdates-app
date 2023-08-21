@@ -1,16 +1,16 @@
 'use client'
 
-import { update } from "@/utils/update"
-import { PropUpdate } from "./PropUpdate"
+import { PropUpdate } from "@/utils/types"
+import { PropUpdateCard } from "./PropUpdateCard"
 
 
-export function AllUpdates({updates} : {updates: update[]}){
+export function AllUpdates({updates} : {updates: PropUpdate[]}){
 
    return (
       <div className="mt-4 w-full">
          {
             updates.map((u) => (
-               <PropUpdate key={u.id} data={u}/>
+               <PropUpdateCard key={u.id} update={u}/>
             ))
          }
       </div>

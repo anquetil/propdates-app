@@ -1,24 +1,25 @@
-import { update } from "@/utils/update";
+import { PropUpdate } from "@/utils/types";
 import { gql, useQuery } from "@apollo/client";
 
 export function useGetUpdates(prop?: number, enabled = true) {
-   console.log('in useGetUpdates. prop: ', prop, 'enabled: ', enabled)
    const query = gql`query allUpdates {
-      postUpdates (
+      propUpdates (
          ${
             prop ? 
             `where: {
-            propId: "${prop.toString()}"
+            prop: "${prop.toString()}"
             }` 
             : 
-            ''
+            ""
          }
          orderBy: blockNumber, 
          orderDirection: desc
       ){
          id
-         from
-         propId
+         admin
+         prop {
+            id
+        	}
          isCompleted
          update
          transactionHash
@@ -30,7 +31,7 @@ export function useGetUpdates(prop?: number, enabled = true) {
       skip: !enabled
    })
 
-   const updates:update[] = data ? data.postUpdates : undefined
+   const updates:PropUpdate[] = data ? data.propUpdates : undefined
 
    return {
       updates
