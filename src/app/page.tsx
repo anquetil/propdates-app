@@ -16,7 +16,7 @@ export default function Home() {
 
    return (
       <main className="flex min-h-screen flex-col w-3/4">
-         <div className="text-3xl font-semibold text-red-500 my-8">PROPDATES</div>
+         <div className="text-4xl font-semibold text-red-500 my-8">PROPDATES</div>
 
          {updates ?
             ( 

@@ -33,7 +33,7 @@ export default function PropPage({ params } : {params: {prop: string}}) {
 
    return (
       <main className="flex min-h-screen flex-col w-3/4">
-         <div className={`${mono.className} text-xl`}>
+         <div className={`${mono.className} text-4xl mt-8 font-semibold`}>
             Proposal {prop}
             </div>
             {
@@ -46,7 +46,7 @@ export default function PropPage({ params } : {params: {prop: string}}) {
                )
                :
                (
-                  <div className="flex flex-col space-y-1">
+                  <div className="flex flex-col space-y-1 text-md">
                      <div>Admin: {adminENS ?? data.propUpdateAdmin}</div>
                      <div>{data.isCompleted ? '✅ Completed' : '⏳ Incomplete'}</div>
                   </div>
