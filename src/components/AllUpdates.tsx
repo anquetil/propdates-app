@@ -4,13 +4,13 @@ import { PropUpdate } from "@/utils/types"
 import { PropUpdateCard } from "./PropUpdateCard"
 
 
-export function AllUpdates({updates} : {updates: PropUpdate[]}){
+export function AllUpdates({updates, context=false} : {updates: PropUpdate[], context?: boolean}){
 
    return (
-      <div className="mt-4 w-full">
+      <div className="w-full space-y-8">
          {
             updates.map((u) => (
-               <PropUpdateCard key={u.id} update={u}/>
+               <PropUpdateCard key={u.id} update={u} context={context}/>
             ))
          }
       </div>

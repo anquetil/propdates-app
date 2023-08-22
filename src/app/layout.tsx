@@ -17,12 +17,13 @@ export default function RootLayout({
    children: React.ReactNode
 }) {
    return (
-      <html lang="en">
-         <body className={`${inter.className}`}>
-            <Providers>
+   <html lang="en">
+      <body className={`${inter.className} bg-[#fbfbfb]`}>
+         <Providers>
                {children}
-            </Providers>
-            </body>
-      </html>
+         </Providers>
+      </body>
+   </html>
+
    )
 }

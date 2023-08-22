@@ -10,25 +10,29 @@ const mono = IBM_Plex_Mono({
    weight: ['100', '200', '300', '400', '500', '600', '700']
 })
 
-export function PropUpdateCard({update} : {update: PropUpdate}){
+export function PropUpdateCard({update, context=false} : {update: PropUpdate, context?: boolean}){
    const { data: ensData } = useEnsName({
       address: update.admin as Address
    })
 
    return(
-      <div className='w-full rounded-xl border-neutral-200 border-[1px] p-4'>
-         <div className='mb-2'>
+      <div className='w-full rounded-xl border-neutral-300 border-[1px] p-4'>
+         <div>
             <span className="font-semibold">{ensData ?? update.admin.substring(0, 7)}</span> 
-            {` gave an update on prop `}
-            <Link href={`/prop/${update.prop?.id}`} className="text-blue-700 hover:text-blue-500">{update.prop?.id}</Link>
-         </div>
-         <div className={`w-fit mb-2 rounded-md text-md bg-gray-200 border-gray-300 text-gray-500 p-4 ${mono.className}`}>
-            {update.update}
+            {context &&
+               <>
+                  {` shared an update on proposal `}
+                  <Link href={`/prop/${update.prop?.id}`} className="text-blue-700 hover:text-blue-500 hover:underline">{`#${update.prop?.id} - ${update.prop.title}`}</Link>
+               </>
+            }
          </div>
          <div className={`text-gray-400 text-sm`}>
             {formatTimestampString(update.blockTimestamp)}
             {` | `}
             <a className="hover:underline" href={`https://etherscan.io/tx/${update.transactionHash}`} target="_blank">{update.transactionHash.substring(0, 5)}...{update.transactionHash.substring(63, 66)}</a>
+         </div>
+         <div className={`w-full mt-4 rounded-md text-sm bg-gray-200 border-gray-300 text-gray-500 p-4 ${mono.className}`}>
+            {update.update}
          </div>
       </div>
    )

@@ -16,7 +16,7 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 const client = new ApolloClient({
-   uri: 'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.0.7/gn',
+   uri: 'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.0.10/gn',
    cache: new InMemoryCache(),
 })
 
@@ -47,7 +47,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ApolloProvider client={client}>
          <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains}>
-         {mounted && children}
+               {mounted && children}
             </RainbowKitProvider>
          </WagmiConfig>
       </ApolloProvider>

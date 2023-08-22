@@ -7,6 +7,8 @@ export function useGetProp(propId: number, enabled: boolean) {
             id: ${propId.toString()}
       ){
         id
+        title
+        proposer
         admin
         transferPending
         pendingAdmin
@@ -25,14 +27,15 @@ export function useGetProp(propId: number, enabled: boolean) {
       }
    }`
 
-   const { data } = useQuery(query, {
+   const { data, loading } = useQuery(query, {
       skip: !enabled
    })
 
    const prop: Proposal = data ? data.proposal : undefined
 
    return {
-      prop
+      prop,
+      loading
    }
 }
 

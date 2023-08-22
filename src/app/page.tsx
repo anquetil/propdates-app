@@ -9,12 +9,12 @@ export default function Home() {
    const { updates } = useGetUpdates()
 
    return (
-      <main className="flex min-h-screen flex-col w-3/4">
-         <div className="text-4xl font-semibold text-red-500 my-8">PROPDATES</div>
+      <main className='flex min-h-screen flex-col w-3/4 border-x-[1px] border-neutral-200 bg-white px-4 pt-8 pb-4 shadow-sm'>
+         <div className="text-4xl font-semibold text-red-500 mb-10">🚧 PROPDATES</div>
 
          {updates ?
             ( 
-               <AllUpdates updates={updates}/>
+               <AllUpdates updates={updates} context={true}/>
             )
             :
             (
