@@ -105,8 +105,9 @@ export function TransferAdminForm({
    } else {
       return (
          <div>
-            Only the current admin (or proposer if not yet claimed) can transfer
-            this.
+            Only the current admin can transfer this role or write updates. If
+            not yet claimed, the proposer will need claim or transfer the admin
+            role.
          </div>
       )
    }

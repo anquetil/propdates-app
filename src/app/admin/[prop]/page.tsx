@@ -52,7 +52,6 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    if (loading) {
       return (
          <div>
-            <Link href='/admin'>←</Link>
             <PageTitle title={`Manage Prop #${propId}`} />
             <LoadingNoggles />
          </div>
@@ -60,9 +59,6 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    }
    return (
       <div>
-         <Link className='hover:underline mb-3' href='/admin'>
-            ← back to Admin
-         </Link>
          <PageTitle title={`Manage Prop #${propId}`} />
 
          <div className='flex flex-col text-md text-gray-700 border-b-2 -mt-4 pb-6 border-slate-200 mb-4'>
