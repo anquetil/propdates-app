@@ -1,6 +1,6 @@
-import { Action, Proposal } from "@/utils/types";
-import { gql, useQuery } from "@apollo/client";
-import { Address } from "viem";
+import { Action, Proposal } from '@/utils/types';
+import { gql, useQuery } from '@apollo/client';
+import { Address } from 'viem';
 
 export function useGetActions(address: Address, enabled: boolean) {
    const query = gql`query actions {
@@ -25,18 +25,18 @@ export function useGetActions(address: Address, enabled: boolean) {
          transferPending
          pendingAdmin
       }
-   }`
+   }`;
 
    const { data, loading } = useQuery(query, {
-      skip: !enabled
-   })
+      skip: !enabled,
+   });
 
-   const actions: Action[] = data ? data.proposals : undefined
+   const actions: Action[] = data ? data.proposals : undefined;
 
    return {
       actions,
-      loading
-   }
+      loading,
+   };
 }
 
-export default useGetActions
+export default useGetActions;

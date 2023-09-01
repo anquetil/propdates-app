@@ -1,39 +1,59 @@
-'use client'
+'use client';
 
-import { IBM_Plex_Mono } from "next/font/google";
-import { PropUpdate } from "@/utils/types";
-import { Address, useEnsName } from "wagmi";
-import Link from "next/link";
-import { formatTimestampString } from "@/utils/funcs";
+import { IBM_Plex_Mono } from 'next/font/google';
+import { PropUpdate } from '@/utils/types';
+import { Address, useEnsName } from 'wagmi';
+import Link from 'next/link';
+import { formatTimestampString } from '@/utils/funcs';
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700']
-})
+   weight: ['100', '200', '300', '400', '500', '600', '700'],
+});
 
-export function PropUpdateCard({update, context=false} : {update: PropUpdate, context?: boolean}){
+export function PropUpdateCard({
+   update,
+   context = false,
+}: {
+   update: PropUpdate;
+   context?: boolean;
+}) {
    const { data: ensData } = useEnsName({
-      address: update.admin as Address
-   })
+      address: update.admin as Address,
+   });
 
-   return(
+   return (
       <div className='w-full rounded-xl border-neutral-300 border-[1px] p-4'>
          <div>
-            <span className="font-semibold">{ensData ?? update.admin.substring(0, 7)}</span> 
-            {context &&
+            <span className='font-semibold'>
+               {ensData ?? update.admin.substring(0, 7)}
+            </span>
+            {context && (
                <>
                   {` shared an update on proposal `}
-                  <Link href={`/prop/${update.prop?.id}`} className="text-blue-700 hover:text-blue-500 hover:underline">{`#${update.prop?.id} - ${update.prop.title}`}</Link>
+                  <Link
+                     href={`/prop/${update.prop?.id}`}
+                     className='text-blue-700 hover:text-blue-500 hover:underline'
+                  >{`#${update.prop?.id} - ${update.prop.title}`}</Link>
                </>
-            }
+            )}
          </div>
          <div className={`text-gray-400 text-sm`}>
             {formatTimestampString(update.blockTimestamp)}
             {` | `}
-            <a className="hover:underline" href={`https://etherscan.io/tx/${update.transactionHash}`} target="_blank">{update.transactionHash.substring(0, 5)}...{update.transactionHash.substring(63, 66)}</a>
+            <a
+               className='hover:underline'
+               href={`https://etherscan.io/tx/${update.transactionHash}`}
+               target='_blank'
+            >
+               {update.transactionHash.substring(0, 5)}...
+               {update.transactionHash.substring(63, 66)}
+            </a>
          </div>
-         <div className={`w-full mt-4 rounded-md text-sm bg-gray-200 border-gray-300 text-gray-500 p-4 ${mono.className}`}>
+         <div
+            className={`w-full mt-4 rounded-md text-sm bg-gray-200 border-gray-300 text-gray-500 p-4 ${mono.className}`}
+         >
             {update.update}
          </div>
       </div>
-   )
+   );
 }

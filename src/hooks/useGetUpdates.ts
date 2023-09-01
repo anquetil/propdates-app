@@ -1,16 +1,15 @@
-import { PropUpdate } from "@/utils/types";
-import { gql, useQuery } from "@apollo/client";
+import { PropUpdate } from '@/utils/types';
+import { gql, useQuery } from '@apollo/client';
 
 export function useGetUpdates(prop?: number, enabled = true) {
    const query = gql`query allUpdates {
       propUpdates (
          ${
-            prop ? 
-            `where: {
+            prop
+               ? `where: {
             prop: "${prop.toString()}"
-            }` 
-            : 
-            ""
+            }`
+               : ''
          }
          orderBy: blockNumber, 
          orderDirection: desc
@@ -26,18 +25,17 @@ export function useGetUpdates(prop?: number, enabled = true) {
          transactionHash
          blockTimestamp
       }
-   }`
+   }`;
 
    const { data } = useQuery(query, {
-      skip: !enabled
-   })
+      skip: !enabled,
+   });
 
-   const updates:PropUpdate[] = data ? data.propUpdates : undefined
+   const updates: PropUpdate[] = data ? data.propUpdates : undefined;
 
    return {
-      updates
-   }
-
+      updates,
+   };
 }
 
-export default useGetUpdates
+export default useGetUpdates;

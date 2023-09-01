@@ -1,9 +1,9 @@
-import { defineConfig } from '@wagmi/cli'
-import { actions, etherscan } from '@wagmi/cli/plugins'
+import { defineConfig } from '@wagmi/cli';
+import { actions, etherscan } from '@wagmi/cli/plugins';
 export default defineConfig({
    out: 'src/generated.ts',
    contracts: [
-       /*{
+      /*{
       name: 'Propdates',
       abi: propdatesABI,
       },*/
@@ -23,4 +23,4 @@ export default defineConfig({
          readContract: true,
       }),
    ],
-})
+});
