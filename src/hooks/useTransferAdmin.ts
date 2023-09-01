@@ -2,6 +2,7 @@
 import { Address } from "viem";
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { propdatesAddress, propdatesABI } from "@/generated";
+import { wagmiConfig } from "@/app/providers";
 
 export function useTransferAdmin(propID: number, newAdmin: Address) {
 
@@ -15,6 +16,7 @@ export function useTransferAdmin(propID: number, newAdmin: Address) {
 
 
    const { write, data } = useContractWrite(config)
+
 
    const { data: transactionData, isError, isLoading, isSuccess, status, error } = useWaitForTransaction({
       hash: data?.hash,

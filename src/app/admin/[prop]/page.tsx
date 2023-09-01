@@ -35,6 +35,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       enabled: prop != undefined
    })
 
+   address
    const unclaimed = (!loading && prop.admin == zeroAddress)
 
    if (loading) {

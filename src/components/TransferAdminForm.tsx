@@ -1,16 +1,10 @@
 'use client'
 
 import { IBM_Plex_Mono } from "next/font/google";
-import { PropUpdate, Proposal, zeroAddress } from "@/utils/types";
-import { Address, useContractWrite, useEnsName } from "wagmi";
-import Link from "next/link";
-import { formatTimestampString } from "@/utils/funcs";
+import { Proposal, zeroAddress } from "@/utils/types";
+import { Address, useAccount } from "wagmi";
 import useTransferAdmin from "@/hooks/useTransferAdmin";
 import { useState } from "react";
-const mono = IBM_Plex_Mono({
-   subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700']
-})
 
 export function TransferAdminForm({connectedAddress, prop} : {connectedAddress: Address, prop: Proposal}){
    //
@@ -21,10 +15,9 @@ export function TransferAdminForm({connectedAddress, prop} : {connectedAddress: 
                      || (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())
       // either claimed and admin, or unclaimed and proposer
 
-   const { write, isSuccess, transactionData } = useTransferAdmin(0, newAdmin)
-
-   console.log(newAdmin)
-
+   const { isConnected } = useAccount()
+   const { write, isSuccess, transactionData } = useTransferAdmin(Number(id), newAdmin)
+   console.log(write)
 
    if(isSuccess){
       return (
