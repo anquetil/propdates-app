@@ -11,10 +11,8 @@ export function useGetActions(address: Address, enabled: boolean) {
                   {proposer:"${address}"},
                   {admin: "0x0000000000000000000000000000000000000000"}
                ]},
-               {and: [
-                  {pendingAdmin:"${address}"},
-                  {transferPending: true}
-               ]}
+               {pendingAdmin:"${address}"}               
+               {admin:"${address}"}
             ]
          }
       ){

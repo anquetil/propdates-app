@@ -5,6 +5,7 @@ import { Proposal, zeroAddress } from '@/utils/types';
 import { Address, useAccount } from 'wagmi';
 import useTransferAdmin from '@/hooks/useTransferAdmin';
 import { useState } from 'react';
+import { isAddress } from 'viem';
 
 export function TransferAdminForm({
    connectedAddress,
@@ -14,6 +15,7 @@ export function TransferAdminForm({
    prop: Proposal;
 }) {
    //
+   const [error, setError] = useState<boolean>(false);
    const [newAdmin, setNewAdmin] = useState<Address>(connectedAddress);
    const { id, admin, pendingAdmin, transferPending, proposer } = prop;
    const unclaimed = admin == zeroAddress;
@@ -27,7 +29,6 @@ export function TransferAdminForm({
       Number(id),
       newAdmin
    );
-   console.log(write);
 
    if (isSuccess) {
       return (
@@ -75,12 +76,22 @@ export function TransferAdminForm({
                   pattern='^0x[a-fA-F0-9]{40}$'
                   title='Must be valid Ethereum address.'
                   onChange={(e) => {
-                     setNewAdmin(e.target.value as Address);
+                     if (isAddress(e.target.value)) {
+                        setError(false);
+                        setNewAdmin(e.target.value as Address);
+                     } else {
+                        setError(true);
+                     }
                   }}
                   defaultValue={connectedAddress}
                />
+               {error && (
+                  <div className='text-red-600 -mt-3 mb-3'>
+                     Must be valid Ethereum address.
+                  </div>
+               )}
                <button
-                  className='bg-blue-500  border-[1px] hover:opacity-90 transition-all ease-in-out shadow-sm rounded-lg py-[2px] px-[14px] text-white'
+                  className='bg-blue-500  border-[1px] hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
                   type='submit'
                   onClick={() => {
                      write?.();
@@ -93,7 +104,10 @@ export function TransferAdminForm({
       );
    } else {
       return (
-         <div>Only the admin (or proposer pre-claim) can transfer this.</div>
+         <div>
+            Only the current admin (or proposer if not yet claimed) can transfer
+            this.
+         </div>
       );
    }
 }

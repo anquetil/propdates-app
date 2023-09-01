@@ -7,6 +7,8 @@ import useGetProp from '@/hooks/useGetProp';
 import { LoadingNoggles } from '@/components/LoadingNoggles';
 import { AllUpdates } from '@/components/AllUpdates';
 import { zeroAddress } from '@/utils/types';
+import { PersonIcon } from '@radix-ui/react-icons';
+import { PageTitle } from '@/components/PageTitle';
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
@@ -20,54 +22,50 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       address: prop ? prop.admin : zeroAddress,
       enabled: prop != undefined && prop.admin != zeroAddress,
    });
-   const { data: proposerENS } = useEnsName({
+   /*const { data: proposerENS } = useEnsName({
       address: prop ? prop.proposer : zeroAddress,
       enabled: prop != undefined,
-   });
+   });*/
    const unclaimed = !loading && prop.admin == zeroAddress;
 
    if (loading) {
       return (
-         <main className='flex min-h-screen flex-col w-3/4 border-x-[1px] border-neutral-200 bg-white px-8 pt-8 pb-4'>
-            <div className={`${mono.className} text-4xl font-semibold mb-8`}>
-               {propId} - {prop?.title}
-            </div>
+         <div>
+            <PageTitle title={`${propId} - ${prop?.title}`} />
             <LoadingNoggles />
-         </main>
+         </div>
       );
    }
    return (
-      <main className='flex min-h-screen flex-col w-3/4 border-x-[1px] border-neutral-200 bg-white px-8 pt-8 pb-4'>
-         <div className={`${mono.className} text-4xl font-semibold mb-8`}>
-            {propId} - {prop?.title}
-         </div>
+      <div>
+         <PageTitle title={`${propId} - ${prop?.title}`} />
 
          <div className='flex flex-col space-y-1 text-md text-gray-500'>
-            <div>Proposer: {proposerENS ?? prop.proposer.substring(0, 7)}</div>
-            {unclaimed ? (
-               <div className='flex flex-row space-x-2 w-fit p-3 bg-yellow-100 text-yellow-600 border-[1px] border-yellow-300 rounded'>
-                  <div>⚠️</div>
-                  <div>
-                     Unclaimed admin role - is this you?{' '}
-                     <Link
-                        className='text-yellow-600 hover:text-yellow-800 underline'
-                        href='/admin'
-                     >
-                        Claim here
-                     </Link>
+            {
+               unclaimed && (
+                  <div className='flex flex-row space-x-2 w-fit p-3 bg-yellow-100 text-yellow-600 border-[1px] border-yellow-300 rounded'>
+                     <div>⚠️</div>
+                     <div>
+                        Unclaimed admin role - is this you?{' '}
+                        <Link
+                           className='text-yellow-600 hover:text-yellow-800 underline'
+                           href='/admin'
+                        >
+                           Claim here
+                        </Link>
+                     </div>
                   </div>
-               </div>
-            ) : (
-               <div>
-                  <div>Updates: {adminENS ?? prop.admin.substring(0, 7)}</div>
-                  <div>
-                     {prop.isCompleted ? '✅ Completed' : '⏳ Incomplete'}
-                  </div>
-               </div>
-            )}
+               ) /*: (
+               {/*<div className='flex flex-row mb-4 space-x-3'>
+                  <div className="font-semibold">ADMIN</div>
+                  <div className="">{adminENS ?? prop.admin.substring(0, 7)}</div>
+                  {prop.isCompleted && <div>✅ Completed</div>}
+               </div>}
+            )*/
+            }
          </div>
          {prop && <AllUpdates updates={prop.updates} />}
          <div></div>
-      </main>
+      </div>
    );
 }

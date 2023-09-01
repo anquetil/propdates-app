@@ -14,6 +14,7 @@ import { LoadingNoggles } from '@/components/LoadingNoggles';
 import { zeroAddress } from '@/utils/types';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { TransferAdminForm } from '@/components/TransferAdminForm';
+import { PageTitle } from '@/components/PageTitle';
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
@@ -46,31 +47,29 @@ export default function PropPage({ params }: { params: { prop: string } }) {
 
    if (loading) {
       return (
-         <main className='flex min-h-screen flex-col w-3/4 border-x-[1px] border-neutral-200 bg-white px-8 pt-8 pb-4'>
+         <div>
             <Link href='/admin'>←</Link>
             <div className={`${mono.className} text-4xl font-semibold mb-8`}>
                Manage Prop #{propId}
             </div>
             <LoadingNoggles />
-         </main>
+         </div>
       );
    }
    return (
-      <main className='flex min-h-screen flex-col w-3/4 border-x-[1px] border-neutral-200 bg-white px-8 pt-8 pb-4'>
+      <div>
          <Link className='hover:underline mb-3' href='/admin'>
             ← back to Admin
          </Link>
-         <div className={`${mono.className} text-4xl font-semibold mb-8`}>
-            Manage Prop #{propId}
-         </div>
+         <PageTitle title={`Manage Prop #${propId}`} />
 
-         <div className='flex flex-col text-md text-gray-700 border-b-[1.5px] border-neutral-300 mb-4'>
+         <div className='flex flex-col text-md text-gray-700 border-b-2 -mt-4 pb-6 border-slate-200 mb-4'>
             <div className='font-semibold'>Proposer:</div>
             <div className='mb-2'>{`${prop.proposer} ${
                proposerENS ? `(${proposerENS})` : ''
             }`}</div>
             <div className='font-semibold'>Admin:</div>
-            <div className='mb-2'>
+            <div>
                {unclaimed
                   ? `Unclaimed`
                   : `${prop.admin} ${adminENS ? `(${adminENS})` : ''}`}
@@ -91,12 +90,12 @@ export default function PropPage({ params }: { params: { prop: string } }) {
                onClick={() => switchNetwork?.(1)}
             >
                <div className='text-opacity-90 text-sm text-white'>
-                  Switch to Mainnet
+                  Switch to mainnet
                </div>
             </button>
          ) : (
             <TransferAdminForm connectedAddress={address!} prop={prop} />
          )}
-      </main>
+      </div>
    );
 }

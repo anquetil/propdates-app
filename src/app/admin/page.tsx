@@ -7,6 +7,7 @@ import { Address, useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
 import useGetActions from '@/hooks/useGetActions';
 import { Actions } from '@/components/Actions';
 import Link from 'next/link';
+import { PageTitle } from '@/components/PageTitle';
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
@@ -24,16 +25,14 @@ export default function AdminPage() {
 
    if (data == undefined)
       return (
-         <main className='flex min-h-screen flex-col w-3/4'>
+         <div>
             <LoadingNoggles />
-         </main>
+         </div>
       );
 
    return (
-      <main className="'lex min-h-screen flex-col w-3/4 border-x-[1px] border-neutral-200 bg-white px-4 pt-8 pb-4">
-         <div className={`${mono.className} text-4xl font-semibold mb-8`}>
-            Manage Your Permissions
-         </div>
+      <div>
+         <PageTitle title={`Permissions`} />
 
          {!isConnected ? (
             <ConnectButton showBalance={false} accountStatus='avatar' />
@@ -51,6 +50,6 @@ export default function AdminPage() {
          ) : (
             <LoadingNoggles />
          )}
-      </main>
+      </div>
    );
 }

@@ -22,7 +22,7 @@ export function PropUpdateCard({
    });
 
    return (
-      <div className='w-full rounded-xl border-neutral-300 border-[1px] p-4'>
+      <div className='w-full bg-white rounded-lg border-slate-200 border-[1px] p-4 font-normal'>
          <div>
             <span className='font-semibold'>
                {ensData ?? update.admin.substring(0, 7)}
@@ -32,7 +32,7 @@ export function PropUpdateCard({
                   {` shared an update on proposal `}
                   <Link
                      href={`/prop/${update.prop?.id}`}
-                     className='text-blue-700 hover:text-blue-500 hover:underline'
+                     className='text-blue-700 hover:underline'
                   >{`#${update.prop?.id} - ${update.prop.title}`}</Link>
                </>
             )}
@@ -50,7 +50,7 @@ export function PropUpdateCard({
             </a>
          </div>
          <div
-            className={`w-full mt-4 rounded-md text-sm bg-gray-200 border-gray-300 text-gray-500 p-4 ${mono.className}`}
+            className={`w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 ${mono.className}`}
          >
             {update.update}
          </div>

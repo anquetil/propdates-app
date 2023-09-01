@@ -13,3 +13,15 @@
    flex-direction: column;
    align-items: center;
 }
+
+body {
+   background-color: #fcfcfc;
+   background-size: 20px 20px;
+   background-image: repeating-linear-gradient(
+      0deg,
+      rgba(68, 76, 247, 0.1),
+      rgba(68, 76, 247, 0.1) 1px,
+      #fbfbfb 1px,
+      #fbfbfb
+   );
+}
