@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 export function LoadingNoggles({
    theme,
 }: {
-   theme?: 'base' | 'dark' | undefined;
+   theme?: 'base' | 'dark' | undefined
 }) {
-   const [currentState, setCurrentState] = useState<number>(1);
+   const [currentState, setCurrentState] = useState<number>(1)
    useEffect(() => {
       const interval = setInterval(() => {
          setCurrentState((currentState) =>
             currentState === 8 ? 1 : currentState + 1
-         );
-      }, 85);
-      return () => clearInterval(interval);
+         )
+      }, 85)
+      return () => clearInterval(interval)
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
+   }, [])
 
-   const lensColor = theme === 'dark' ? 'white' : '#999';
-   const snakeColor = theme === 'dark' ? 'black' : 'white';
+   const lensColor = theme === 'dark' ? 'white' : '#999'
+   const snakeColor = theme === 'dark' ? 'black' : 'white'
 
    return (
       <div className='my-2 mx-auto w-24'>
@@ -153,5 +153,5 @@ export function LoadingNoggles({
             </g>
          </svg>
       </div>
-   );
+   )
 }

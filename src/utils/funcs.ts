@@ -1,8 +1,8 @@
 export function formatTimestampString(ts: string): string {
-   const d = new Date(Number(ts) * 1000);
-   const day = d.getDate();
-   const month = d.getMonth();
-   const year = d.getFullYear();
+   const d = new Date(Number(ts) * 1000)
+   const day = d.getDate()
+   const month = d.getMonth()
+   const year = d.getFullYear()
    const monthNames = [
       'January',
       'February',
@@ -16,6 +16,6 @@ export function formatTimestampString(ts: string): string {
       'October',
       'November',
       'December',
-   ];
-   return monthNames[month - 1] + ' ' + day + ', ' + year;
+   ]
+   return monthNames[month - 1] + ' ' + day + ', ' + year
 }

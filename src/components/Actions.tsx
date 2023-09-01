@@ -1,45 +1,45 @@
-'use client';
+'use client'
 
-import { Action, PropUpdate, zeroAddress } from '@/utils/types';
-import { Address } from 'viem';
-import { IBM_Plex_Mono } from 'next/font/google';
-import Link from 'next/link';
+import { Action, PropUpdate, zeroAddress } from '@/utils/types'
+import { Address } from 'viem'
+import { IBM_Plex_Mono } from 'next/font/google'
+import Link from 'next/link'
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
-});
+})
 
 export function Actions({
    actions,
    address,
 }: {
-   actions: Action[];
-   address: Address;
+   actions: Action[]
+   address: Address
 }) {
-   let myProps = [] as Action[];
-   let needToClaim = [] as Action[];
+   let myProps = [] as Action[]
+   let needToClaim = [] as Action[]
 
    for (const a of actions) {
       if (
          a.admin == zeroAddress &&
          a.proposer.toLowerCase() == address.toLowerCase()
       ) {
-         needToClaim.push(a);
+         needToClaim.push(a)
       } else if (
          a.admin.toLowerCase() == address.toLowerCase() ||
          a.pendingAdmin.toLowerCase() == address.toLowerCase()
       ) {
          // IF PENDING, ACT AS REAL ADMIN ON FRONT-END
-         myProps.push(a);
+         myProps.push(a)
       } else {
-         console.log("action doesn't fit in needToClaim or myProps");
+         console.log("action doesn't fit in needToClaim or myProps")
       }
    }
 
    needToClaim = needToClaim.sort((a, b) =>
       Number(a.id) < Number(b.id) ? -1 : 1
-   );
-   myProps = myProps.sort((a, b) => (Number(a.id) < Number(b.id) ? -1 : 1));
+   )
+   myProps = myProps.sort((a, b) => (Number(a.id) < Number(b.id) ? -1 : 1))
 
    return (
       <div className='w-full space-y-8'>
@@ -108,5 +108,5 @@ export function Actions({
             </div>
          </div>
       </div>
-   );
+   )
 }

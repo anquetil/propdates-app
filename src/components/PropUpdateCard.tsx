@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google';
-import { PropUpdate } from '@/utils/types';
-import { Address, useEnsName } from 'wagmi';
-import Link from 'next/link';
-import { formatTimestampString } from '@/utils/funcs';
+import { IBM_Plex_Mono } from 'next/font/google'
+import { PropUpdate } from '@/utils/types'
+import { Address, useEnsName } from 'wagmi'
+import Link from 'next/link'
+import { formatTimestampString } from '@/utils/funcs'
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
-});
+})
 
 export function PropUpdateCard({
    update,
    context = false,
 }: {
-   update: PropUpdate;
-   context?: boolean;
+   update: PropUpdate
+   context?: boolean
 }) {
    const { data: ensData } = useEnsName({
       address: update.admin as Address,
-   });
+   })
 
    return (
       <div className='w-full bg-white rounded-lg border-slate-200 border-[1px] p-4 font-normal'>
@@ -55,5 +55,5 @@ export function PropUpdateCard({
             {update.update}
          </div>
       </div>
-   );
+   )
 }

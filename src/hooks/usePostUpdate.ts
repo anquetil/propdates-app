@@ -1,18 +1,16 @@
-import { Address } from 'viem'
 import {
    useContractWrite,
    usePrepareContractWrite,
    useWaitForTransaction,
 } from 'wagmi'
 import { propdatesAddress, propdatesABI } from '@/generated'
-import { wagmiConfig } from '@/app/providers'
 
-export function useTransferAdmin(propID: number, newAdmin: Address) {
+export function usePostUpdate(propID: number, updateText: string) {
    const { config } = usePrepareContractWrite({
       address: propdatesAddress[1],
       abi: propdatesABI,
-      functionName: 'transferPropUpdateAdmin',
-      args: [BigInt(propID), newAdmin],
+      functionName: 'postUpdate',
+      args: [BigInt(propID), false, updateText],
       enabled: true,
    })
 
@@ -40,4 +38,4 @@ export function useTransferAdmin(propID: number, newAdmin: Address) {
    }
 }
 
-export default useTransferAdmin
+export default usePostUpdate

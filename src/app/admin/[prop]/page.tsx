@@ -1,60 +1,62 @@
-'use client';
+'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google';
+import { IBM_Plex_Mono } from 'next/font/google'
 import {
    Address,
    useAccount,
    useEnsName,
    useNetwork,
    useSwitchNetwork,
-} from 'wagmi';
-import Link from 'next/link';
-import useGetProp from '@/hooks/useGetProp';
-import { LoadingNoggles } from '@/components/LoadingNoggles';
-import { zeroAddress } from '@/utils/types';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { TransferAdminForm } from '@/components/TransferAdminForm';
-import { PageTitle } from '@/components/PageTitle';
+} from 'wagmi'
+import Link from 'next/link'
+import useGetProp from '@/hooks/useGetProp'
+import { LoadingNoggles } from '@/components/LoadingNoggles'
+import { zeroAddress } from '@/utils/types'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { TransferAdminForm } from '@/components/TransferAdminForm'
+import { PageTitle } from '@/components/PageTitle'
+import { PostUpdateForm } from '@/components/PostUpdateForm'
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
-});
+})
 
 export default function PropPage({ params }: { params: { prop: string } }) {
-   const propId = Number(params.prop);
-   const { prop, loading } = useGetProp(Number(propId), propId != -1000);
+   const propId = Number(params.prop)
+   const { prop, loading } = useGetProp(Number(propId), propId != -1000)
 
-   const { isConnected, address } = useAccount();
-   const { chain } = useNetwork();
-   const { switchNetwork } = useSwitchNetwork();
-   const correctChain = chain?.id === 1;
+   const { isConnected, address } = useAccount()
+   const { chain } = useNetwork()
+   const { switchNetwork } = useSwitchNetwork()
+   const correctChain = chain?.id === 1
 
    const { data: adminENS } = useEnsName({
       address: prop ? prop.admin : zeroAddress,
       enabled: prop != undefined && prop.admin != zeroAddress,
-   });
+   })
    const { data: proposerENS } = useEnsName({
       address: prop ? prop.proposer : zeroAddress,
       enabled: prop != undefined,
-   });
+   })
    const { data: pendingAdminENS } = useEnsName({
       address: prop ? prop.pendingAdmin : zeroAddress,
       enabled: prop != undefined,
-   });
+   })
 
-   address;
-   const unclaimed = !loading && prop.admin == zeroAddress;
-
+   const unclaimed = !loading && prop.admin == zeroAddress
+   const canPost =
+      prop &&
+      isConnected &&
+      correctChain &&
+      (address == prop.admin || address == prop.pendingAdmin)
    if (loading) {
       return (
          <div>
             <Link href='/admin'>←</Link>
-            <div className={`${mono.className} text-4xl font-semibold mb-8`}>
-               Manage Prop #{propId}
-            </div>
+            <PageTitle title={`Manage Prop #${propId}`} />
             <LoadingNoggles />
          </div>
-      );
+      )
    }
    return (
       <div>
@@ -96,6 +98,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          ) : (
             <TransferAdminForm connectedAddress={address!} prop={prop} />
          )}
+         {canPost && <PostUpdateForm prop={prop} />}
       </div>
-   );
+   )
 }

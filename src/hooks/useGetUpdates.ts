@@ -1,5 +1,5 @@
-import { PropUpdate } from '@/utils/types';
-import { gql, useQuery } from '@apollo/client';
+import { PropUpdate } from '@/utils/types'
+import { gql, useQuery } from '@apollo/client'
 
 export function useGetUpdates(prop?: number, enabled = true) {
    const query = gql`query allUpdates {
@@ -25,17 +25,17 @@ export function useGetUpdates(prop?: number, enabled = true) {
          transactionHash
          blockTimestamp
       }
-   }`;
+   }`
 
    const { data } = useQuery(query, {
       skip: !enabled,
-   });
+   })
 
-   const updates: PropUpdate[] = data ? data.propUpdates : undefined;
+   const updates: PropUpdate[] = data ? data.propUpdates : undefined
 
    return {
       updates,
-   };
+   }
 }
 
-export default useGetUpdates;
+export default useGetUpdates

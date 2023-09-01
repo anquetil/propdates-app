@@ -1,44 +1,44 @@
-'use client';
+'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google';
-import { useEnsName } from 'wagmi';
-import Link from 'next/link';
-import useGetProp from '@/hooks/useGetProp';
-import { LoadingNoggles } from '@/components/LoadingNoggles';
-import { AllUpdates } from '@/components/AllUpdates';
-import { zeroAddress } from '@/utils/types';
-import { PersonIcon } from '@radix-ui/react-icons';
-import { PageTitle } from '@/components/PageTitle';
+import { IBM_Plex_Mono } from 'next/font/google'
+import { useEnsName } from 'wagmi'
+import Link from 'next/link'
+import useGetProp from '@/hooks/useGetProp'
+import { LoadingNoggles } from '@/components/LoadingNoggles'
+import { AllUpdates } from '@/components/AllUpdates'
+import { zeroAddress } from '@/utils/types'
+import { PersonIcon } from '@radix-ui/react-icons'
+import { PageTitle } from '@/components/PageTitle'
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
-});
+})
 
 export default function PropPage({ params }: { params: { prop: string } }) {
-   const propId = Number(params.prop);
-   const { prop, loading } = useGetProp(Number(propId), propId != -1000);
+   const propId = Number(params.prop)
+   const { prop, loading } = useGetProp(Number(propId), propId != -1000)
 
    const { data: adminENS } = useEnsName({
       address: prop ? prop.admin : zeroAddress,
       enabled: prop != undefined && prop.admin != zeroAddress,
-   });
+   })
    /*const { data: proposerENS } = useEnsName({
       address: prop ? prop.proposer : zeroAddress,
       enabled: prop != undefined,
    });*/
-   const unclaimed = !loading && prop.admin == zeroAddress;
+   const unclaimed = !loading && prop.admin == zeroAddress
 
    if (loading) {
       return (
          <div>
-            <PageTitle title={`${propId} - ${prop?.title}`} />
+            <PageTitle title={`${propId}`} />
             <LoadingNoggles />
          </div>
-      );
+      )
    }
    return (
       <div>
-         <PageTitle title={`${propId} - ${prop?.title}`} />
+         <PageTitle title={`${propId} - ${prop?.title}`} gear={false} />
 
          <div className='flex flex-col space-y-1 text-md text-gray-500'>
             {
@@ -67,5 +67,5 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          {prop && <AllUpdates updates={prop.updates} />}
          <div></div>
       </div>
-   );
+   )
 }

@@ -1,5 +1,5 @@
-import { Proposal } from '@/utils/types';
-import { gql, useQuery } from '@apollo/client';
+import { Proposal } from '@/utils/types'
+import { gql, useQuery } from '@apollo/client'
 
 export function useGetProp(propId: number, enabled: boolean) {
    const query = gql`query propQuery {
@@ -25,18 +25,18 @@ export function useGetProp(propId: number, enabled: boolean) {
           blockTimestamp
         }
       }
-   }`;
+   }`
 
    const { data, loading } = useQuery(query, {
       skip: !enabled,
-   });
+   })
 
-   const prop: Proposal = data ? data.proposal : undefined;
+   const prop: Proposal = data ? data.proposal : undefined
 
    return {
       prop,
       loading,
-   };
+   }
 }
 
-export default useGetProp;
+export default useGetProp

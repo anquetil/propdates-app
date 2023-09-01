@@ -14,7 +14,7 @@ import {
    watchContractEvent,
    WatchContractEventConfig,
    WatchContractEventCallback,
-} from 'wagmi/actions';
+} from 'wagmi/actions'
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Propdates
@@ -167,14 +167,14 @@ export const propdatesABI = [
       outputs: [],
    },
    { stateMutability: 'payable', type: 'receive' },
-] as const;
+] as const
 
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x94b4fb16893C0Fb4E470eEf2559C24FD87FEd5F1)
  */
 export const propdatesAddress = {
    1: '0x94b4fb16893C0Fb4E470eEf2559C24FD87FEd5F1',
-} as const;
+} as const
 
 /**
  * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x94b4fb16893C0Fb4E470eEf2559C24FD87FEd5F1)
@@ -182,7 +182,7 @@ export const propdatesAddress = {
 export const propdatesConfig = {
    address: propdatesAddress,
    abi: propdatesABI,
-} as const;
+} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Core
@@ -195,14 +195,14 @@ export const propdatesConfig = {
  */
 export function getPropdates(
    config: Omit<GetContractArgs, 'abi' | 'address'> & {
-      chainId?: keyof typeof propdatesAddress;
+      chainId?: keyof typeof propdatesAddress
    }
 ) {
    return getContract({
       abi: propdatesABI,
       address: propdatesAddress[1],
       ...config,
-   });
+   })
 }
 
 /**
@@ -215,14 +215,14 @@ export function readPropdates<
    TFunctionName extends string = string,
 >(
    config: Omit<ReadContractConfig<TAbi, TFunctionName>, 'abi' | 'address'> & {
-      chainId?: keyof typeof propdatesAddress;
+      chainId?: keyof typeof propdatesAddress
    }
 ) {
    return readContract({
       abi: propdatesABI,
       address: propdatesAddress[1],
       ...config,
-   } as unknown as ReadContractConfig<TAbi, TFunctionName>);
+   } as unknown as ReadContractConfig<TAbi, TFunctionName>)
 }
 
 /**
@@ -240,26 +240,26 @@ export function writePropdates<
            WriteContractPreparedArgs<typeof propdatesABI, TFunctionName>,
            'abi' | 'address'
         > & {
-           mode: TMode;
+           mode: TMode
            chainId?: TMode extends 'prepared'
               ? TChainId
-              : keyof typeof propdatesAddress;
+              : keyof typeof propdatesAddress
         })
       | (Omit<
            WriteContractUnpreparedArgs<typeof propdatesABI, TFunctionName>,
            'abi' | 'address'
         > & {
-           mode: TMode;
+           mode: TMode
            chainId?: TMode extends 'prepared'
               ? TChainId
-              : keyof typeof propdatesAddress;
+              : keyof typeof propdatesAddress
         })
 ) {
    return writeContract({
       abi: propdatesABI,
       address: propdatesAddress[1],
       ...config,
-   } as unknown as WriteContractArgs<typeof propdatesABI, TFunctionName>);
+   } as unknown as WriteContractArgs<typeof propdatesABI, TFunctionName>)
 }
 
 /**
@@ -280,7 +280,7 @@ export function prepareWritePropdates<
       abi: propdatesABI,
       address: propdatesAddress[1],
       ...config,
-   } as unknown as PrepareWriteContractConfig<TAbi, TFunctionName>);
+   } as unknown as PrepareWriteContractConfig<TAbi, TFunctionName>)
 }
 
 /**
@@ -305,5 +305,5 @@ export function watchPropdatesEvent<
          ...config,
       } as unknown as WatchContractEventConfig<TAbi, TEventName>,
       callback
-   );
+   )
 }

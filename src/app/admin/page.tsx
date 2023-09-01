@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google';
-import { LoadingNoggles } from '@/components/LoadingNoggles';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { Address, useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
-import useGetActions from '@/hooks/useGetActions';
-import { Actions } from '@/components/Actions';
-import Link from 'next/link';
-import { PageTitle } from '@/components/PageTitle';
+import { IBM_Plex_Mono } from 'next/font/google'
+import { LoadingNoggles } from '@/components/LoadingNoggles'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { Address, useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
+import useGetActions from '@/hooks/useGetActions'
+import { Actions } from '@/components/Actions'
+import Link from 'next/link'
+import { PageTitle } from '@/components/PageTitle'
 const mono = IBM_Plex_Mono({
    subsets: ['latin'],
    weight: ['100', '200', '300', '400', '500', '600', '700'],
-});
+})
 
 export default function AdminPage() {
-   const data = 0;
+   const data = 0
 
-   const { isConnected, address } = useAccount();
-   const { chain } = useNetwork();
-   const { switchNetwork } = useSwitchNetwork();
-   const correctChain = chain?.id === 1;
+   const { isConnected, address } = useAccount()
+   const { chain } = useNetwork()
+   const { switchNetwork } = useSwitchNetwork()
+   const correctChain = chain?.id === 1
 
-   const { actions, loading } = useGetActions(address!, isConnected);
+   const { actions, loading } = useGetActions(address!, isConnected)
 
    if (data == undefined)
       return (
          <div>
             <LoadingNoggles />
          </div>
-      );
+      )
 
    return (
       <div>
@@ -51,5 +51,5 @@ export default function AdminPage() {
             <LoadingNoggles />
          )}
       </div>
-   );
+   )
 }

@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google';
-import { Proposal, zeroAddress } from '@/utils/types';
-import { Address, useAccount } from 'wagmi';
-import useTransferAdmin from '@/hooks/useTransferAdmin';
-import { useState } from 'react';
-import { isAddress } from 'viem';
+import { IBM_Plex_Mono } from 'next/font/google'
+import { Proposal, zeroAddress } from '@/utils/types'
+import { Address, useAccount } from 'wagmi'
+import useTransferAdmin from '@/hooks/useTransferAdmin'
+import { useState } from 'react'
+import { isAddress } from 'viem'
 
 export function TransferAdminForm({
    connectedAddress,
    prop,
 }: {
-   connectedAddress: Address;
-   prop: Proposal;
+   connectedAddress: Address
+   prop: Proposal
 }) {
    //
-   const [error, setError] = useState<boolean>(false);
-   const [newAdmin, setNewAdmin] = useState<Address>(connectedAddress);
-   const { id, admin, pendingAdmin, transferPending, proposer } = prop;
-   const unclaimed = admin == zeroAddress;
+   const [error, setError] = useState<boolean>(false)
+   const [newAdmin, setNewAdmin] = useState<Address>(connectedAddress)
+   const { id, admin, pendingAdmin, transferPending, proposer } = prop
+   const unclaimed = admin == zeroAddress
    const transferable =
       (!unclaimed && connectedAddress.toLowerCase() == admin.toLowerCase()) ||
-      (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase());
+      (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())
    // either claimed and admin, or unclaimed and proposer
 
-   const { isConnected } = useAccount();
+   const { isConnected } = useAccount()
    const { write, isSuccess, transactionData } = useTransferAdmin(
       Number(id),
       newAdmin
-   );
+   )
 
    if (isSuccess) {
       return (
@@ -41,7 +41,7 @@ export function TransferAdminForm({
                {transactionData?.transactionHash}
             </a>
          </div>
-      );
+      )
    }
 
    if (transferable) {
@@ -77,10 +77,10 @@ export function TransferAdminForm({
                   title='Must be valid Ethereum address.'
                   onChange={(e) => {
                      if (isAddress(e.target.value)) {
-                        setError(false);
-                        setNewAdmin(e.target.value as Address);
+                        setError(false)
+                        setNewAdmin(e.target.value as Address)
                      } else {
-                        setError(true);
+                        setError(true)
                      }
                   }}
                   defaultValue={connectedAddress}
@@ -94,20 +94,20 @@ export function TransferAdminForm({
                   className='bg-blue-500  border-[1px] hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
                   type='submit'
                   onClick={() => {
-                     write?.();
+                     write?.()
                   }}
                >
                   Submit
                </button>
             </div>
          </div>
-      );
+      )
    } else {
       return (
          <div>
             Only the current admin (or proposer if not yet claimed) can transfer
             this.
          </div>
-      );
+      )
    }
 }
