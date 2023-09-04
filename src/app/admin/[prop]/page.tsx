@@ -50,7 +50,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       correctChain &&
       (address?.toLowerCase() == prop.admin.toLowerCase() || address?.toLowerCase() == prop.pendingAdmin.toLowerCase())
    console.log("canPost: ", canPost, "prop: ", prop, "isConnected: ", isConnected, "correctChain: ", correctChain)
-   console.log("address: ", address, "admin: ", prop.admin, "pendingAdmin: ", prop.pendingAdmin)
+   if(prop) console.log("address: ", address, "admin: ", prop.admin, "pendingAdmin: ", prop.pendingAdmin)
 
    if (loading) {
       return (
@@ -71,7 +71,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
             }`}</div>
             <div className='font-semibold'>Admin:</div>
             <div>
-               {unclaimed
+               {unclaimed && !prop.transferPending
                   ? `Unclaimed`
                   : `${prop.admin} ${adminENS ? `(${adminENS})` : ''}`}
             </div>
