@@ -5,10 +5,6 @@ import { PropUpdate } from '@/utils/types'
 import { Address, useEnsName } from 'wagmi'
 import Link from 'next/link'
 import { formatTimestampString } from '@/utils/funcs'
-const mono = IBM_Plex_Mono({
-   subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700'],
-})
 
 export function PropUpdateCard({
    update,
@@ -50,7 +46,7 @@ export function PropUpdateCard({
             </a>
          </div>
          <div
-            className={`w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 ${mono.className}`}
+            className={`w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono`}
          >
             {update.update}
          </div>

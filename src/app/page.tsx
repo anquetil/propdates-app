@@ -10,9 +10,9 @@ export default function Home() {
 
    return (
       <div>
-         <PageTitle title={'🚧 Propdates'} gear={true} />
+         <PageTitle title={'Write & read onchain updates'} gear={true} />
 
-         <div className='w-full flex items-center'></div>
+         <div className='font-normal text-lg -mt-16 mb-12'>Propdates is an onchain system for Nouns proposal updates.</div>
          {updates ? (
             <AllUpdates updates={updates} context={true} />
          ) : (

@@ -9,10 +9,10 @@ export function PageTitle({
    gear?: boolean
 }) {
    return (
-      <div className='flex flex-row justify-between items-center pr-1 pb-[30.5px] mb-10 border-b-2 border-slate-200'>
+      <div className='font-serif flex flex-row justify-between items-center pr-1 pb-[30.5px] mb-10'>
          <div
             className={`text-4xl ${
-               gear ? 'text-red-500' : 'text-gray-800'
+               gear ? 'text-blue-900' : 'text-gray-800'
             } font-medium`}
          >
             {title}
