@@ -48,7 +48,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       prop &&
       isConnected &&
       correctChain &&
-      (address == prop.admin || address == prop.pendingAdmin)
+      (address?.toLowerCase() == prop.admin.toLowerCase() || address?.toLowerCase() == prop.pendingAdmin.toLowerCase())
    if (loading) {
       return (
          <div>
