@@ -26,7 +26,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       address: prop ? prop.proposer : zeroAddress,
       enabled: prop != undefined,
    });*/
-   const unclaimed = !loading && prop.admin == zeroAddress
+   const unclaimed = !loading && (prop.admin == zeroAddress && prop.pendingAdmin == zeroAddress)
 
    if (loading) {
       return (
