@@ -18,9 +18,9 @@ export default function RootLayout({
 }) {
    return (
       <html lang='en'>
-         <body className={`${inter.className}`}>
+         <body className={`${inter.className} bg-white`}>
             <Providers>
-               <main className='flex min-h-screen flex-col w-4/5 min-w-[310px] max-w-[800px] border-x-[1px] border-neutral-200 bg-white px-6 pt-12 pb-4 shadow-sm'>
+               <main className='flex min-h-screen flex-col w-4/5 min-w-[310px] max-w-[800px] px-6 pt-12 pb-4'>
                   {children}
                </main>
             </Providers>
