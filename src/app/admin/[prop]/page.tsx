@@ -2,13 +2,11 @@
 
 import { IBM_Plex_Mono } from 'next/font/google'
 import {
-   Address,
    useAccount,
    useEnsName,
    useNetwork,
    useSwitchNetwork,
 } from 'wagmi'
-import Link from 'next/link'
 import useGetProp from '@/hooks/useGetProp'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { zeroAddress } from '@/utils/types'
@@ -48,9 +46,10 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       prop &&
       isConnected &&
       correctChain &&
-      (address?.toLowerCase() == prop.admin.toLowerCase() || address?.toLowerCase() == prop.pendingAdmin.toLowerCase())
-   console.log("canPost: ", canPost, "prop: ", prop, "isConnected: ", isConnected, "correctChain: ", correctChain)
-   if(prop) console.log("address: ", address, "admin: ", prop.admin, "pendingAdmin: ", prop.pendingAdmin)
+      (address?.toLowerCase() == prop.admin.toLowerCase() ||
+         address?.toLowerCase() == prop.pendingAdmin.toLowerCase())
+
+
 
    if (loading) {
       return (
@@ -60,6 +59,13 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          </div>
       )
    }
+
+   const unclaimedPending = unclaimed && prop.transferPending
+   const unclaimedNotPending = unclaimed && !prop.transferPending
+   const adminString = unclaimedNotPending
+      ? `Unclaimed`
+      : unclaimedPending ? `Current: 0x0` : `Current: ${prop.admin} ${adminENS ? `(${adminENS})` : ''}`
+
    return (
       <div>
          <PageTitle title={`Manage Prop #${propId}`} />
@@ -71,9 +77,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
             }`}</div>
             <div className='font-semibold'>Admin:</div>
             <div>
-               {unclaimed && !prop.transferPending
-                  ? `Unclaimed`
-                  : `${prop.admin} ${adminENS ? `(${adminENS})` : ''}`}
+               {adminString}
             </div>
             <div>
                {prop.transferPending

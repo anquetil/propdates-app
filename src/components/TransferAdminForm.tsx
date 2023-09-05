@@ -27,7 +27,8 @@ export function TransferAdminForm({
    const { isConnected } = useAccount()
    const { write, isSuccess, transactionData } = useTransferAdmin(
       Number(id),
-      newAdmin
+      newAdmin,
+      connectedAddress.toLowerCase() == admin.toLowerCase()
    )
 
    if (isSuccess) {

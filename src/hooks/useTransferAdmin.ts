@@ -7,13 +7,13 @@ import {
 import { propdatesAddress, propdatesABI } from '@/generated'
 import { wagmiConfig } from '@/app/providers'
 
-export function useTransferAdmin(propID: number, newAdmin: Address) {
+export function useTransferAdmin(propID: number, newAdmin: Address, enabled: boolean) {
    const { config } = usePrepareContractWrite({
       address: propdatesAddress[1],
       abi: propdatesABI,
       functionName: 'transferPropUpdateAdmin',
       args: [BigInt(propID), newAdmin],
-      enabled: true,
+      enabled: enabled,
    })
 
    const { write, data } = useContractWrite(config)

@@ -101,7 +101,7 @@ export function Actions({
                         href={`/admin/${a.id}`}
                         className='bg-blue-500 hover:opacity-90 transition-all ease-in-out shadow-sm rounded-lg py-[2px] px-[14px] text-white'
                      >
-                        Transfer
+                        Manage / Post
                      </Link>
                   </div>
                ))}

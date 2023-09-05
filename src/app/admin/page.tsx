@@ -32,7 +32,7 @@ export default function AdminPage() {
 
    return (
       <div>
-         <PageTitle title={`Permissions`} />
+         <PageTitle title={`My Props`} />
 
          {!isConnected ? (
             <ConnectButton showBalance={false} accountStatus='avatar' />
