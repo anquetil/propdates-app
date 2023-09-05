@@ -39,7 +39,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    }
    return (
       <div>
-         <PageTitle title={`${propId} - ${prop?.title}`} gear={false} />
+         <PageTitle title={`${propId} - ${prop?.title}`} home={false} />
 
          <div className='flex flex-col space-y-1 text-md text-gray-500'>
             {

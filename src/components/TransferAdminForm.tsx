@@ -70,7 +70,7 @@ export function TransferAdminForm({
             <div className='flex flex-col items-start mt-4'>
                <div className='font-medium'>New Admin:</div>
                <input
-                  className='mt-1 mb-4 rounded p-1 border-[1px] border-neutral-200 min-w-[410px]'
+                  className='mt-1 mb-4 rounded p-1 border-[1px] border-neutral-200 min-w-[200px] sm:min-w-[410px]'
                   type='text'
                   name='newAdmin'
                   id='newAdmin'

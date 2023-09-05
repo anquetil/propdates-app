@@ -5,6 +5,7 @@ import { PropUpdate } from '@/utils/types'
 import { Address, useEnsName } from 'wagmi'
 import Link from 'next/link'
 import { formatTimestampString } from '@/utils/funcs'
+import ReactMarkdown from 'react-markdown'
 
 export function PropUpdateCard({
    update,
@@ -46,9 +47,9 @@ export function PropUpdateCard({
             </a>
          </div>
          <div
-            className={`w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono`}
+            className={`propUpdateMarkdown w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono`}
          >
-            {update.update}
+            <ReactMarkdown className='space-y-3' linkTarget={'_blank'}>{update.update}</ReactMarkdown>
          </div>
       </div>
    )
