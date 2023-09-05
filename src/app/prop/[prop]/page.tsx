@@ -43,16 +43,16 @@ export default function PropPage({ params }: { params: { prop: string } }) {
 
          <div className='flex flex-col space-y-1 text-md text-gray-500'>
             {
-               unclaimed && (
+               (unclaimed || prop.updates.length == 0) && (
                   <div className='flex flex-row space-x-2 w-fit p-3 bg-yellow-100 text-yellow-600 border-[1px] border-yellow-300 rounded'>
                      <div>⚠️</div>
                      <div>
-                        Unclaimed admin role - is this you?{' '}
+                        No posts yet - is this you?{' '}
                         <Link
                            className='text-yellow-600 hover:text-yellow-800 underline'
                            href='/admin'
                         >
-                           Claim here
+                           Claim and write here
                         </Link>
                      </div>
                   </div>
