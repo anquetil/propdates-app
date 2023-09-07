@@ -45,7 +45,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                      setCompleted(e.currentTarget.checked)
                   }}
                />
-               <div className='text-gray-500'>Mark proposal work as completed</div>
+               <div className='text-gray-500'>{`Mark proposal work as completed (this can't be undone)`}</div>
             </div>
             <textarea
                className='mt-1 mb-4 rounded border-[1px] border-neutral-200 w-full align-text-top overflow-auto p-2 pb-20'
