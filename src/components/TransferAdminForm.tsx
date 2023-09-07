@@ -25,10 +25,12 @@ export function TransferAdminForm({
    // either claimed and admin, or unclaimed and proposer
 
    const { isConnected } = useAccount()
+   const enableWrite = connectedAddress.toLowerCase() == admin.toLowerCase() ||
+      (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())
    const { write, isSuccess, transactionData } = useTransferAdmin(
       Number(id),
       newAdmin,
-      connectedAddress.toLowerCase() == admin.toLowerCase()
+      enableWrite
    )
 
    if (isSuccess) {
