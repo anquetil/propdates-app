@@ -12,7 +12,7 @@ export default function Home() {
       <div>
          <PageTitle title={'Write & read onchain updates'} home={true} />
 
-         <div className='font-normal text-lg mb-6 text-gray-800'>Propdates is an onchain system for Nouns proposal accountability.</div>
+         <div className='font-normal text-lg mb-6 text-gray-800'>Propdates is the easiest way to keep up with funded Nouns proposals</div>
          {updates ? (
             <AllUpdates updates={updates} context={true} />
          ) : (
