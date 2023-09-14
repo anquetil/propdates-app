@@ -40,30 +40,28 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    return (
       <div>
          <PageTitle title={`${propId} - ${prop?.title}`} home={false} />
+         {prop.isCompleted && (
+            <div className='mb-8'>
+               ✅
+               <span className='italic text-gray-700 font-medium'>{` This proposal's work was marked as completed by admin`}</span>
+            </div>
+         )}
 
          <div className='flex flex-col space-y-1 text-md text-gray-500'>
-            {
-               (unclaimed || prop.updates.length == 0) && (
-                  <div className='flex flex-row space-x-2 w-fit p-3 bg-yellow-100 text-yellow-600 border-[1px] border-yellow-300 rounded'>
-                     <div>⚠️</div>
-                     <div>
-                        No posts yet - is this you?{' '}
-                        <Link
-                           className='text-yellow-600 hover:text-yellow-800 underline'
-                           href='/admin'
-                        >
-                           Claim and write here
-                        </Link>
-                     </div>
+            {(unclaimed || prop.updates.length == 0) && (
+               <div className='flex flex-row space-x-2 w-fit p-3 bg-yellow-100 text-yellow-600 border-[1px] border-yellow-300 rounded'>
+                  <div>⚠️</div>
+                  <div>
+                     No posts yet - is this you?{' '}
+                     <Link
+                        className='text-yellow-600 hover:text-yellow-800 underline'
+                        href='/admin'
+                     >
+                        Claim and write here
+                     </Link>
                   </div>
-               ) /*: (
-               {/*<div className='flex flex-row mb-4 space-x-3'>
-                  <div className="font-semibold">ADMIN</div>
-                  <div className="">{adminENS ?? prop.admin.substring(0, 7)}</div>
-                  {prop.isCompleted && <div>✅ Completed</div>}
-               </div>}
-            )*/
-            }
+               </div>
+            )}
          </div>
          {prop && <AllUpdates updates={prop.updates} />}
          <div></div>

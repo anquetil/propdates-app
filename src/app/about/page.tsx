@@ -15,7 +15,8 @@ export default function AboutPage() {
       'Propdates is a contract built by [wilson](https://twitter.com/WilsonCusack) and a front-end built by [martin](https://twitter.com/anquetil).'
    md +=
       '\n\nIts goal is to make it easier for proposers to keep the Nouns community updated on their work.'
-   md += '\n\nTo set it up, a user needs to claim the admin role or transfer it to another address via the [admin page](https://propdates.wtf/admin).'
+   md +=
+      '\n\nTo set it up, a user needs to claim the admin role or transfer it to another address via the [admin page](https://propdates.wtf/admin).'
    md += '\n\nAll proposals updates are automatically refunded by the contract.'
    md +=
       '\n\nContract Address: [0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1](https://etherscan.io/address/0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1)'
