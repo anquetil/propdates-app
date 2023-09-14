@@ -43,7 +43,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          {prop.isCompleted && (
             <div className='mb-8'>
                ✅
-               <span className='italic text-gray-700 font-medium'>{` This proposal's work was marked as completed by admin`}</span>
+               <span className='italic text-gray-700 font-medium'>{` This proposal's work was marked as completed by the admin`}</span>
             </div>
          )}
 
