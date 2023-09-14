@@ -39,7 +39,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
             <div className='font-medium'>Update</div>
             <div className='flex flex-row space-x-2 mb-4'>
                <input
-                  type="checkbox"
+                  type='checkbox'
                   className='w-fit rounded border-[1px] border-neutral-200'
                   onChange={(e) => {
                      setCompleted(e.currentTarget.checked)
@@ -56,7 +56,6 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                }}
                placeholder='Write your update here! Feel free to use Markdown.'
             />
-
 
             <button
                className='bg-blue-500  border-[1px] hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'

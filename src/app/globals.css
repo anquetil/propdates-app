@@ -21,3 +21,15 @@
 .propUpdateMarkdown a:hover {
    text-decoration: underline;
 }
+
+.aboutPage strong {
+   font-weight: 600;
+}
+
+.aboutPage a {
+   color: theme('colors.blue.600');
+}
+
+.aboutPage a:hover {
+   text-decoration: underline;
+}

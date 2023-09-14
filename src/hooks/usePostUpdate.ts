@@ -5,7 +5,11 @@ import {
 } from 'wagmi'
 import { propdatesAddress, propdatesABI } from '@/generated'
 
-export function usePostUpdate(propID: number, updateText: string, completed: boolean) {
+export function usePostUpdate(
+   propID: number,
+   updateText: string,
+   completed: boolean
+) {
    const { config } = usePrepareContractWrite({
       address: propdatesAddress[1],
       abi: propdatesABI,

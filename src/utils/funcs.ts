@@ -17,5 +17,5 @@ export function formatTimestampString(ts: string): string {
       'November',
       'December',
    ]
-   return monthNames[month - 1] + ' ' + day + ', ' + year
+   return monthNames[month] + ' ' + day + ', ' + year
 }

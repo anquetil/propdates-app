@@ -49,7 +49,9 @@ export function PropUpdateCard({
          <div
             className={`propUpdateMarkdown w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono`}
          >
-            <ReactMarkdown className='space-y-3' linkTarget={'_blank'}>{update.update}</ReactMarkdown>
+            <ReactMarkdown className='space-y-3' linkTarget={'_blank'}>
+               {update.update}
+            </ReactMarkdown>
          </div>
       </div>
    )

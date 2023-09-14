@@ -1,12 +1,7 @@
 'use client'
 
 import { IBM_Plex_Mono } from 'next/font/google'
-import {
-   useAccount,
-   useEnsName,
-   useNetwork,
-   useSwitchNetwork,
-} from 'wagmi'
+import { useAccount, useEnsName, useNetwork, useSwitchNetwork } from 'wagmi'
 import useGetProp from '@/hooks/useGetProp'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { zeroAddress } from '@/utils/types'
@@ -49,8 +44,6 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       (address?.toLowerCase() == prop.admin.toLowerCase() ||
          address?.toLowerCase() == prop.pendingAdmin.toLowerCase())
 
-
-
    if (loading) {
       return (
          <div>
@@ -64,7 +57,9 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    const unclaimedNotPending = unclaimed && !prop.transferPending
    const adminString = unclaimedNotPending
       ? `Unclaimed`
-      : unclaimedPending ? `Current: 0x0` : `Current: ${prop.admin} ${adminENS ? `(${adminENS})` : ''}`
+      : unclaimedPending
+      ? `Current: 0x0`
+      : `Current: ${prop.admin} ${adminENS ? `(${adminENS})` : ''}`
 
    return (
       <div>
@@ -76,9 +71,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
                proposerENS ? `(${proposerENS})` : ''
             }`}</div>
             <div className='font-semibold'>Admin:</div>
-            <div className='break-words'>
-               {adminString}
-            </div>
+            <div className='break-words'>{adminString}</div>
             <div className='break-words'>
                {prop.transferPending
                   ? `Pending: ${prop.pendingAdmin} ${
