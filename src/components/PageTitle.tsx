@@ -39,7 +39,7 @@ export function PageTitle({
 
          <div
             className={`text-3xl ${
-               home ? 'text-blue-800 font-serif font-medium' : 'text-blue-800'
+               home ? 'text-blue-800 font-serif font-medium sm:text-4xl' : 'text-blue-800'
             }`}
          >
             {title}
