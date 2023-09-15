@@ -22,12 +22,12 @@ export default function AboutPage() {
       '\n\nContract Address: [0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1](https://etherscan.io/address/0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1)'
 
    return (
-      <div className='aboutPage'>
+      <div className=''>
          <PageTitle title={'What is Propdates?'} home={true} />
 
          <ReactMarkdown
             linkTarget={'_blank'}
-            className='space-y-2 mt-8 font-normal text-lg text-gray-700'
+            className='aboutPage space-y-2 mt-8 font-normal text-lg text-gray-700'
          >
             {md}
          </ReactMarkdown>

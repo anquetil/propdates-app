@@ -4,40 +4,46 @@ import Link from 'next/link'
 export function PageTitle({
    title,
    home = false,
+   settings = false,
 }: {
    title: string
    home?: boolean
+   settings?: boolean
 }) {
    return (
       <div
-         className={`font-serif flex flex-row justify-between items-center pr-1 ${
-            home ? 'mb-2' : 'mb-8'
+         className={`flex flex-col justify-between items-start space-y-8 ${
+            home ? 'mb-2' : 'mb-4'
          }`}
       >
-         <div className='flex flex-row space-x-2 items-center'>
-            {!home && (
-               <Link
-                  href='/'
-                  className='-mb-1 text-gray-500 hover:text-gray-700 h-fit ease-in-out transition-all'
-               >
-                  <HomeIcon width={25} height={25} />
-               </Link>
-            )}
-            <div
-               className={`text-3xl sm:text-4xl ${
-                  home ? 'text-blue-900' : 'text-gray-800'
-               } font-medium`}
+         <div className='flex flex-row space-x-3 text-gray-700 font-medium'>
+            <Link
+               href='/'
+               className={`ease-in-out transition-all ${
+                  home ? ' cursor-default' : 'text-gray-500 hover:text-gray-700'
+               }`}
             >
-               {title}
-            </div>
+               HOME
+            </Link>
+            <Link
+               href='/admin'
+               className={` ease-in-out transition-all ${
+                  settings
+                     ? 'cursor-default'
+                     : 'text-gray-500 hover:text-gray-700'
+               }`}
+            >
+               SETTINGS
+            </Link>
          </div>
 
-         <Link
-            href='/admin'
-            className='text-gray-500 hover:text-gray-700 ease-in-out transition-all'
+         <div
+            className={`text-3xl ${
+               home ? 'text-blue-800 font-serif font-medium' : 'text-blue-800'
+            }`}
          >
-            <GearIcon width={25} height={25} />
-         </Link>
+            {title}
+         </div>
       </div>
    )
 }

@@ -65,12 +65,12 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       <div>
          <PageTitle title={`Manage Prop #${propId}`} />
 
-         <div className='flex flex-col text-md text-gray-700 border-b-2 -mt-4 pb-6 border-slate-200 mb-4'>
-            <div className='font-semibold'>Proposer:</div>
+         <div className='flex flex-col text-md text-gray-700 border-b-2 pb-6 border-slate-200 mb-4'>
+            <div className='font-semibold underline'>Proposer</div>
             <div className='mb-2 break-words	'>{`${prop.proposer} ${
                proposerENS ? `(${proposerENS})` : ''
             }`}</div>
-            <div className='font-semibold'>Admin:</div>
+            <div className='font-semibold underline'>Admin</div>
             <div className='break-words'>{adminString}</div>
             <div className='break-words'>
                {prop.transferPending

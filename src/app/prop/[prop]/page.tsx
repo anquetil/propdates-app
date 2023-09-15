@@ -32,18 +32,18 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    if (loading) {
       return (
          <div>
-            <PageTitle title={`${propId}`} />
+            <PageTitle title={`#${propId}:`} />
             <LoadingNoggles />
          </div>
       )
    }
    return (
       <div>
-         <PageTitle title={`${propId} - ${prop?.title}`} home={false} />
+         <PageTitle title={`#${propId}: ${prop?.title}`} home={false} />
          {prop.isCompleted && (
             <div className='mb-8'>
                ✅
-               <span className='italic text-gray-700 font-medium'>{` This proposal's work was marked as completed by the admin`}</span>
+               <span className='italic text-gray-500'>{` This proposal's work was marked as completed by the admin`}</span>
             </div>
          )}
 

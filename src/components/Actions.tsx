@@ -89,7 +89,7 @@ export function Actions({
                      className={`flex flex-col space-y-1 sm:space-y-0 sm:flex-row items-start sm:items-center border-dashed border-b-2 border-neutral-200 w-fit p-3`}
                   >
                      <div
-                        className={`${mono.className} w-12 flex flex-row font-semibold`}
+                        className={`w-12 flex flex-row font-semibold`}
                      >{`#${a.id}`}</div>
                      <div
                         className='max-w-[300px] sm:min-w-[300px] truncate sm:ml-4 sm:mr-8'

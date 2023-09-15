@@ -18,28 +18,46 @@ export function PropUpdateCard({
       address: update.admin as Address,
    })
 
+   const {
+      prop,
+      isCompleted,
+      blockTimestamp,
+      transactionHash,
+      admin,
+      update: textUpdate,
+   } = update
    return (
       <div className='w-full bg-white rounded-lg border-slate-200 border-[1px] p-4 font-normal'>
          <div>
             <span className='font-semibold'>
-               {ensData ?? update.admin.substring(0, 7)}
+               {ensData ?? admin.substring(0, 7)}
             </span>
-            {context && (
-               <>
-                  {` shared an update on proposal `}
-                  <Link
-                     href={`/prop/${update.prop?.id}`}
-                     className='text-blue-700 hover:underline'
-                  >{`#${update.prop?.id} - ${update.prop.title}`}</Link>
-               </>
-            )}
+            {context &&
+               (isCompleted ? (
+                  <>
+                     {` marked `}
+                     <Link
+                        href={`/prop/${prop?.id}`}
+                        className='text-blue-700 hover:underline'
+                     >{`#${prop?.id}: ${prop.title}`}</Link>
+                     {` as completed ✅`}
+                  </>
+               ) : (
+                  <>
+                     {` shared an update on `}
+                     <Link
+                        href={`/prop/${prop?.id}`}
+                        className='text-blue-700 hover:underline'
+                     >{`#${prop?.id}: ${prop.title}`}</Link>
+                  </>
+               ))}
          </div>
          <div className={`text-gray-400 text-sm`}>
-            {formatTimestampString(update.blockTimestamp)}
+            {formatTimestampString(blockTimestamp)}
             {` | `}
             <a
                className='hover:underline'
-               href={`https://etherscan.io/tx/${update.transactionHash}`}
+               href={`https://etherscan.io/tx/${transactionHash}`}
                target='_blank'
             >
                {update.transactionHash.substring(0, 5)}...
@@ -50,7 +68,7 @@ export function PropUpdateCard({
             className={`propUpdateMarkdown w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono`}
          >
             <ReactMarkdown className='space-y-3' linkTarget={'_blank'}>
-               {update.update}
+               {textUpdate}
             </ReactMarkdown>
          </div>
       </div>
