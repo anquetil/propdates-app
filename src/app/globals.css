@@ -30,3 +30,19 @@
 .aboutPage a:hover {
    text-decoration: underline;
 }
+
+li p {
+   display: inline;
+}
+
+li::before {
+   content: '•';
+   display: inline-block;
+   unicode-bidi: isolate;
+   font-variant-numeric: tabular-nums;
+   text-transform: none;
+   text-indent: 0px !important;
+   text-align: start !important;
+   text-align-last: start !important;
+   margin-right: 6px;
+}

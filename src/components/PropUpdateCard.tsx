@@ -6,6 +6,7 @@ import { Address, useEnsName } from 'wagmi'
 import Link from 'next/link'
 import { formatTimestampString } from '@/utils/funcs'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export function PropUpdateCard({
    update,
@@ -65,9 +66,13 @@ export function PropUpdateCard({
             </a>
          </div>
          <div
-            className={`propUpdateMarkdown w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono`}
+            className={`propUpdateMarkdown w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono `}
          >
-            <ReactMarkdown className='space-y-3' linkTarget={'_blank'}>
+            <ReactMarkdown
+               className='space-y-3 [&>ul>li]:ml-2 [&>*]break-word'
+               linkTarget={'_blank'}
+               remarkPlugins={[remarkGfm]}
+            >
                {textUpdate}
             </ReactMarkdown>
          </div>
