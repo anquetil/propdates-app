@@ -7,24 +7,35 @@ import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
 import { isAddress } from 'viem'
 import usePostUpdate from '@/hooks/usePostUpdate'
+import { LoadingNoggles } from './LoadingNoggles'
 
 export function PostUpdateForm({ prop }: { prop: Proposal }) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
    const { id, admin, pendingAdmin, transferPending, proposer } = prop
 
-   const { write, isSuccess, transactionData } = usePostUpdate(
-      Number(id),
-      updateText,
-      completed
-   )
+   const { write, isSuccess, transactionData, isLoading, error } =
+      usePostUpdate(Number(id), updateText, completed)
 
-   if (isSuccess) {
+   if (error) {
       return (
-         <div className='font-bold'>
+         <div className='mt-4 text-red-600'>
+            {error.name} - {error.message}
+         </div>
+      )
+   } else if (isLoading) {
+      return (
+         <div className='mt-4 w-32 flex items-start flex-col'>
+            <LoadingNoggles />
+            <div className='text-neutral-400'>Processing txn... </div>
+         </div>
+      )
+   } else if (isSuccess) {
+      return (
+         <div className='font-bold mt-4'>
             {`Success! Update posted: `}
             <a
-               className='underline text-blue-500 hover:text-blue-700'
+               className='underline text-blue-500 font-normal hover:text-blue-700'
                href={`https://etherscan.io/tx/${transactionData?.transactionHash}`}
             >
                {transactionData?.transactionHash}
