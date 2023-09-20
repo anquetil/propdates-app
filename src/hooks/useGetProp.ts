@@ -6,23 +6,23 @@ export function useGetProp(propId: number, enabled: boolean) {
       proposal(
             id: ${propId.toString()}
       ){
-        id
-        title
-        proposer
-        admin
-        transferPending
-        pendingAdmin
-    		isCompleted
-        updates(orderBy: blockTimestamp orderDirection:desc) {
+         id
+         title
+         proposer
+         admin
+         transferPending
+         pendingAdmin
+         isCompleted
+         updates(orderBy: blockTimestamp orderDirection:desc) {
         	id
             admin
             prop {
                id
             }
-          isCompleted
-          update
-          transactionHash
-          blockTimestamp
+         isCompleted
+         update
+         transactionHash
+         blockTimestamp
         }
       }
    }`

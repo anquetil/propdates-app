@@ -69,7 +69,7 @@ export function PropUpdateCard({
             className={`propUpdateMarkdown w-full mt-4 rounded-md text-sm bg-gray-100 border-gray-300 text-gray-600 p-4 font-mono `}
          >
             <ReactMarkdown
-               className='space-y-3 [&>ul>li]:ml-2 [&>*]break-word'
+               className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2'
                linkTarget={'_blank'}
                remarkPlugins={[remarkGfm]}
             >

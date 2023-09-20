@@ -26,6 +26,18 @@ export type Proposal = {
    updates: PropUpdate[]
 }
 
+export type MinimalProp = {
+   id: string
+   title: string
+   proposer: Address
+   admin: Address
+   executed: boolean
+   isCompleted: boolean
+   updates: {
+      id: string
+   }[]
+}
+
 export type Action = {
    id: string
    title: string
