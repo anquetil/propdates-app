@@ -1,15 +1,10 @@
 import { GearIcon, HomeIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 
-export function PageTitle({
-   title,
-   home = false,
-   settings = false,
-}: {
-   title: string
-   home?: boolean
-   settings?: boolean
-}) {
+export function PageTitle({ title, tab }: { title: string; tab?: string }) {
+   const home = tab == 'HOME'
+   const settings = tab == 'SETTINGS'
+   const leaderboard = tab == 'LEADERBOARD'
    return (
       <div
          className={`flex flex-col justify-between items-start space-y-8 ${
@@ -34,6 +29,16 @@ export function PageTitle({
                }`}
             >
                SETTINGS
+            </Link>
+            <Link
+               href='/leaderboard'
+               className={` ease-in-out transition-all ${
+                  leaderboard
+                     ? 'cursor-default'
+                     : 'text-gray-500 hover:text-gray-700'
+               }`}
+            >
+               LEADERBOARD
             </Link>
          </div>
 

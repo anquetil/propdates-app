@@ -39,7 +39,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    }
    return (
       <div>
-         <PageTitle title={`#${propId}: ${prop?.title}`} home={false} />
+         <PageTitle title={`#${propId}: ${prop?.title}`} />
          {prop.isCompleted && (
             <div className='mb-8'>
                ✅

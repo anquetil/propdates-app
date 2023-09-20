@@ -11,6 +11,7 @@ export type PropUpdate = {
    blockTimestamp: string
    prop: {
       id: string
+      proposer: Address
       title: string
    }
 }

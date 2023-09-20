@@ -32,7 +32,7 @@ export default function AdminPage() {
 
    return (
       <div>
-         <PageTitle title={`SETTINGS`} settings={true} />
+         <PageTitle title={`Settings`} tab={'SETTINGS'} />
 
          {!isConnected ? (
             <ConnectButton showBalance={false} accountStatus='avatar' />

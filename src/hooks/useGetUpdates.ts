@@ -18,6 +18,7 @@ export function useGetUpdates(prop?: number, enabled = true) {
          admin
          prop {
             id
+            proposer
             title
         	}
          isCompleted

@@ -19,3 +19,7 @@ export function formatTimestampString(ts: string): string {
    ]
    return monthNames[month] + ' ' + day + ', ' + year
 }
+
+export function shortenHex(hex: string | undefined) {
+   return hex === undefined ? '' : hex.slice(0, 6) + '...' + hex.slice(-4)
+}

@@ -10,7 +10,6 @@ const mono = IBM_Plex_Mono({
 
 export function ProposalList() {
    const { proposals } = useGetProps()
-   console.log(proposals)
    if (!proposals) {
       return <></>
    }
