@@ -14,15 +14,15 @@ export default function Home() {
       <div>
          <PageTitle title={'Write & read onchain updates'} home={true} />
 
-         <div className='font-normal text-lg text-gray-800  mb-2'>
+         <div className='font-normal text-lg text-gray-800'>
             Propdates is the easiest way to keep up with funded Nouns proposals.
-            <Link
-               href='/about'
-               className='font-normal text-gray-500 underline-offset-2 hover:underline'
-            >
-               {` How it works →`}
-            </Link>
          </div>
+         <Link
+            href='/about'
+            className='font-normal text-gray-500 underline-offset-2 hover:underline'
+         >
+            {` How it works →`}
+         </Link>
 
          <ProposalList />
          <div className='mb-6'></div>

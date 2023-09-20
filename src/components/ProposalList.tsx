@@ -51,7 +51,7 @@ export function ProposalList() {
    ]
 
    return (
-      <div className='flex flex-row flex-wrap bg-white border gap-y-2 p-3 shadow-sm rounded-sm mt-1 md:px-5'>
+      <div className='flex flex-row flex-wrap bg-white border gap-y-2 gap-x-2 p-3 shadow-sm rounded-sm mt-2 md:px-5'>
          {categories.map((c, i) => (
             <div key={i} className='grow max-w-full'>
                <div className='font-semibold text-sm text-gray-800'>
@@ -61,7 +61,7 @@ export function ProposalList() {
                   {c.array.map((a, i) => (
                      <div
                         key={i}
-                        className='text-gray-700 text-xs flex min-w-0 w-full md:w-64 py-1 hover:underline'
+                        className='text-gray-700 text-xs flex min-w-0 w-fit py-1 hover:underline'
                      >
                         <Link className='truncate' href={`/prop/${a.id}`}>
                            {`#${a.id}: ${a.title}`}
