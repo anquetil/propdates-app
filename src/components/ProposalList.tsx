@@ -8,7 +8,7 @@ const mono = IBM_Plex_Mono({
    weight: ['100', '200', '300', '400', '500', '600', '700'],
 })
 
-export function ProposalList() {
+export function ProposalList({ mini = false }: { mini?: boolean }) {
    const { proposals } = useGetProps()
    if (!proposals) {
       return <></>
@@ -41,26 +41,35 @@ export function ProposalList() {
          title: 'In Progress Props',
          array: posted,
          icon: '🚧',
-      } /*
-      {
-         title: "Inactive Props",
-         array: none,
-         icon: "⚠️"
-      }*/,
+      },
    ]
 
+   if (!mini) {
+      categories.push({
+         title: 'Inactive Props',
+         array: none,
+         icon: '⚠️',
+      })
+   }
+
    return (
-      <div className='flex flex-row flex-wrap bg-white border gap-y-2 gap-x-2 p-3 shadow-sm rounded-sm mt-2 md:px-5'>
+      <div className='flex flex-row flex-wrap bg-white border gap-y-2 gap-x-2 p-4 shadow-sm rounded-sm mt-2 md:px-6'>
          {categories.map((c, i) => (
             <div key={i} className='grow max-w-full'>
                <div className='font-semibold text-sm text-gray-800'>
                   {c.title}
                </div>
-               <div className='flex flex-col flex-wrap w-full'>
+               <div
+                  className={`${
+                     c.title.includes('Inactive')
+                        ? 'columns-2 md:columns-3 gap-x-8'
+                        : 'flex flex-col flex-wrap'
+                  } w-full`}
+               >
                   {c.array.map((a, i) => (
                      <div
                         key={i}
-                        className='text-gray-700 text-xs flex min-w-0 w-fit py-1 hover:underline'
+                        className='text-gray-700 text-xs flex min-w-0 max-w-full w-fit py-1 hover:underline'
                      >
                         <Link className='truncate' href={`/prop/${a.id}`}>
                            {`#${a.id}: ${a.title}`}
@@ -70,6 +79,14 @@ export function ProposalList() {
                </div>
             </div>
          ))}
+         {mini && (
+            <Link
+               href='/props'
+               className='w-full text-left text-sm hover:underline hover:underline-offset-2 text-gray-400'
+            >
+               View all props
+            </Link>
+         )}
       </div>
    )
 }

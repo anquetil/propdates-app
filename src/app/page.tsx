@@ -25,7 +25,7 @@ export default function Home() {
             {` How it works →`}
          </Link>
 
-         <ProposalList />
+         <ProposalList mini={true} />
          <div className='mb-6'></div>
 
          {updates ? (
