@@ -47,7 +47,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
             <div className='flex flex-row space-x-2 mb-4'>
                <input
                   type='checkbox'
-                  className='w-fit rounded border-[1px] border-neutral-200'
+                  className='w-fit rounded border border-neutral-200'
                   onChange={(e) => {
                      setCompleted(e.currentTarget.checked)
                   }}
@@ -55,7 +55,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                <div className='text-gray-500'>{`Mark proposal work as completed (this can't be undone)`}</div>
             </div>
             <textarea
-               className='mt-1 mb-4 rounded border-[1px] border-neutral-200 w-full align-text-top overflow-auto p-2 pb-20'
+               className='mt-1 mb-4 rounded border border-neutral-200 w-full align-text-top overflow-auto p-2 pb-20'
                name='updateText'
                id='updateText'
                onChange={(e) => {
@@ -65,7 +65,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
             />
 
             <button
-               className='bg-blue-500  border-[1px] hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
+               className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
                type='submit'
                onClick={() => {
                   write?.()

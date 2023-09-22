@@ -46,7 +46,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
    return (
       <ApolloProvider client={client}>
          <WagmiConfig config={wagmiConfig}>
-            <RainbowKitProvider chains={chains}>
+            <RainbowKitProvider chains={chains} initialChain={mainnet}>
                {mounted && children}
             </RainbowKitProvider>
          </WagmiConfig>

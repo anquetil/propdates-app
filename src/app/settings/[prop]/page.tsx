@@ -9,6 +9,7 @@ import { TransferAdminForm } from '@/components/TransferAdminForm'
 import { PageTitle } from '@/components/PageTitle'
 import { PostUpdateForm } from '@/components/PostUpdateForm'
 import PropInfoPanel from '@/components/PropInfoPanel'
+import { CustomConnectButton } from '@/components/CustomConnectButton'
 
 export default function PropPage({ params }: { params: { prop: string } }) {
    const propId = Number(params.prop)
@@ -60,22 +61,11 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    return (
       <div>
          <PageTitle title={`Manage Prop #${propId}`} />
-
          <PropInfoPanel prop={prop} />
-
-         {!isConnected ? (
-            <ConnectButton showBalance={false} accountStatus='avatar' />
-         ) : !correctChain ? (
-            <button
-               className='w-[150px] border-blue-500 rounded-sm border-[1px] p-2 shadow-md bg-blue-600 hover:bg-blue-500 ease-in-out transition-all active:mt-[2px] active:mb-[-2px]'
-               onClick={() => switchNetwork?.(1)}
-            >
-               <div className='text-opacity-90 text-sm text-white'>
-                  Switch to mainnet
-               </div>
-            </button>
-         ) : (
+         {isConnected && correctChain ? (
             <TransferAdminForm connectedAddress={address!} prop={prop} />
+         ) : (
+            <CustomConnectButton />
          )}
          {canPost && <PostUpdateForm prop={prop} />}
       </div>

@@ -2,12 +2,7 @@
 
 import { Action, zeroAddress } from '@/utils/types'
 import { Address } from 'viem'
-import { IBM_Plex_Mono } from 'next/font/google'
 import Link from 'next/link'
-const mono = IBM_Plex_Mono({
-   subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700'],
-})
 
 export function Actions({
    actions,
@@ -60,10 +55,10 @@ export function Actions({
                {needToClaim.map((a, i) => (
                   <div
                      key={i}
-                     className={`flex flex-col sm:flex-row items-start sm:items-center border-dashed border-b-2 border-neutral-200 w-fit p-3`}
+                     className={`flex flex-col sm:flex-row items-start sm:items-center border-b w-fit p-3`}
                   >
                      <div
-                        className={`${mono.className} w-12 flex flex-row font-semibold`}
+                        className={`w-12 flex flex-row font-semibold`}
                      >{`#${a.id}`}</div>
                      <div
                         className='max-w-[300px] sm:min-w-[300px] truncate sm:ml-4 sm:mr-8'
@@ -72,7 +67,7 @@ export function Actions({
                         {a.title}
                      </div>
                      <Link
-                        href={`/admin/${a.id}`}
+                        href={`/settings/${a.id}`}
                         className='bg-blue-500 hover:opacity-90 transition-all ease-in-out shadow-sm rounded-lg py-[2px] px-[14px] text-white'
                      >
                         Claim
@@ -87,7 +82,7 @@ export function Actions({
                {myProps.map((a, i) => (
                   <div
                      key={i}
-                     className={`flex flex-col space-y-1 sm:space-y-0 sm:flex-row items-start sm:items-center border-dashed border-b-2 border-neutral-200 w-fit p-3`}
+                     className={`flex flex-col space-y-1 sm:space-y-0 sm:flex-row items-start sm:items-center border-b w-fit p-3`}
                   >
                      <div
                         className={`w-12 flex flex-row font-semibold`}
@@ -99,10 +94,10 @@ export function Actions({
                         {a.title}
                      </div>
                      <Link
-                        href={`/admin/${a.id}`}
-                        className='bg-blue-500 text-center hover:opacity-90 transition-all ease-in-out shadow-sm rounded-lg py-2 sm:py-[2px] px-[14px] text-white'
+                        href={`/settings/${a.id}`}
+                        className='bg-white text-center text-sm  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] text-black border'
                      >
-                        Manage / Post
+                        Manage or Post
                      </Link>
                   </div>
                ))}

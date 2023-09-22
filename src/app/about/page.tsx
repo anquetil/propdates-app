@@ -52,7 +52,7 @@ export default function AboutPage() {
    let md = `Propdates is a contract built by [wilson](https://twitter.com/WilsonCusack) and a front-end built by [martin](https://twitter.com/anquetil). Its goal is to make it easier for proposers to keep the Nouns community updated on their work.`
    md += '\n\n## How it works'
    md +=
-      '\nTo claim a proposal, the **_initial, onchain proposer_** needs to claim the admin role or transfer it to another address via the [admin page](https://propdates.wtf/admin). Once transfered, the receiver is "pending admin" until they accept the transfer, either by posting or manually accepting it.'
+      '\nTo claim a proposal, the **_initial, onchain proposer_** needs to claim the admin role or transfer it to another address via the [admin page](https://propdates.wtf/settings). Once transfered, the receiver is "pending admin" until they accept the transfer, either by posting or manually accepting it.'
    md +=
       'Once they are the admin, they can transfer the role to anyone else. The gas fees of all proposals updates are automatically refunded by the contract.'
    md += `\n\nContract: [0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1](https://etherscan.io/address/0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1)`

@@ -27,7 +27,7 @@ export function PropUpdateCard({
       update: textUpdate,
    } = update
    return (
-      <div className='w-full bg-white rounded-lg border-slate-200 border-[1px] p-4 font-normal'>
+      <div className='w-full bg-white rounded-lg border-slate-200 border p-4 font-normal'>
          <div>
             <span className='font-semibold'>
                {ensData ?? admin.substring(0, 7)}

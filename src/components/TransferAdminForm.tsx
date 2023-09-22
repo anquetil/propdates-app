@@ -72,7 +72,7 @@ export function TransferAdminForm({
             <div className='flex flex-col items-start mt-4'>
                <div className='font-medium'>New Admin:</div>
                <input
-                  className='mt-1 mb-4 rounded p-1 border-[1px] border-neutral-200 min-w-[200px] sm:min-w-[410px]'
+                  className='mt-1 mb-4 rounded p-1 border border-neutral-200 min-w-[200px] sm:min-w-[410px]'
                   type='text'
                   name='newAdmin'
                   id='newAdmin'
@@ -94,7 +94,7 @@ export function TransferAdminForm({
                   </div>
                )}
                <button
-                  className='bg-blue-500  border-[1px] hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
+                  className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
                   type='submit'
                   onClick={() => {
                      write?.()
