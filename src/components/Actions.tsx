@@ -38,15 +38,15 @@ export function Actions({
    myProps = myProps.sort((a, b) => (Number(a.id) < Number(b.id) ? -1 : 1))
 
    return (
-      <div className='w-full space-y-8'>
+      <div className='w-full space-y-8 -mt-4'>
          {needToClaim.length == 0 && myProps.length == 0 && (
-            <div className='text-neutral-600 mb-3'>
+            <div className='text-gray-600 mb-3'>
                You are not the admin of any proposals.
             </div>
          )}
          <div>
             {needToClaim.length > 0 && (
-               <div className='text-neutral-600 mb-3'>
+               <div className='text-gray-600 mb-3'>
                   These proposals might need action - you should claim the admin
                   role for yourself or transfer it to someone else.
                </div>
@@ -55,16 +55,13 @@ export function Actions({
                {needToClaim.map((a, i) => (
                   <div
                      key={i}
-                     className={`flex flex-col sm:flex-row items-start sm:items-center border-b w-fit p-3`}
+                     className={`flex flex-col space-y-1 sm:space-y-0 sm:flex-row items-start sm:items-center border-b w-fit py-3`}
                   >
                      <div
-                        className={`w-12 flex flex-row font-semibold`}
-                     >{`#${a.id}`}</div>
-                     <div
-                        className='max-w-[300px] sm:min-w-[300px] truncate sm:ml-4 sm:mr-8'
+                        className='max-w-[300px] sm:min-w-[300px] truncate sm:mr-8'
                         key={a.id}
                      >
-                        {a.title}
+                        {`#${a.id}: ${a.title}`}
                      </div>
                      <Link
                         href={`/settings/${a.id}`}
@@ -77,21 +74,17 @@ export function Actions({
             </div>
          </div>
          <div>
-            <div>{myProps.length > 0 && 'Your Props'}</div>
             <div>
                {myProps.map((a, i) => (
                   <div
                      key={i}
-                     className={`flex flex-col space-y-1 sm:space-y-0 sm:flex-row items-start sm:items-center border-b w-fit p-3`}
+                     className={`flex flex-col space-y-1 sm:space-y-0 sm:flex-row items-start sm:items-center border-b w-fit py-3`}
                   >
                      <div
-                        className={`w-12 flex flex-row font-semibold`}
-                     >{`#${a.id}`}</div>
-                     <div
-                        className='max-w-[300px] sm:min-w-[300px] truncate sm:ml-4 sm:mr-8'
+                        className='max-w-[300px] sm:min-w-[300px] truncate sm:mr-8'
                         key={a.id}
                      >
-                        {a.title}
+                        {`#${a.id}: ${a.title}`}
                      </div>
                      <Link
                         href={`/settings/${a.id}`}
