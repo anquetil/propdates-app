@@ -1,6 +1,5 @@
 'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google'
 import { PropUpdate } from '@/utils/types'
 import { Address, useEnsName } from 'wagmi'
 import Link from 'next/link'

@@ -1,6 +1,5 @@
 'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google'
 import { Proposal, zeroAddress } from '@/utils/types'
 import { Address, useAccount } from 'wagmi'
 import useTransferAdmin from '@/hooks/useTransferAdmin'
@@ -50,7 +49,7 @@ export function TransferAdminForm({
 
    if (transferable) {
       return (
-         <div>
+         <div className='text-gray-700'>
             {unclaimed ? (
                <div>
                   The admin is not yet set for this proposal. As the proposer,
@@ -108,10 +107,11 @@ export function TransferAdminForm({
       )
    } else {
       return (
-         <div>
+         <div className='text-gray-700'>
             Only the current admin can transfer this role or write updates. If
-            not yet claimed, the proposer will need claim or transfer the admin
-            role.
+            not yet claimed, the proposer will need to claim or transfer the
+            admin role to another address. The pending admin can then post,
+            which will finish the transfer.
          </div>
       )
    }

@@ -21,6 +21,12 @@
    font-weight: 600;
 }
 
+.aboutPage h2 {
+   margin-bottom: -8px !important;
+   margin-top: 16px !important;
+   font-weight: 600;
+}
+
 .aboutPage a {
    color: theme('colors.blue.600');
 }

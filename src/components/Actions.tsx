@@ -1,6 +1,6 @@
 'use client'
 
-import { Action, PropUpdate, zeroAddress } from '@/utils/types'
+import { Action, zeroAddress } from '@/utils/types'
 import { Address } from 'viem'
 import { IBM_Plex_Mono } from 'next/font/google'
 import Link from 'next/link'
@@ -22,7 +22,7 @@ export function Actions({
    for (const a of actions) {
       if (
          a.admin == zeroAddress &&
-         a.pendingAdmin == zeroAddress && 
+         a.pendingAdmin == zeroAddress &&
          a.proposer.toLowerCase() == address.toLowerCase()
       ) {
          needToClaim.push(a)
@@ -52,8 +52,8 @@ export function Actions({
          <div>
             {needToClaim.length > 0 && (
                <div className='text-neutral-600 mb-3'>
-                  These proposals might need action - you should claim the admin role
-                  for yourself or transfer it to someone else.
+                  These proposals might need action - you should claim the admin
+                  role for yourself or transfer it to someone else.
                </div>
             )}
             <div>

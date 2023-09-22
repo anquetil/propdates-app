@@ -75,7 +75,7 @@ export function Leaderboard() {
 
    return (
       <div className=''>
-         <div className='flex flex-row space-x-4 mb-4'>
+         <div className='flex flex-row space-x-4 mb-4 '>
             <div
                className={`${
                   tab == 'ADMIN'
@@ -107,7 +107,7 @@ export function Leaderboard() {
                BY PROPOSER
             </div>
          </div>
-         <div>
+         <div className=''>
             {displayLeaderboard.map((r, i) => (
                <div
                   key={i}
@@ -115,11 +115,12 @@ export function Leaderboard() {
                      tab == 'PROPOSAL' ? 'w-64' : 'w-40'
                   }`}
                >
-                  <div className={`truncate hover:underline`}>
+                  <div className={`truncate`}>
                      {isAddress(r.item) ? (
                         <AddressDisplay address={r.item} />
                      ) : (
                         <Link
+                           className='hover:underline underline-offset-2'
                            href={`https://nouns.wtf/vote/${r.item.substring(
                               1,
                               r.item.indexOf(':')

@@ -1,17 +1,11 @@
 'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Address, useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import useGetActions from '@/hooks/useGetActions'
 import { Actions } from '@/components/Actions'
-import Link from 'next/link'
 import { PageTitle } from '@/components/PageTitle'
-const mono = IBM_Plex_Mono({
-   subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700'],
-})
 
 export default function AdminPage() {
    const data = 0

@@ -1,12 +1,6 @@
-import { Action, MinimalProp, PropUpdate, zeroAddress } from '@/utils/types'
-import { Address } from 'viem'
-import { IBM_Plex_Mono } from 'next/font/google'
+
 import Link from 'next/link'
 import useGetProps from '@/hooks/useGetProps'
-const mono = IBM_Plex_Mono({
-   subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700'],
-})
 
 export function ProposalList({ mini = false }: { mini?: boolean }) {
    const { proposals } = useGetProps()

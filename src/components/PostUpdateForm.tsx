@@ -1,11 +1,7 @@
 'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google'
 import { Proposal, zeroAddress } from '@/utils/types'
-import { Address, useAccount } from 'wagmi'
-import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
-import { isAddress } from 'viem'
 import usePostUpdate from '@/hooks/usePostUpdate'
 import { LoadingNoggles } from './LoadingNoggles'
 

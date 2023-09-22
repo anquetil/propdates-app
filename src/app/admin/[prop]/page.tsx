@@ -1,6 +1,5 @@
 'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google'
 import { useAccount, useEnsName, useNetwork, useSwitchNetwork } from 'wagmi'
 import useGetProp from '@/hooks/useGetProp'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
@@ -9,10 +8,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { TransferAdminForm } from '@/components/TransferAdminForm'
 import { PageTitle } from '@/components/PageTitle'
 import { PostUpdateForm } from '@/components/PostUpdateForm'
-const mono = IBM_Plex_Mono({
-   subsets: ['latin'],
-   weight: ['100', '200', '300', '400', '500', '600', '700'],
-})
+import PropInfoPanel from '@/components/PropInfoPanel'
 
 export default function PropPage({ params }: { params: { prop: string } }) {
    const propId = Number(params.prop)
@@ -65,21 +61,8 @@ export default function PropPage({ params }: { params: { prop: string } }) {
       <div>
          <PageTitle title={`Manage Prop #${propId}`} />
 
-         <div className='flex flex-col text-md text-gray-700 border-b-2 pb-6 border-slate-200 mb-4'>
-            <div className='font-semibold underline'>Proposer</div>
-            <div className='mb-2 break-words	'>{`${prop.proposer} ${
-               proposerENS ? `(${proposerENS})` : ''
-            }`}</div>
-            <div className='font-semibold underline'>Admin</div>
-            <div className='break-words'>{adminString}</div>
-            <div className='break-words'>
-               {prop.transferPending
-                  ? `Pending: ${prop.pendingAdmin} ${
-                       pendingAdminENS ? `(${pendingAdminENS})` : ''
-                    }`
-                  : ``}
-            </div>
-         </div>
+         <PropInfoPanel prop={prop} />
+
          {!isConnected ? (
             <ConnectButton showBalance={false} accountStatus='avatar' />
          ) : !correctChain ? (

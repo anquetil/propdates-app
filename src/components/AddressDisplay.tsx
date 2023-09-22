@@ -6,11 +6,17 @@ import useGetName from '../hooks/useGetName'
 const AddressDisplay: React.FC<{
    address: Address
    trim?: boolean
-}> = ({ address, trim = false }) => {
+   blue?: boolean
+}> = ({ address, trim = false, blue = false }) => {
    const { address: accountAddress } = useAccount()
    const { name, isLoading, guarantee } = useGetName(address, accountAddress)
    return (
-      <Link href={`https://mogu.wtf/address/${address}`}>
+      <Link
+         className={`hover:underline underline-offset-2 ${
+            blue && 'text-blue-700'
+         }`}
+         href={`https://mogu.wtf/address/${address}`}
+      >
          {isLoading
             ? guarantee
             : name.includes('.eth') && trim

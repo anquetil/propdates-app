@@ -16,7 +16,7 @@ export function useGetName(
       'Nouns DAO Auction House'
    )
    manualMap.set('0x6f3e6272a167e8accb32072d08e0957f9c79223d', 'Nouns DAO')
-   manualMap.set('0x0000000000000000000000000000000000000000', '0x0')
+   manualMap.set('0x0000000000000000000000000000000000000000', 'N/A')
    manualMap.set(
       '0x6b2645b468a828a12fea8c7d644445eb808ec2b1',
       'Federation Governance Pool'

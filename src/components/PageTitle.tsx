@@ -15,7 +15,7 @@ export function PageTitle({ title, tab }: { title: string; tab?: string }) {
             <Link
                href='/'
                className={`ease-in-out transition-all ${
-                  home ? ' cursor-default' : 'text-gray-500 hover:text-gray-700'
+                  home ? ' cursor-default' : 'text-gray-400 hover:text-gray-700'
                }`}
             >
                HOME
@@ -25,7 +25,7 @@ export function PageTitle({ title, tab }: { title: string; tab?: string }) {
                className={` ease-in-out transition-all ${
                   settings
                      ? 'cursor-default'
-                     : 'text-gray-500 hover:text-gray-700'
+                     : 'text-gray-400 hover:text-gray-700'
                }`}
             >
                SETTINGS
@@ -35,7 +35,7 @@ export function PageTitle({ title, tab }: { title: string; tab?: string }) {
                className={` ease-in-out transition-all ${
                   leaderboard
                      ? 'cursor-default'
-                     : 'text-gray-500 hover:text-gray-700'
+                     : 'text-gray-400 hover:text-gray-700'
                }`}
             >
                LEADERBOARD
