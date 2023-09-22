@@ -7,9 +7,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
    title: 'Nouns Updates',
    description: 'Onchain Proposal Updates',
-   openGraph: {
-      images: ['/meta.png'],
-   },
 }
 
 import { Providers } from './providers'
