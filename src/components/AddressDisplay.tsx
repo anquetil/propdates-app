@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { useAccount, type Address } from 'wagmi'
+import { type Address } from 'wagmi'
 import useGetName from '../hooks/useGetName'
 
 const AddressDisplay: React.FC<{
@@ -10,8 +10,7 @@ const AddressDisplay: React.FC<{
    trim?: boolean
    blue?: boolean
 }> = ({ address, trim = false, blue = false }) => {
-   const { address: accountAddress } = useAccount()
-   const { name, isLoading, guarantee } = useGetName(address, accountAddress)
+   const { name, isLoading, guarantee } = useGetName(address)
    return (
       <Link
          className={`hover:underline underline-offset-2 ${
