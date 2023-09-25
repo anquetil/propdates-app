@@ -1,7 +1,5 @@
 'use client'
 
-import { IBM_Plex_Mono } from 'next/font/google'
-import { useEnsName } from 'wagmi'
 import Link from 'next/link'
 import useGetProp from '@/hooks/useGetProp'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
@@ -14,14 +12,6 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    const propId = Number(params.prop)
    const { prop, loading } = useGetProp(Number(propId), propId != -1000)
 
-   const { data: adminENS } = useEnsName({
-      address: prop ? prop.admin : zeroAddress,
-      enabled: prop != undefined && prop.admin != zeroAddress,
-   })
-   /*const { data: proposerENS } = useEnsName({
-      address: prop ? prop.proposer : zeroAddress,
-      enabled: prop != undefined,
-   });*/
    const unclaimed =
       !loading && prop.admin == zeroAddress && prop.pendingAdmin == zeroAddress
 
