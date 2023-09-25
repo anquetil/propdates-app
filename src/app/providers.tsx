@@ -9,6 +9,8 @@ import {
 } from '@apollo/client'
 import '@rainbow-me/rainbowkit/styles.css'
 
+import { Analytics } from '@vercel/analytics/react'
+
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
@@ -48,6 +50,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
          <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains} initialChain={mainnet}>
                {mounted && children}
+               <Analytics />
             </RainbowKitProvider>
          </WagmiConfig>
       </ApolloProvider>
