@@ -5,23 +5,21 @@ import { PageTitle } from '@/components/PageTitle'
 import PropInfoPanel from '@/components/PropInfoPanel'
 import axios from 'axios'
 import { Metadata, ResolvingMetadata } from 'next'
-import { formatTitle } from '@/utils/funcs'
 
 export async function generateMetadata(
    { params }: { params: { id: string } },
    parent: ResolvingMetadata
 ): Promise<Metadata> {
    // fetch data
-   const { title, id } = await getPropInfo(params.id)
+   const { title } = await getPropInfo(params.id)
 
    // optionally access and extend (rather than replace) parent metadata
    const previousImages = (await parent).openGraph?.images || []
    const len = title.length
    const shortTitle = len > 60 ? `${title.substring(0, 60)}...` : title
-   const newTitle = formatTitle(id, shortTitle)
 
    return {
-      title: `Propdates: ${newTitle}`,
+      title: `Propdates: ${shortTitle}`,
       openGraph: {
          images: [/*'/some-specific-page-image.jpg',*/ ...previousImages],
       },
