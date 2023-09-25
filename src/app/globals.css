@@ -17,6 +17,10 @@
    text-decoration: underline;
 }
 
+th, td {
+   padding-left: 12px;
+}
+
 .aboutPage strong {
    font-weight: 600;
 }
