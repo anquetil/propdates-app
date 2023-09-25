@@ -22,6 +22,7 @@ export function useGetActions(address: Address, enabled: boolean) {
          proposer
          transferPending
          pendingAdmin
+         isCompleted
       }
    }`
 

@@ -5,6 +5,7 @@ import { PageTitle } from '@/components/PageTitle'
 import PropInfoPanel from '@/components/PropInfoPanel'
 import axios from 'axios'
 import { Metadata, ResolvingMetadata } from 'next'
+import AddressDisplay from '@/components/AddressDisplay'
 
 export async function generateMetadata(
    { params }: { params: { id: string } },
@@ -73,27 +74,34 @@ export default async function PropPage({ params }: { params: { id: string } }) {
    return (
       <div>
          <PageTitle title={`#${prop.id}: ${prop?.title}`} />
-         <div className='px-10'>
-            <PropInfoPanel prop={prop} />
-
-            <div className='flex flex-col space-y-1 text-md text-gray-500'>
-               {(unclaimed || prop.updates.length == 0) && (
-                  <div className='flex flex-row space-x-2 w-fit p-3 bg-yellow-100 text-yellow-600 border border-yellow-300 rounded'>
-                     <div>⚠️</div>
-                     <div>
-                        {`No posts yet :( - is this you?  `}
-                        <Link
-                           className='text-yellow-600 hover:text-yellow-800 underline'
-                           href='/settings'
-                        >
-                           Claim and write here
-                        </Link>
-                     </div>
+         <div className='px-6 sm:px-10'>
+            <div className='flex flex-col-reverse sm:flex-row gap-y-4 gap-x-10 mt-6 max-w-full'>
+               <div className='w-full sm:w-2/3 sm:max-w-[900px]'>
+                  <div className='flex flex-col space-y-1 text-md text-gray-500'>
+                     {unclaimed && (
+                        <div className='flex flex-col w-fit p-3 bg-yellow-100 text-yellow-600 border border-yellow-300 rounded'>
+                           <div className='text-lg font-semibold'>
+                              Unclaimed Proposal :(
+                           </div>
+                           <div className='mb-2'>
+                              {` Is this your prop? The proposer (`}
+                              <AddressDisplay address={prop.proposer} />
+                              {`) will need to claim it`}
+                           </div>
+                           <Link
+                              className='text-yellow-600 hover:text-yellow-800 underline'
+                              href='/settings'
+                           >
+                              Claim here
+                           </Link>
+                        </div>
+                     )}
                   </div>
-               )}
+                  {prop && <AllUpdates updates={prop.updates} />}
+               </div>
+
+               {!unclaimed && <PropInfoPanel prop={prop} />}
             </div>
-            {prop && <AllUpdates updates={prop.updates} />}
-            <div></div>
          </div>
       </div>
    )

@@ -8,12 +8,12 @@ export function PageTitle({ title, tab }: { title: string; tab?: string }) {
    const about = tab == 'HOW IT WORKS'
    return (
       <div
-         className={`w-screen bg-white py-4 px-10 flex flex-col justify-between items-start ${
+         className={`w-screen bg-white py-4 px-6 sm:px-10 flex flex-col justify-between items-start ${
             home ? 'mb-2' : 'mb-4'
          }`}
       >
          <div className='w-full flex flex-col-reverse gap-y-3 sm:gap-y-0 sm:flex-row sm:justify-between'>
-            <div className='flex flex-row space-x-3 text-gray-700 font-medium items-center'>
+            <div className='flex flex-row flex-wrap gap-x-3 text-gray-700 font-medium items-center my-4 sm:my-0'>
                <Link
                   href='/'
                   className={`ease-in-out transition-all ${
@@ -59,7 +59,7 @@ export function PageTitle({ title, tab }: { title: string; tab?: string }) {
          </div>
 
          <div
-            className={`mt-6: sm:mt-8 text-3xl ${
+            className={`mt-6: sm:mt-8 text-3xl font-medium sm:max-w-[66%] ${
                home
                   ? 'text-blue-800 font-serif font-medium sm:text-4xl'
                   : 'text-blue-800'

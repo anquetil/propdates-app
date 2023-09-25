@@ -11,7 +11,7 @@ export function AllUpdates({
    context?: boolean
 }) {
    return (
-      <div className='space-y-10 max-w-[900px]'>
+      <div className='space-y-10'>
          {updates.map((u) => (
             <PropUpdateCard key={u.id} update={u} context={context} />
          ))}

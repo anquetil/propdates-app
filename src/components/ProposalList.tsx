@@ -47,8 +47,12 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
 
    return (
       <div
-         className={`hidden sm:flex flex-row flex-wrap h-fit md:px-6 bg-white border gap-y-2 gap-x-2 p-4 shadow-sm rounded-sm 
-            ${mini && `w-72`}`}
+         className={`flex-row flex-wrap h-fit md:px-6 bg-white border gap-y-2 gap-x-2 p-4 shadow-sm rounded-sm 
+            ${
+               mini
+                  ? `sticky top-10 hidden sm:flex shrink  max-w-[275px]`
+                  : `flex`
+            }`}
       >
          {categories.map((c, i) => (
             <div key={i} className='grow max-w-full'>
@@ -65,7 +69,7 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
                   {c.array.map((a, i) => (
                      <div
                         key={i}
-                        className='text-gray-700 text-xs flex min-w-0 max-w-full w-fit py-1 hover:underline'
+                        className='text-gray-700 text-xs flex min-w-0 w-fit max-w-full py-1 hover:underline'
                      >
                         <Link className='truncate' href={`/prop/${a.id}`}>
                            {`#${a.id}: ${a.title}`}

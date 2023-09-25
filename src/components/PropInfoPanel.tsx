@@ -7,24 +7,26 @@ const PropInfoPanel: React.FC<{
 }> = ({ prop }) => {
    const { admin, pendingAdmin, transferPending, proposer, isCompleted } = prop
    return (
-      <div className='my-2 px-4 py-4 border rounded w-fit bg-white'>
+      <div className='sm:sticky flex flex-col sm:top-10 py-3 pl-4 pr-16 border rounded shrink h-fit w-full sm:w-fit bg-white shadow-sm'>
          {isCompleted && (
-            <div className='block w-fit bg-green-200 text-green-600 py-1 px-2 rounded text-xs font-medium mb-2'>PROP COMPLETED</div>
+            <div className='block w-fit bg-green-200 text-green-600 py-1 px-2 rounded text-xs font-medium mb-2'>
+               PROP COMPLETED
+            </div>
          )}
-         <div className='flex flex-row text-md text-gray-800 space-x-8'>
+         <div className='flex flex-col text-md text-gray-600 space-y-4'>
             <div className='flex flex-col'>
-               <div className='font-medium'>Proposer</div>
+               <div className='font-base'>Proposer</div>
                <AddressDisplay blue={true} address={proposer} />
             </div>
 
             <div className='flex flex-col'>
-               <div className='font-medium'>Admin</div>
+               <div className='font-base'>Admin</div>
                <AddressDisplay blue={true} address={admin} />
             </div>
 
             {transferPending && (
                <div className='flex flex-col'>
-                  <div className='font-medium'>Pending Admin</div>
+                  <div className='font-base'>Pending Admin</div>
                   <AddressDisplay blue={true} address={pendingAdmin} />
                </div>
             )}

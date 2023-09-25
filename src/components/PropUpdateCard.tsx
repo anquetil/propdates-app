@@ -33,30 +33,39 @@ export function PropUpdateCard({
    return (
       <div className='w-full flex flex-col'>
          {context && (
-               <>
-                  <div className='text-sm text-gray-400'>#{prop.id}</div>
-                  <Link
-                     href={`/prop/${prop?.id}`}
+            <>
+               <div className='text-sm text-gray-400'>#{prop.id}</div>
+               <Link
+                  href={`/prop/${prop?.id}`}
                   className='mb-1 text-gray-700 text-lg font-medium hover:underline underline-offset-2 hover:decoration-1 '
-                  >
-                     {prop.title}
-                  </Link>
-               </>
+               >
+                  {prop.title}
+               </Link>
+            </>
          )}
-         
+
          <div className='w-full bg-white rounded-xl border-slate-200 border font-normal'>
-            <div className='flex flex-row justify-between border-b p-4 items-center'>
+            <div className='flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:justify-between p-4 sm:items-center border-b '>
                <div className='flex flex-row items-center'>
-                  <div className='rounded-full h-6 w-6 bg-gray-100'>
-                     {// eslint-disable-next-line @next/next/no-img-element
+                  {
+                     // eslint-disable-next-line @next/next/no-img-element
                      <img
                         className='h6 w-6 rounded-full'
-                        src={ensAvatar ?? 'https://pbs.twimg.com/profile_images/1467601380567359498/oKcnQo_S_400x400.jpg'}
+                        src={
+                           ensAvatar ??
+                           'https://pbs.twimg.com/profile_images/1467601380567359498/oKcnQo_S_400x400.jpg'
+                        }
                         alt={'avatar'}
-                     />}
+                     />
+                  }
+                  <div className='font-semibold ml-2'>
+                     {ensName ?? admin.substring(0, 7)}
                   </div>
-                  <div className='font-semibold ml-2'>{ensName ?? admin.substring(0, 7)}</div>
-                  {isCompleted && <div className='bg-green-200 text-green-600 ml-4 py-1 px-2 rounded text-xs font-medium'>COMPLETED</div>}
+                  {isCompleted && (
+                     <div className='bg-green-200 text-green-600 ml-4 py-1 px-2 rounded text-xs font-medium'>
+                        COMPLETED
+                     </div>
+                  )}
                </div>
                <Link
                   href={`https://etherscan.io/tx/${transactionHash}`}

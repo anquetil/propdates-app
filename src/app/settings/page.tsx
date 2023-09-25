@@ -26,15 +26,17 @@ export default function AdminPage() {
    return (
       <div>
          <PageTitle title={`Settings`} tab={'SETTINGS'} />
-         {isConnected && correctChain ? (
-            actions ? (
-               <Actions actions={actions} address={address!} />
+         <div className='px-6 sm:px-10'>
+            {isConnected && correctChain ? (
+               actions ? (
+                  <Actions actions={actions} address={address!} />
+               ) : (
+                  <LoadingNoggles />
+               )
             ) : (
-               <LoadingNoggles />
-            )
-         ) : (
-            <CustomConnectButton />
-         )}
+               <CustomConnectButton />
+            )}
+         </div>
       </div>
    )
 }

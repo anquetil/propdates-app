@@ -72,7 +72,7 @@ export function Leaderboard() {
          : sortedProposer
 
    return (
-      <div className=''>
+      <div className='ml-6 sm:ml-10 pt-1'>
          <div className='flex flex-row space-x-4 mb-4 '>
             <div
                className={`${
@@ -109,7 +109,7 @@ export function Leaderboard() {
             {displayLeaderboard.map((r, i) => (
                <div
                   key={i}
-                  className={`flex flex-row justify-between text-sm text-gray-600 space-x-6 ${
+                  className={`flex flex-row justify-between text-sm text-gray-700 space-x-6 ${
                      tab == 'PROPOSAL' ? 'w-64' : 'w-40'
                   }`}
                >

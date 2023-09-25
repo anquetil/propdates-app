@@ -52,49 +52,53 @@ export default function AboutPage() {
    let md = `Propdates is a contract built by [wilson](https://twitter.com/WilsonCusack) and a front-end built by [martin](https://twitter.com/anquetil). Its goal is to make it easier for proposers to keep the Nouns community updated on their work.`
    md += '\n\n## How it works'
    md +=
-      '\nTo claim a proposal, the **_initial, onchain proposer_** needs to claim the admin role or transfer it to another address via the [admin page](https://propdates.wtf/settings). Once transfered, the receiver is "pending admin" until they accept the transfer, either by posting or manually accepting it.'
+      '\nTo claim a proposal, the **_initial, onchain proposer_** needs to claim the admin role or transfer it to another address via the [admin page](/settings). Once transfered, the receiver is "pending admin" until they accept the transfer, either by posting or manually accepting it.'
    md +=
       'Once they are the admin, they can transfer the role to anyone else. The gas fees of all proposals updates are automatically refunded by the contract.'
-   md += `\n\nContract: [0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1](https://etherscan.io/address/0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1)`
+   md += `\n\nContract: [0x94b4...d5f1](https://etherscan.io/address/0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1)`
 
    const { updates } = useGetUpdates()
    const table = updates ? makeTableArray(updates) : []
    console.log(table)
 
    return (
-      <div className='text-gray-600'>
+      <div className=''>
          <PageTitle title={'What is Propdates?'} tab={'HOW IT WORKS'} />
 
-         <ReactMarkdown
-            linkTarget={'_blank'}
-            className='aboutPage space-y-2 mt-8 font-normal text-base'
-         >
-            {md}
-         </ReactMarkdown>
+         <div className='text-gray-600 ml-6 sm:ml-10 w-4/5 sm:w-3/5 pb-6'>
+            <ReactMarkdown
+               linkTarget={'_blank'}
+               className='aboutPage space-y-2 mt-8 font-normal text-base'
+            >
+               {md}
+            </ReactMarkdown>
 
-         <div className='mt-8 mb-2 font-semibold text-md'>PROPDATE COUNT</div>
-         {updates && (
-            <div className='flex flex-col'>
-               <div className='flex flex-row'>
-                  <div className='p-2 text-sm border-y border-l w-44 font-semibold'>
-                     Week
-                  </div>
-                  <div className='p-2 text-sm border w-8  font-semibold text-center'>
-                     #
-                  </div>
-               </div>
-               {table.map((r, i) => (
-                  <div key={i} className='flex flex-row'>
-                     <div className='p-2 text-sm border-b border-l w-44'>
-                        {formatDate(r.date)}
-                     </div>
-                     <div className='p-2 text-sm border-b border-x w-8 text-center'>
-                        {r.count}
-                     </div>
-                  </div>
-               ))}
+            <div className='mt-8 mb-2 font-semibold text-md'>
+               PROPDATE COUNT
             </div>
-         )}
+            {updates && (
+               <div className='flex flex-col'>
+                  <div className='flex flex-row'>
+                     <div className='p-2 text-sm border-y border-l w-44 font-semibold'>
+                        Week
+                     </div>
+                     <div className='p-2 text-sm border w-8  font-semibold text-center'>
+                        #
+                     </div>
+                  </div>
+                  {table.map((r, i) => (
+                     <div key={i} className='flex flex-row'>
+                        <div className='p-2 text-sm border-b border-l w-44'>
+                           {formatDate(r.date)}
+                        </div>
+                        <div className='p-2 text-sm border-b border-x w-8 text-center'>
+                           {r.count}
+                        </div>
+                     </div>
+                  ))}
+               </div>
+            )}
+         </div>
       </div>
    )
 }

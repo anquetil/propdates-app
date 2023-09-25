@@ -46,4 +46,5 @@ export type Action = {
    proposer: Address
    transferPending: boolean
    pendingAdmin: Address
+   isCompleted: boolean
 }
