@@ -1,4 +1,4 @@
-import { Action, Proposal } from '@/utils/types'
+import { Action } from '@/utils/types'
 import { gql, useQuery } from '@apollo/client'
 import { Address } from 'viem'
 

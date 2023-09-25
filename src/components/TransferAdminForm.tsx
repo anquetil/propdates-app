@@ -1,7 +1,7 @@
 'use client'
 
 import { Proposal, zeroAddress } from '@/utils/types'
-import { Address, useAccount } from 'wagmi'
+import { Address } from 'wagmi'
 import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
 import { isAddress } from 'viem'
@@ -23,7 +23,6 @@ export function TransferAdminForm({
       (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())
    // either claimed and admin, or unclaimed and proposer
 
-   const { isConnected } = useAccount()
    const enableWrite =
       connectedAddress.toLowerCase() == admin.toLowerCase() ||
       (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())

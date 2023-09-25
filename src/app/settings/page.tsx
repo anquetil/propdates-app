@@ -1,8 +1,7 @@
 'use client'
 
 import { LoadingNoggles } from '@/components/LoadingNoggles'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount, useNetwork } from 'wagmi'
 import useGetActions from '@/hooks/useGetActions'
 import { Actions } from '@/components/Actions'
 import { PageTitle } from '@/components/PageTitle'
@@ -15,7 +14,7 @@ export default function AdminPage() {
    const { chain } = useNetwork()
    const correctChain = chain?.id === 1
 
-   const { actions, loading } = useGetActions(address!, isConnected)
+   const { actions } = useGetActions(address!, isConnected)
 
    if (data == undefined)
       return (

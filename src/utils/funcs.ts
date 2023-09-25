@@ -44,3 +44,7 @@ export function formatDate(d: Date): string {
 export function shortenHex(hex: string | undefined) {
    return hex === undefined ? '' : hex.slice(0, 6) + '...' + hex.slice(-4)
 }
+
+export function formatTitle(id: string, title: string): string {
+   return `#${id}: ${title}`
+}

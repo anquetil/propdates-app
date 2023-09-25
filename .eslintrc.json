@@ -1,3 +1,4 @@
 {
-   "extends": ["next", "prettier", "eslint:recommended"]
+   "extends": ["next", "prettier", "eslint:recommended"],
+   "ignorePatterns": ["src/generated.ts"]
 }

@@ -1,4 +1,3 @@
-import { GearIcon, HomeIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { CustomConnectButton } from './CustomConnectButton'
 

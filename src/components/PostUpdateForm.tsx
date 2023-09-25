@@ -1,6 +1,6 @@
 'use client'
 
-import { Proposal, zeroAddress } from '@/utils/types'
+import { Proposal } from '@/utils/types'
 import { useState } from 'react'
 import usePostUpdate from '@/hooks/usePostUpdate'
 import { LoadingNoggles } from './LoadingNoggles'
@@ -8,7 +8,7 @@ import { LoadingNoggles } from './LoadingNoggles'
 export function PostUpdateForm({ prop }: { prop: Proposal }) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
-   const { id, admin, pendingAdmin, transferPending, proposer } = prop
+   const { id } = prop
 
    const { write, isSuccess, transactionData, isLoading, error } =
       usePostUpdate(Number(id), updateText, completed)

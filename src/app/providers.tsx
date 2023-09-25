@@ -1,11 +1,7 @@
 'use client'
 
 import React from 'react'
-import {
-   ApolloClient,
-   InMemoryCache,
-   ApolloProvider,
-} from '@apollo/client'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import '@rainbow-me/rainbowkit/styles.css'
 
 import { Analytics } from '@vercel/analytics/react'

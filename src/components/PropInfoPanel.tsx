@@ -1,7 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
-import { useAccount, type Address } from 'wagmi'
-import useGetName from '../hooks/useGetName'
 import { Proposal } from '@/utils/types'
 import AddressDisplay from './AddressDisplay'
 

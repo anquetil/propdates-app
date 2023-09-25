@@ -5,7 +5,6 @@ import {
    useWaitForTransaction,
 } from 'wagmi'
 import { propdatesAddress, propdatesABI } from '@/generated'
-import { wagmiConfig } from '@/app/providers'
 
 export function useTransferAdmin(
    propID: number,

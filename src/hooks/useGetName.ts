@@ -2,10 +2,7 @@ import { shortenHex } from '@/utils/funcs'
 import { type Address } from 'viem'
 import { useEnsName } from 'wagmi'
 
-export function useGetName(
-   address: Address,
-   connectedAddress?: Address | undefined
-) {
+export function useGetName(address: Address) {
    const manualMap = new Map()
    manualMap.set(
       '0x0bc3807ec262cb779b38d65b38158acc3bfede10',

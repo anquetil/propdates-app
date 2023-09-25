@@ -1,7 +1,6 @@
 'use client'
 
 import { AllUpdates } from '@/components/AllUpdates'
-import { Leaderboard } from '@/components/Leaderboard'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { PageTitle } from '@/components/PageTitle'
 import { ProposalList } from '@/components/ProposalList'

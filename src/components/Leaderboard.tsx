@@ -1,9 +1,9 @@
-import { Action, MinimalProp, PropUpdate, zeroAddress } from '@/utils/types'
-import { Address, isAddress } from 'viem'
+import { isAddress } from 'viem'
 import Link from 'next/link'
 import useGetUpdates from '@/hooks/useGetUpdates'
 import { useState } from 'react'
 import AddressDisplay from './AddressDisplay'
+import { formatTitle } from '@/utils/funcs'
 
 type row = {
    item: string
@@ -27,14 +27,12 @@ export function Leaderboard() {
    const byAdmin: row[] = []
    const byProposer: row[] = []
 
-   const format = (id: string, title: string) => `#${id}: ${title}`
-
    for (const u of updates) {
       const {
          admin,
          prop: { proposer, id, title },
       } = u
-      const proposal = format(id, title)
+      const proposal = formatTitle(id, title)
 
       const adminIndex = indexOf(byAdmin, admin)
       const proposerIndex = indexOf(byProposer, proposer)
