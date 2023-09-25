@@ -119,7 +119,7 @@ export function Leaderboard() {
                      ) : (
                         <Link
                            className='hover:underline underline-offset-2'
-                           href={`https://nouns.wtf/vote/${r.item.substring(
+                           href={`/prop/${r.item.substring(
                               1,
                               r.item.indexOf(':')
                            )}`}
