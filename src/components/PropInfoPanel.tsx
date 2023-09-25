@@ -7,12 +7,9 @@ const PropInfoPanel: React.FC<{
 }> = ({ prop }) => {
    const { admin, pendingAdmin, transferPending, proposer, isCompleted } = prop
    return (
-      <div className='my-2 px-4 py-4 border rounded'>
+      <div className='my-2 px-4 py-4 border rounded w-fit bg-white'>
          {isCompleted && (
-            <div className='mb-1'>
-               ✅
-               <span className='italic text-gray-600'>{` This proposal's work was marked as completed by the admin`}</span>
-            </div>
+            <div className='block w-fit bg-green-200 text-green-600 py-1 px-2 rounded text-xs font-medium mb-2'>PROP COMPLETED</div>
          )}
          <div className='flex flex-row text-md text-gray-800 space-x-8'>
             <div className='flex flex-col'>

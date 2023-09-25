@@ -5,33 +5,25 @@ import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { PageTitle } from '@/components/PageTitle'
 import { ProposalList } from '@/components/ProposalList'
 import useGetUpdates from '@/hooks/useGetUpdates'
-import Link from 'next/link'
 
 export default function Home() {
    const { updates } = useGetUpdates()
 
    return (
-      <div>
+      <div className=''>
          <PageTitle title={'Write & read onchain updates'} tab={'HOME'} />
 
-         <div className='font-normal text-lg text-gray-800'>
-            Propdates is the easiest way to keep up with funded Nouns proposals.
+         <div className='px-10'>
+            <div className='flex flex-row space-x-10 mt-6 '>
+               {updates ? (
+                  <AllUpdates updates={updates} context={true} />
+               ) : (
+                  <LoadingNoggles />
+               )}
+
+               <ProposalList mini={true} />
+            </div>
          </div>
-         <Link
-            href='/about'
-            className='font-normal text-gray-500 underline-offset-2 hover:underline'
-         >
-            {` How it works →`}
-         </Link>
-
-         <ProposalList mini={true} />
-         <div className='mb-6'></div>
-
-         {updates ? (
-            <AllUpdates updates={updates} context={true} />
-         ) : (
-            <LoadingNoggles />
-         )}
       </div>
    )
 }

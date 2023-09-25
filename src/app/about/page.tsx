@@ -63,7 +63,7 @@ export default function AboutPage() {
 
    return (
       <div className='text-gray-600'>
-         <PageTitle title={'What is Propdates?'} />
+         <PageTitle title={'What is Propdates?'} tab={'HOW IT WORKS'} />
 
          <ReactMarkdown
             linkTarget={'_blank'}
