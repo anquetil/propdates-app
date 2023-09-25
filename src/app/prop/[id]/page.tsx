@@ -12,13 +12,16 @@ export async function generateMetadata(
    parent: ResolvingMetadata
 ): Promise<Metadata> {
    // fetch data
-   const prop = await getPropInfo(params.id)
+   const { title, id} = await getPropInfo(params.id)
 
    // optionally access and extend (rather than replace) parent metadata
    const previousImages = (await parent).openGraph?.images || []
+   const len = title.length
+   const shortTitle = len > 10 ? `${title.substring(0,10)}...` : title
+   const newTitle = formatTitle(id, shortTitle)
 
    return {
-      title: formatTitle(prop.id, prop.title),
+      title: newTitle,
       openGraph: {
          images: [/*'/some-specific-page-image.jpg',*/ ...previousImages],
       },
