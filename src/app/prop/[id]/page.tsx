@@ -17,7 +17,7 @@ export async function generateMetadata(
    // optionally access and extend (rather than replace) parent metadata
    const previousImages = (await parent).openGraph?.images || []
    const len = title.length
-   const shortTitle = len > 10 ? `${title.substring(0,10)}...` : title
+   const shortTitle = len > 60 ? `${title.substring(0,60)}...` : title
    const newTitle = formatTitle(id, shortTitle)
 
    return {
