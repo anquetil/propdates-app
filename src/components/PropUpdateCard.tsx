@@ -18,8 +18,8 @@ export function PropUpdateCard({
    collapsing?: boolean
 }) {
    const [toast, setToast] = useState<boolean>(false)
-   function copyToClipboard(link: string, nav: Navigator) {
-      void nav.clipboard.writeText(link)
+   function copyToClipboard(id: string, nav: Navigator) {
+      void nav.clipboard.writeText(`updates.wtf/update/${id}`)
    }
 
    function handleClick() {
