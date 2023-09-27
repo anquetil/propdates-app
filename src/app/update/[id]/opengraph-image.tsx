@@ -1,8 +1,8 @@
 import { ImageResponse } from 'next/server'
 import { PropUpdate } from '@/utils/types'
 import { formatTimestampString } from '@/utils/funcs'
-import { wagmiConfig } from '@/app/providers'
-import { Address } from 'viem'
+import { Address, createPublicClient, http } from 'viem'
+import { mainnet } from 'viem/chains'
 
 type Params = { params: { id: string } }
 
@@ -58,9 +58,12 @@ export const generateImageMetadata = async ({ params }: Params) => {
 
 export default async function Image({ params }: Params) {
    const update = await getUpdateInfo(params.id)
-
-   const ensName  = await wagmiConfig.publicClient.getEnsName({address: update.admin as Address})
-   const ensAvatar = ensName ? await wagmiConfig.publicClient.getEnsAvatar({ name: ensName }) : 'https://pbs.twimg.com/profile_images/1467601380567359498/oKcnQo_S_400x400.jpg'
+   const client = createPublicClient({
+      chain: mainnet,
+      transport: http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`)
+   })
+   const ensName  = await client.getEnsName({address: update.admin as Address})
+   const ensAvatar = ensName ? await client.getEnsAvatar({ name: ensName }) : 'https://pbs.twimg.com/profile_images/1467601380567359498/oKcnQo_S_400x400.jpg'
 
 
    const {
