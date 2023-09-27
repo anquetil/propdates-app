@@ -28,6 +28,7 @@
       "react-dom": "18.2.0",
       "react-markdown": "^8.0.7",
       "remark-gfm": "^3.0.1",
+      "satori": "^0.10.8",
       "tailwindcss": "3.3.3",
       "ts-invariant": "^0.9.4",
       "typescript": "5.1.6",
