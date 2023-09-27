@@ -8,8 +8,6 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useState } from 'react'
 
-
-
 export function PropUpdateCard({
    update,
    context = false,
@@ -24,14 +22,13 @@ export function PropUpdateCard({
       void nav.clipboard.writeText(link)
    }
 
-   function handleClick(){
+   function handleClick() {
       copyToClipboard(id, navigator)
       setToast(true)
       setTimeout(function () {
          setToast(false)
-      }, 1000);
+      }, 1000)
    }
-
 
    const [collapsed, setCollapsed] = useState<boolean>(collapsing)
    const { data: ensName } = useEnsName({
@@ -93,13 +90,29 @@ export function PropUpdateCard({
                   )}
                </div>
                <div className='flex flex-row gap-x-2 items-center'>
-
                   <div className='relative' onClick={handleClick}>
-                     <div className={`z-100 text-xs bottom-5 -translate-x-[40%] whitespace-nowrap py-1 w-fit absolute px-2 bg-black rounded-sm text-white ease-in-out transition-all duration-200 ${toast ? ' bg-opacity-90' : 'bg-opacity-0 text-opacity-80'}`}>
+                     <div
+                        className={`z-100 text-xs bottom-5 -translate-x-[40%] whitespace-nowrap py-1 w-fit absolute px-2 bg-black rounded-sm text-white ease-in-out transition-all duration-200 ${
+                           toast
+                              ? ' bg-opacity-90'
+                              : 'bg-opacity-0 text-opacity-80'
+                        }`}
+                     >
                         {`Copied link!`}
                      </div>
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-gray-400 hover:cursor-pointer hover:text-gray-600 ease-in-out transition-all">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                     <svg
+                        xmlns='http://www.w3.org/2000/svg'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        strokeWidth={1.5}
+                        stroke='currentColor'
+                        className='w-4 h-4 text-gray-400 hover:cursor-pointer hover:text-gray-600 ease-in-out transition-all'
+                     >
+                        <path
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                           d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244'
+                        />
                      </svg>
                   </div>
                   <Link

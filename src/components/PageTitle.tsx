@@ -46,7 +46,7 @@ export function PageTitle({
                         : 'text-gray-400 hover:text-gray-700'
                   }`}
                >
-                  SETTINGS
+                  POST
                </Link>
                <Link
                   href='/leaderboard'
