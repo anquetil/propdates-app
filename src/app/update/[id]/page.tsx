@@ -73,6 +73,15 @@ export default async function UpdatePage({
    params: { id: string }
 }) {
    const update = await getUpdateInfo(params.id)
+   if(update == null){
+      return (
+      <div>
+         <PageTitle title={`Update not Found`} />
+         <div className='px-6 sm:px-10'>
+            <div></div>
+         </div>
+      </div>)
+   }
    const { prop } = update
 
    return (

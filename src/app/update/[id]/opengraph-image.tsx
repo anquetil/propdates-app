@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/server'
 import { PropUpdate } from '@/utils/types'
+import { PropUpdateCard } from '@/components/PropUpdateCard'
 
 type Params = { params: { id: string } }
 
@@ -58,22 +59,7 @@ export default async function Image({ params }: Params) {
 
    return new ImageResponse(
       (
-         <div
-            style={{
-               fontSize: '16px',
-               background: '#ffffff',
-               color: '#262626',
-               width: '100%',
-               height: '100%',
-               display: 'flex',
-               fontFamily: 'Inter',
-               flexDirection: 'column',
-               padding: '4em',
-               gap: '1em',
-            }}
-         >
-            {update.update}
-         </div>
+         <PropUpdateCard update={update}/>
       )
    )
 }
