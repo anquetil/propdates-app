@@ -13,17 +13,18 @@ export function useGetProp(propId: number, enabled: boolean) {
          transferPending
          pendingAdmin
          isCompleted
+         count
          updates(orderBy: blockTimestamp orderDirection:desc) {
-        	id
-            admin
-            prop {
-               id
-            }
-         isCompleted
-         update
-         transactionHash
-         blockTimestamp
-        }
+            id
+               admin
+               prop {
+                  id
+               }
+            isCompleted
+            update
+            transactionHash
+            blockTimestamp
+         }
       }
    }`
 

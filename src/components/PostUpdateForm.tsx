@@ -4,14 +4,18 @@ import { Proposal } from '@/utils/types'
 import { useState } from 'react'
 import usePostUpdate from '@/hooks/usePostUpdate'
 import { LoadingNoggles } from './LoadingNoggles'
+import Link from 'next/link'
 
 export function PostUpdateForm({ prop }: { prop: Proposal }) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
-   const { id } = prop
+   const { id, count } = prop
 
-   const { write, isSuccess, transactionData, isLoading, error } =
-      usePostUpdate(Number(id), updateText, completed)
+   const { write, isSuccess, isLoading, error } = usePostUpdate(
+      Number(id),
+      updateText,
+      completed
+   )
 
    if (error) {
       return (
@@ -28,14 +32,14 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
       )
    } else if (isSuccess) {
       return (
-         <div className='font-bold mt-4'>
-            {`Success! Update posted: `}
-            <a
-               className='underline text-blue-500 font-normal hover:text-blue-700'
-               href={`https://etherscan.io/tx/${transactionData?.transactionHash}`}
+         <div className='mt-4 flex flex-col items-center w-fit bg-green-100 border-green-300 border py-5 px-12 gap-y-2 rounded'>
+            <div className='text-green-800 text-lg'>{`Success!`}</div>
+            <Link
+               className='flex flex-row w-fit gap-x-2 px-3 py-1 bg-white shadow hover:shadow-md ease-in-out transition-all duration-200 rounded-md border w- fit'
+               href={`/update/${id}-${count}`}
             >
-               {transactionData?.transactionHash}
-            </a>
+               <div>{`View update`}</div>
+            </Link>
          </div>
       )
    }

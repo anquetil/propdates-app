@@ -25,6 +25,7 @@ export type Proposal = {
    pendingAdmin: Address
    isCompleted: boolean
    updates: PropUpdate[]
+   count: Number
 }
 
 export type MinimalProp = {

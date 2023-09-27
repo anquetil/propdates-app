@@ -29,7 +29,7 @@ export async function generateMetadata(
 
 async function getPropInfo(prop: string): Promise<Proposal> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.4/gn'
+      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.8/gn'
    const queryBody = `query propQuery {
       proposal(
             id: ${prop}
@@ -76,7 +76,7 @@ export default async function PropPage({ params }: { params: { id: string } }) {
          <PageTitle title={`#${prop.id}: ${prop?.title}`} />
          <div className='px-6 sm:px-10'>
             <div className='flex flex-col-reverse sm:flex-row gap-y-4 gap-x-10 mt-6 max-w-full'>
-               <div className='w-full sm:w-2/3 sm:max-w-[900px]'>
+               <div className='w-full sm:w-3/4 sm:max-w-[900px]'>
                   <div className='flex flex-col space-y-1 text-md text-gray-500'>
                      {unclaimed && (
                         <div className='flex flex-col w-fit p-3 bg-yellow-100 text-yellow-600 border border-yellow-300 rounded'>

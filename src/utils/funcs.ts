@@ -48,3 +48,7 @@ export function shortenHex(hex: string | undefined) {
 export function formatTitle(id: string, title: string): string {
    return `#${id}: ${title}`
 }
+
+export function getUpdateNumFromID(id: string): string {
+   return id.substring(id.indexOf('-') + 1)
+}
