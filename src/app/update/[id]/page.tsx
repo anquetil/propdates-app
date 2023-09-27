@@ -3,6 +3,9 @@ import { PageTitle } from '@/components/PageTitle'
 import { PropUpdateCard } from '@/components/PropUpdateCard'
 import { Metadata } from 'next'
 import { getUpdateNumFromID } from '@/utils/funcs'
+import { Address, createPublicClient, http } from 'viem'
+import { mainnet } from 'viem/chains'
+import { createImage } from '@/utils/bannerBear'
 
 export async function generateMetadata(
    { params }: { params: { id: string } },
@@ -19,10 +22,20 @@ export async function generateMetadata(
 
    const updateNum = getUpdateNumFromID(id)
 
+   const client = createPublicClient({
+      chain: mainnet,
+      transport: http(`https://eth-mainnet.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`)
+   })
+   const ensName = await client.getEnsName({ address: update.admin as Address })
+   const nounsAvatar = 'https://pbs.twimg.com/profile_images/1467601380567359498/oKcnQo_S_400x400.jpg'
+   const ensAvatar = ensName ? await client.getEnsAvatar({ name: ensName }) : nounsAvatar
+
+   const imageLink = await createImage(update, ensAvatar ?? nounsAvatar, ensName ?? update.admin.substring(0, 7))
+   console.log(imageLink)
    return {
       title: `Propdates: ${shortTitle}. Update ${updateNum}`,
       openGraph: {
-         url: `/prop/${params.id}`,
+         images: [imageLink],
       },
    }
 }
