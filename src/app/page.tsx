@@ -10,12 +10,12 @@ export default function Home() {
    const { updates } = useGetUpdates()
 
    return (
-      <div className=''>
+      <div className='pb-8'>
          <PageTitle title={'Write & read onchain updates'} tab={'HOME'} />
 
          <div className='px-6 sm:px-10'>
             <div className='flex flex-row space-x-10 mt-6 max-w-full'>
-               <div className='w-full sm:w-2/3 max-w-[900px]'>
+               <div className='w-full md:w-2/3 max-w-[900px]'>
                   {updates ? (
                      <AllUpdates updates={updates} context={true} />
                   ) : (

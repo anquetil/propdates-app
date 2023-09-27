@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { CustomConnectButton } from './CustomConnectButton'
 import { PropUpdate } from '@/utils/types'
-import { getUpdateNumFromID } from '@/utils/funcs'
+import { getUpdateNumFromID, ordinals } from '@/utils/funcs'
 
 export function PageTitle({
    title,
@@ -107,7 +107,7 @@ export function PageTitle({
                {title}
                {updateObj && (
                   <div className='text-gray-500 font-normal text-base'>
-                     Update {updateNum}
+                     {ordinals(updateNum)} Update
                   </div>
                )}
             </div>

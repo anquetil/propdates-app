@@ -72,7 +72,7 @@ export default async function PropPage({ params }: { params: { id: string } }) {
       prop.admin == zeroAddress && prop.pendingAdmin == zeroAddress
 
    return (
-      <div>
+      <div className='pb-8'>
          <PageTitle title={`#${prop.id}: ${prop?.title}`} />
          <div className='px-6 sm:px-10'>
             <div className='flex flex-col-reverse sm:flex-row gap-y-4 gap-x-10 mt-6 max-w-full'>

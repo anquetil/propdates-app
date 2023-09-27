@@ -7,7 +7,9 @@ export default function LeaderboardPage() {
    return (
       <div>
          <PageTitle title={`All Proposals`} />
-         <ProposalList />
+         <div className='w-full px-4 sm:px-8'>
+            <ProposalList />
+         </div>
       </div>
    )
 }

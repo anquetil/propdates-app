@@ -2,7 +2,7 @@ import { PropUpdate } from '@/utils/types'
 import { PageTitle } from '@/components/PageTitle'
 import { PropUpdateCard } from '@/components/PropUpdateCard'
 import { Metadata } from 'next'
-import { getUpdateNumFromID } from '@/utils/funcs'
+import { formatTitle, getUpdateNumFromID, ordinals } from '@/utils/funcs'
 
 export async function generateMetadata({
    params,
@@ -23,7 +23,7 @@ export async function generateMetadata({
    const updateNum = getUpdateNumFromID(id)
 
    return {
-      title: `Propdates | Prop #${prop.id} ${shortTitle} | Update #${updateNum}`,
+      title: `${ordinals(Number(updateNum))} Update for Prop ${formatTitle(prop.id, shortTitle)}`,
       openGraph: {
          url: `/update/${params.id}`,
       },
