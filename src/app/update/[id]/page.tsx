@@ -11,10 +11,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
    // fetch data
    const update = await getUpdateInfo(params.id)
-   const {
-      prop,
-      id,
-   } = update
+   const { prop, id } = update
    const title = prop.title
 
    const len = title.length
@@ -23,7 +20,10 @@ export async function generateMetadata({
    const updateNum = getUpdateNumFromID(id)
 
    return {
-      title: `${ordinals(Number(updateNum))} Update for Prop ${formatTitle(prop.id, shortTitle)}`,
+      title: `${ordinals(Number(updateNum))} Update for Prop ${formatTitle(
+         prop.id,
+         shortTitle
+      )}`,
       openGraph: {
          url: `/update/${params.id}`,
       },
