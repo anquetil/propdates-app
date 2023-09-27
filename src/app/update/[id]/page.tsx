@@ -1,12 +1,11 @@
 import { PropUpdate } from '@/utils/types'
 import { PageTitle } from '@/components/PageTitle'
 import { PropUpdateCard } from '@/components/PropUpdateCard'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import { getUpdateNumFromID } from '@/utils/funcs'
 
 export async function generateMetadata(
    { params }: { params: { id: string } },
-   parent: ResolvingMetadata
 ): Promise<Metadata> {
    // fetch data
    const update = await getUpdateInfo(params.id)
@@ -15,7 +14,6 @@ export async function generateMetadata(
       id,
    } = update
 
-   const previousImages = (await parent).openGraph?.images || []
    const len = title.length
    const shortTitle = len > 40 ? `${title.substring(0, 60)}...` : title
 
@@ -24,7 +22,7 @@ export async function generateMetadata(
    return {
       title: `Propdates: ${shortTitle}. Update ${updateNum}`,
       openGraph: {
-         images: [...previousImages],
+         url: `/prop/${params.id}`,
       },
    }
 }
@@ -64,8 +62,8 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
       revalidate: 0,
    }
    const response = await (await fetch(endpoint, options)).json()
+   console.log('response', response)
    const update = response?.data?.propUpdate as PropUpdate
-
    return update
 }
 
