@@ -36,7 +36,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
             <div className='text-green-800 text-lg'>{`Success!`}</div>
             <Link
                className='flex flex-row w-fit gap-x-2 px-3 py-1 bg-white shadow hover:shadow-md ease-in-out transition-all duration-200 rounded-md border w- fit'
-               href={`/update/${id}-${count}`}
+               href={`/update/${id}-${Number(count) + 1}`}
             >
                <div>{`View update`}</div>
             </Link>

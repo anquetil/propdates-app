@@ -29,7 +29,7 @@ export async function generateMetadata(
 
 async function getPropInfo(prop: string): Promise<Proposal> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.8/gn'
+      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.9/gn'
    const queryBody = `query propQuery {
       proposal(
             id: ${prop}

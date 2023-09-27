@@ -4,9 +4,11 @@ import { PropUpdateCard } from '@/components/PropUpdateCard'
 import { Metadata } from 'next'
 import { getUpdateNumFromID } from '@/utils/funcs'
 
-export async function generateMetadata(
-   { params }: { params: { id: string } },
-): Promise<Metadata> {
+export async function generateMetadata({
+   params,
+}: {
+   params: { id: string }
+}): Promise<Metadata> {
    // fetch data
    const update = await getUpdateInfo(params.id)
    const {
@@ -29,7 +31,7 @@ export async function generateMetadata(
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.8/gn'
+      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.9/gn'
    const queryBody = {
       query: `
    query propQuery {
@@ -72,14 +74,15 @@ export default async function UpdatePage({
    params: { id: string }
 }) {
    const update = await getUpdateInfo(params.id)
-   if(update == null){
+   if (update == null) {
       return (
-      <div>
-         <PageTitle title={`Update not Found`} />
-         <div className='px-6 sm:px-10'>
-            <div></div>
+         <div>
+            <PageTitle title={`Update not Found`} />
+            <div className='px-6 sm:px-10'>
+               <div></div>
+            </div>
          </div>
-      </div>)
+      )
    }
    const { prop } = update
 
