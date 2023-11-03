@@ -70,7 +70,7 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
       propUpdate(
             id: "${id}"
       ){
-         id
+         id 
          admin
          prop {
             id
@@ -93,7 +93,7 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
       method: 'POST',
       headers,
       body: JSON.stringify(queryBody),
-      revalidate: 3600,
+      revalidate: 300,
    }
    const response = await (await fetch(endpoint, options)).json()
    const update = response?.data?.propUpdate as PropUpdate
