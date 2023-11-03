@@ -13,6 +13,14 @@ export async function generateMetadata({
    const update = await getUpdateInfo(params.id)
    console.log(params.id)
    console.log('got update: ', update)
+   if(update == null){ //wait until i fixe memoization
+      return {
+         title: `Update ${params.id}`,
+         openGraph: {
+            url: `/update/${params.id}`,
+         },
+      }
+   }
    const { prop, id } = update
    const title = prop.title
 
