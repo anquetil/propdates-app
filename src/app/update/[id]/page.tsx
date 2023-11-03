@@ -11,6 +11,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
    // fetch data
    const update = await getUpdateInfo(params.id)
+   console.log(params.id)
    console.log('got update: ', update)
    const { prop, id } = update
    const title = prop.title
@@ -87,7 +88,6 @@ export default async function UpdatePage({
       )
    }
    const { prop } = update
-   console.log(prop)
    return (
       <div>
          <PageTitle title={`#${prop.id}: ${prop?.title}`} updateObj={update} />
