@@ -97,7 +97,7 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
    }
    const response = await (await fetch(endpoint, options)).json()
    const update = response?.data?.propUpdate as PropUpdate
-
+   console.log('in open-graph image')
    return update
 }
 
@@ -114,6 +114,10 @@ export const generateImageMetadata = async ({ params }: Params) => {
 
 export default async function Image({ params }: Params) {
    const update = await getUpdateInfo(params.id)
+   if(update == null){ // doens't exist
+      return null
+   }
+
    console.log("Update in update/[id]/opengraph-image", update)
    const {
       prop,
