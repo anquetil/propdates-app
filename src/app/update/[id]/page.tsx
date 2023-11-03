@@ -72,8 +72,9 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
       method: 'POST',
       headers,
       body: JSON.stringify(queryBody),
-      revalidate: 3600,
+      revalidate: 10,
    }
+
    const response = await (await fetch(endpoint, options)).json()
    console.log('response in getUpdateInfo: ', response)
    const update = response?.data?.propUpdate as PropUpdate
