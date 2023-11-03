@@ -18,14 +18,14 @@ export function TransferAdminForm({
    const [newAdmin, setNewAdmin] = useState<Address>(connectedAddress)
    const { id, admin, pendingAdmin, transferPending, proposer } = prop
    const unclaimed = admin == zeroAddress
+   const isAdmin = connectedAddress.toLowerCase() == admin.toLowerCase()
+   const isProposer = connectedAddress.toLowerCase() == proposer.toLowerCase()
    const transferable =
-      (!unclaimed && connectedAddress.toLowerCase() == admin.toLowerCase()) ||
-      (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())
-   // either claimed and admin, or unclaimed and proposer
+      (!unclaimed && isAdmin) ||
+      (unclaimed && isProposer)
+      // either claimed and admin, or unclaimed and proposer
 
-   const enableWrite =
-      connectedAddress.toLowerCase() == admin.toLowerCase() ||
-      (unclaimed && connectedAddress.toLowerCase() == proposer.toLowerCase())
+   const enableWrite = isAdmin || (unclaimed && isProposer)
    const { write, isSuccess, transactionData } = useTransferAdmin(
       Number(id),
       newAdmin,

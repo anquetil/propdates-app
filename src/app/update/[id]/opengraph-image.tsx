@@ -102,7 +102,7 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
 }
 
 export const generateImageMetadata = async ({ params }: Params) => {
-   console.log('here in generateimagedta')
+   console.log('here in generateimagedta, ', params)
    return [
       {
          id: params.id,
@@ -114,6 +114,7 @@ export const generateImageMetadata = async ({ params }: Params) => {
 
 export default async function Image({ params }: Params) {
    const update = await getUpdateInfo(params.id)
+   console.log("Update in update/[id]/opengraph-image", update)
    const {
       prop,
       //isCompleted,
