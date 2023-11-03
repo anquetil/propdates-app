@@ -75,6 +75,7 @@ async function getUpdateInfo(id: string): Promise<PropUpdate> {
       revalidate: 3600,
    }
    const response = await (await fetch(endpoint, options)).json()
+   console.log('response in getUpdateInfo: ', response)
    const update = response?.data?.propUpdate as PropUpdate
    return update
 }
