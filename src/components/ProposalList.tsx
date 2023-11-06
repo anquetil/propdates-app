@@ -6,7 +6,7 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
    if (!proposals) {
       return <></>
    }
-   let sortedProps = [...proposals]
+   let sortedProps = [...proposals].filter((p) => p.executed)
    sortedProps = sortedProps.sort((a, b) =>
       Number(a.id) < Number(b.id) ? -1 : 1
    )

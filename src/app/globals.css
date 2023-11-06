@@ -17,6 +17,15 @@
    text-decoration: underline;
 }
 
+.link {
+   color: theme('colors.blue.600');
+}
+
+.link:hover {
+   cursor: pointer;
+   text-decoration: underline;
+}
+
 th,
 td {
    padding-right: 12px;

@@ -3,7 +3,7 @@
 import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { useAccount, useNetwork } from 'wagmi'
 import useGetActions from '@/hooks/useGetActions'
-import { Actions } from '@/components/Actions'
+import { AdminPanel } from '@/components/AdminPanel'
 import { PageTitle } from '@/components/PageTitle'
 import { CustomConnectButton } from '@/components/CustomConnectButton'
 
@@ -29,7 +29,7 @@ export default function AdminPage() {
          <div className='px-6 sm:px-10'>
             {isConnected && correctChain ? (
                actions ? (
-                  <Actions actions={actions} address={address!} />
+                  <AdminPanel actions={actions} address={address!} />
                ) : (
                   <LoadingNoggles />
                )

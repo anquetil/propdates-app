@@ -5,6 +5,7 @@ import { Address } from 'wagmi'
 import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
 import { isAddress } from 'viem'
+import Link from 'next/link'
 
 export function TransferAdminForm({
    connectedAddress,
@@ -20,10 +21,9 @@ export function TransferAdminForm({
    const unclaimed = admin == zeroAddress
    const isAdmin = connectedAddress.toLowerCase() == admin.toLowerCase()
    const isProposer = connectedAddress.toLowerCase() == proposer.toLowerCase()
-   const transferable =
-      (!unclaimed && isAdmin) ||
-      (unclaimed && isProposer)
-      // either claimed and admin, or unclaimed and proposer
+   const isPendingAdmin =
+      connectedAddress.toLowerCase() == pendingAdmin.toLowerCase()
+   const canTransfer = (!unclaimed && isAdmin) || (unclaimed && isProposer)
 
    const enableWrite = isAdmin || (unclaimed && isProposer)
    const { write, isSuccess, transactionData } = useTransferAdmin(
@@ -46,7 +46,8 @@ export function TransferAdminForm({
       )
    }
 
-   if (transferable) {
+   if (canTransfer) {
+      // is proposer pre-claim or admin
       return (
          <div className='text-gray-700'>
             {unclaimed ? (
@@ -102,6 +103,19 @@ export function TransferAdminForm({
                   Submit
                </button>
             </div>
+         </div>
+      )
+   } else if (isPendingAdmin) {
+      return (
+         <div className='text-gray-700 flex flex-col gap-y-1'>
+            You are the pending admin. To accept the role, you just need to post
+            an update
+            <Link
+               href={`/post/${id}`}
+               className='bg-white text-center text-sm w-fit  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] text-black border'
+            >
+               Post an update
+            </Link>
          </div>
       )
    } else {

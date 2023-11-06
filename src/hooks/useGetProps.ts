@@ -4,7 +4,7 @@ import { gql, useQuery } from '@apollo/client'
 export function useGetProps(enabled = true) {
    const query = gql`
       query useGetProps {
-         proposals(first: 500, where: { executed: true }) {
+         proposals(first: 500) {
             id
             title
             proposer

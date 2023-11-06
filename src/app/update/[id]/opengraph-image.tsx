@@ -114,11 +114,12 @@ export const generateImageMetadata = async ({ params }: Params) => {
 
 export default async function Image({ params }: Params) {
    const update = await getUpdateInfo(params.id)
-   if(update == null){ // doens't exist
+   if (update == null) {
+      // doens't exist
       return null
    }
 
-   console.log("Update in update/[id]/opengraph-image", update)
+   console.log('Update in update/[id]/opengraph-image', update)
    const {
       prop,
       //isCompleted,

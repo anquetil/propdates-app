@@ -5,17 +5,25 @@ import { useState } from 'react'
 import usePostUpdate from '@/hooks/usePostUpdate'
 import { LoadingNoggles } from './LoadingNoggles'
 import Link from 'next/link'
+import { CaretDownIcon } from '@radix-ui/react-icons'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 export function PostUpdateForm({ prop }: { prop: Proposal }) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
+   const [showPreview, setShowPreview] = useState<boolean>(false)
+
    const { id, count } = prop
 
-   const { write, isSuccess, isLoading, error } = usePostUpdate(
+   const { write, isSuccess, isLoading, error, transactionData } = usePostUpdate(
       Number(id),
       updateText,
       completed
    )
+
+   const updateURL = `https://updates.wtf/update/${id}-${Number(count) + 1}`
+   const warpcast_URL = `https://warpcast.com/~/compose?text=${encodeURI(`I just posted a Propdate! ${updateURL}`)}`
 
    if (error) {
       return (
@@ -27,18 +35,20 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
       return (
          <div className='mt-4 w-32 flex items-start flex-col'>
             <LoadingNoggles />
-            <div className='text-neutral-400'>Processing txn... </div>
+            <div className='text-neutral-400'>Posting update... </div>
          </div>
       )
    } else if (isSuccess) {
       return (
-         <div className='mt-4 flex flex-col items-center w-fit bg-green-100 border-green-300 border py-5 px-12 gap-y-2 rounded'>
-            <div className='text-green-800 text-lg'>{`Success!`}</div>
+         <div className='w-2/3 mt-4 flex flex-col items-center bg-green-100 border-green-300 border py-5 px-12 gap-y-2 rounded'>
+            <div className='text-green-800 text-lg'>{`Update posted!`}</div>
+            <Link target="_blank" href={`https://etherscan.io/tx/${transactionData?.transactionHash}`} className='text-green-800 underline hover:cursor-pointer text-sm font-medium'>Txn Receipt</Link>
             <Link
                className='flex flex-row w-fit gap-x-2 px-3 py-1 bg-white shadow hover:shadow-md ease-in-out transition-all duration-200 rounded-md border w- fit'
-               href={`/update/${id}-${Number(count) + 1}`}
+               href={warpcast_URL}
+               target="_blank"
             >
-               <div>{`View update`}</div>
+               <div>{`Share on Farcaster`}</div>
             </Link>
          </div>
       )
@@ -47,7 +57,43 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
    return (
       <div>
          <div className='flex flex-col items-start space-y-2 mt-4'>
-            <div className='font-medium'>Update</div>
+            <div className='font-medium text-lg'>Update</div>
+            <textarea
+               className='mt-1 mb-4 rounded border border-neutral-200 w-full font-light text-base align-text-top overflow-auto p-2 h-32'
+               name='updateText'
+               id='updateText'
+               onChange={(e) => {
+                  setUpdateText(e.target.value)
+               }}
+               placeholder='Write your update here, formatted in Markdown!'
+            />
+            <div
+               onClick={() => {
+                  setShowPreview(!showPreview)
+               }}
+               className='flex flex-row text-gray-500 gap-x-1 items-center hover:cursor-pointer'
+            >
+               <div>Preview</div>
+               <CaretDownIcon
+                  className={`${
+                     showPreview && 'rotate-180'
+                  } ease-in-out transition-all`}
+               />
+            </div>
+            {showPreview && (
+               <div
+                  className={`propUpdateMarkdown w-full bg-white text-sm text-gray-600 p-4 font-mono`}
+               >
+                  <ReactMarkdown
+                     className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2'
+                     linkTarget={'_blank'}
+                     remarkPlugins={[remarkGfm]}
+                  >
+                     {updateText}
+                  </ReactMarkdown>
+               </div>
+            )}
+
             <div className='flex flex-row space-x-2 mb-4'>
                <input
                   type='checkbox'
@@ -56,17 +102,8 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                      setCompleted(e.currentTarget.checked)
                   }}
                />
-               <div className='text-gray-500'>{`Mark proposal work as completed (this can't be undone)`}</div>
+               <div className='text-gray-500 font-light'>{`Mark proposal work as completed (this can't be undone)`}</div>
             </div>
-            <textarea
-               className='mt-1 mb-4 rounded border border-neutral-200 w-full align-text-top overflow-auto p-2 pb-20'
-               name='updateText'
-               id='updateText'
-               onChange={(e) => {
-                  setUpdateText(e.target.value)
-               }}
-               placeholder='Write your update here! Feel free to use Markdown.'
-            />
 
             <button
                className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
