@@ -48,7 +48,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                href={warpcast_URL}
                target="_blank"
             >
-               <div>{`Share on Farcaster`}</div>
+               <div>{`Share to Farcaster`}</div>
             </Link>
          </div>
       )
