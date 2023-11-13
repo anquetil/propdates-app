@@ -9,12 +9,39 @@
 [data-rk] {
    min-width: 100%;
 }
+
 .propUpdateMarkdown a {
    color: theme('colors.blue.600');
 }
 
 .propUpdateMarkdown a:hover {
    text-decoration: underline;
+   cursor: pointer;
+}
+
+.editor a {
+   color: theme('colors.blue.600');
+}
+
+.editor a:hover {
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+.editor :where(.prose > ul > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+   padding-left: 16px !important;
+}
+
+button[type=submit] {
+   background: hsl(208, 100%, 47.3%) !important;
+}
+
+button[type=reset] {
+   background-color: hsl(206, 5.8%, 52.3%) !important;
+}
+
+button[type=submit], button[type=reset]:hover {
+   cursor: pointer;
 }
 
 .link {
@@ -49,12 +76,16 @@ td {
    text-decoration: underline;
 }
 
-li p {
-   display: inline;
+.task-list-item::marker {
+   content: "";
 }
 
-li::before {
-   content: '•';
+.task-list-item {
+   height: fit-content;
+   padding-left: 0px;
+}
+
+.propUpdateMarkdown ::before {
    display: inline-block;
    unicode-bidi: isolate;
    font-variant-numeric: tabular-nums;

@@ -8,6 +8,8 @@ import Link from 'next/link'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { CustomMDXEditor } from './CustomMDXEditor'
+
 
 export function PostUpdateForm({ prop }: { prop: Proposal }) {
    const [updateText, setUpdateText] = useState<string>('')
@@ -59,10 +61,14 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
       )
    }
 
+   console.log(updateText)
    return (
       <div>
          <div className='flex flex-col items-start space-y-2 mt-4'>
             <div className='font-medium text-lg'>Update</div>
+            <CustomMDXEditor onChangeFn={(e) => {
+               setUpdateText(e)
+            }} />
             <textarea
                className='mt-1 mb-4 rounded border border-neutral-200 w-full font-light text-base align-text-top overflow-auto p-2 h-32'
                name='updateText'
@@ -87,10 +93,10 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
             </div>
             {showPreview && (
                <div
-                  className={`propUpdateMarkdown w-full bg-white text-sm text-gray-600 p-4 font-mono`}
+                  className={``}
                >
                   <ReactMarkdown
-                     className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2'
+                     className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2 propUpdateMarkdown prose w-full bg-white text-sm text-gray-600 p-4 font-mono'
                      linkTarget={'_blank'}
                      remarkPlugins={[remarkGfm]}
                   >

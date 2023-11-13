@@ -3,6 +3,7 @@
 import React from 'react'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import '@rainbow-me/rainbowkit/styles.css'
+import '@mdxeditor/editor/style.css'
 
 import { Analytics } from '@vercel/analytics/react'
 
