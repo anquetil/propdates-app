@@ -48,4 +48,5 @@ export type Action = {
    transferPending: boolean
    pendingAdmin: Address
    isCompleted: boolean
+   executed: boolean
 }

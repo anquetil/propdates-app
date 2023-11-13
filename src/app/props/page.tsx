@@ -6,7 +6,7 @@ import { ProposalList } from '@/components/ProposalList'
 export default function LeaderboardPage() {
    return (
       <div>
-         <PageTitle title={`All Proposals`} />
+         <PageTitle title={`All Proposals`} tab={'PROPOSALS'} />
          <div className='w-full px-4 sm:px-8'>
             <ProposalList />
          </div>

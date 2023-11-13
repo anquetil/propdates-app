@@ -10,12 +10,11 @@ import { CustomConnectButton } from '@/components/CustomConnectButton'
 export default function AdminPage() {
    const data = 0
 
-   const { isConnected, address } = useAccount()
+   const accountData = useAccount()
+   const { isConnected, address } = accountData
    const { chain } = useNetwork()
    const correctChain = chain?.id === 1
-
    const { actions } = useGetActions(address!, isConnected)
-
    if (data == undefined)
       return (
          <div>
@@ -25,7 +24,7 @@ export default function AdminPage() {
 
    return (
       <div>
-         <PageTitle title={`Settings`} tab={'SETTINGS'} />
+         <PageTitle title={`Settings`} />
          <div className='px-6 sm:px-10'>
             {isConnected && correctChain ? (
                actions ? (

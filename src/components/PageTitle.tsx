@@ -13,7 +13,7 @@ export function PageTitle({
    updateObj?: PropUpdate
 }) {
    const home = tab == 'HOME'
-   const settings = tab == 'SETTINGS'
+   const proposals = tab == 'PROPOSALS'
    const leaderboard = tab == 'LEADERBOARD'
    const about = tab == 'HOW IT WORKS'
    let updateNum = 0
@@ -27,33 +27,33 @@ export function PageTitle({
          }`}
       >
          <div className='w-full flex flex-col-reverse gap-y-3 sm:gap-y-0 sm:flex-row sm:justify-between'>
-            <div className='flex flex-row flex-wrap gap-x-3 text-gray-700 font-medium items-center my-4 sm:my-0'>
+            <div className='flex flex-row flex-wrap gap-x-4 text-gray-800 font-medium items-center my-4 sm:my-0'>
                <Link
                   href='/'
                   className={`ease-in-out transition-all ${
                      home
-                        ? ' cursor-default'
-                        : 'text-gray-400 hover:text-gray-700'
+                        ? ' cursor-default border-b-2  border-gray-800'
+                        : 'text-gray-400 hover:text-gray-800'
                   }`}
                >
                   HOME
                </Link>
                <Link
-                  href='/settings'
+                  href='/props'
                   className={` ease-in-out transition-all ${
-                     settings
-                        ? 'cursor-default'
-                        : 'text-gray-400 hover:text-gray-700'
+                     proposals
+                        ? 'cursor-default border-b-2  border-gray-800'
+                        : 'text-gray-400 hover:text-gray-800'
                   }`}
                >
-                  POST AN UPDATE
+                  PROPOSALS
                </Link>
                <Link
                   href='/leaderboard'
                   className={` ease-in-out transition-all ${
                      leaderboard
-                        ? 'cursor-default'
-                        : 'text-gray-400 hover:text-gray-700'
+                        ? 'cursor-default border-b-2  border-gray-800'
+                        : 'text-gray-400 hover:text-gray-800'
                   }`}
                >
                   LEADERBOARD
@@ -62,8 +62,8 @@ export function PageTitle({
                   href='/about'
                   className={` ease-in-out transition-all ${
                      about
-                        ? 'cursor-default'
-                        : 'text-gray-400 hover:text-gray-700'
+                        ? 'cursor-default border-b-2  border-gray-800'
+                        : 'text-gray-400 hover:text-gray-800'
                   }`}
                >
                   HOW IT WORKS
@@ -113,9 +113,18 @@ export function PageTitle({
             </div>
          </div>
          {home && (
-            <div className='font-normal text-md text-gray-800 pb-4'>
-               Propdates is the easiest way to keep up with funded Nouns
-               proposals.
+            <div>
+               <div className='font-normal text-md text-gray-800 pb-4'>
+                  Propdates is the easiest way to keep up with funded Nouns
+                  proposals.
+               </div>
+               <Link
+                  href='/settings'
+                  className='px-4 py-2 bg-blue-700 text-gray-50 hover:bg-blue-600 active:bg-blue-500
+                  rounded shadow ease-in-out transition-all duration-300'
+               >
+                  Post an Update
+               </Link>
             </div>
          )}
       </div>

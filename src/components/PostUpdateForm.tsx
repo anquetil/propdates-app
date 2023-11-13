@@ -16,14 +16,13 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
 
    const { id, count } = prop
 
-   const { write, isSuccess, isLoading, error, transactionData } = usePostUpdate(
-      Number(id),
-      updateText,
-      completed
-   )
+   const { write, isSuccess, isLoading, error, transactionData } =
+      usePostUpdate(Number(id), updateText, completed)
 
    const updateURL = `https://updates.wtf/update/${id}-${Number(count) + 1}`
-   const warpcast_URL = `https://warpcast.com/~/compose?text=${encodeURI(`I just posted a Propdate! ${updateURL}`)}`
+   const warpcast_URL = `https://warpcast.com/~/compose?text=${encodeURI(
+      `I just posted a Propdate! ${updateURL}`
+   )}`
 
    if (error) {
       return (
@@ -42,11 +41,17 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
       return (
          <div className='w-2/3 mt-4 flex flex-col items-center bg-green-100 border-green-300 border py-5 px-12 gap-y-2 rounded'>
             <div className='text-green-800 text-lg'>{`Update posted!`}</div>
-            <Link target="_blank" href={`https://etherscan.io/tx/${transactionData?.transactionHash}`} className='text-green-800 underline hover:cursor-pointer text-sm font-medium'>Txn Receipt</Link>
+            <Link
+               target='_blank'
+               href={`https://etherscan.io/tx/${transactionData?.transactionHash}`}
+               className='text-green-800 underline hover:cursor-pointer text-sm font-medium'
+            >
+               Txn Receipt
+            </Link>
             <Link
                className='flex flex-row w-fit gap-x-2 px-3 py-1 bg-white shadow hover:shadow-md ease-in-out transition-all duration-200 rounded-md border w- fit'
                href={warpcast_URL}
-               target="_blank"
+               target='_blank'
             >
                <div>{`Share to Farcaster`}</div>
             </Link>
