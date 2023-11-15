@@ -185,7 +185,7 @@ export function AdminPanel({
                </div>
 
                <div className='ml-2 mb-2 mt-6 text-lg text-gray-500'>
-                  Failed Proposals
+                  Failed / Pending Proposals
                </div>
                {
                   <div className='divide-y border'>
