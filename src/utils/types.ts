@@ -21,8 +21,6 @@ export type Proposal = {
    title: string
    proposer: Address
    admin: Address
-   transferPending: boolean
-   pendingAdmin: Address
    isCompleted: boolean
    updates: PropUpdate[]
    count: Number
@@ -45,8 +43,6 @@ export type Action = {
    title: string
    admin: Address
    proposer: Address
-   transferPending: boolean
-   pendingAdmin: Address
    isCompleted: boolean
    executed: boolean
 }

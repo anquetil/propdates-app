@@ -10,8 +10,6 @@ export function useGetProp(propId: number, enabled: boolean) {
          title
          proposer
          admin
-         transferPending
-         pendingAdmin
          isCompleted
          count
          updates(orderBy: blockTimestamp orderDirection:desc) {

@@ -29,7 +29,7 @@ export async function generateMetadata(
 
 async function getPropInfo(prop: string): Promise<Proposal> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.9/gn'
+      process.env.GRAPHQL_API ?? ""
    const queryBody = `query propQuery {
       proposal(
             id: ${prop}
@@ -38,8 +38,6 @@ async function getPropInfo(prop: string): Promise<Proposal> {
          title
          proposer
          admin
-         transferPending
-         pendingAdmin
          isCompleted
          updates(orderBy: blockTimestamp orderDirection:desc) {
         	id
@@ -68,8 +66,7 @@ async function getPropInfo(prop: string): Promise<Proposal> {
 export default async function PropPage({ params }: { params: { id: string } }) {
    const prop = await getPropInfo(params.id)
 
-   const unclaimed =
-      prop.admin == zeroAddress && prop.pendingAdmin == zeroAddress
+   const unclaimed = prop.admin == zeroAddress
 
    return (
       <div className='pb-8'>

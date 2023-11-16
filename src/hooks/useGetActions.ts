@@ -11,7 +11,6 @@ export function useGetActions(address: Address, enabled: boolean) {
                   {proposer:"${address}"},
                   {admin: "0x0000000000000000000000000000000000000000"}
                ]},
-               {pendingAdmin:"${address}"}               
                {admin:"${address}"}
             ]
          }
@@ -20,8 +19,6 @@ export function useGetActions(address: Address, enabled: boolean) {
          title
          admin
          proposer
-         transferPending
-         pendingAdmin
          isCompleted
          executed
       }

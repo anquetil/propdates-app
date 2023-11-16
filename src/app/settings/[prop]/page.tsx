@@ -8,6 +8,7 @@ import { PageTitle } from '@/components/PageTitle'
 import { PostUpdateForm } from '@/components/PostUpdateForm'
 import PropInfoPanel from '@/components/PropInfoPanel'
 import { CustomConnectButton } from '@/components/CustomConnectButton'
+import { zeroAddress } from 'viem'
 
 export default function PropPage({ params }: { params: { prop: string } }) {
    const propId = Number(params.prop)
@@ -17,12 +18,14 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    const { chain } = useNetwork()
    const correctChain = chain?.id === 1
 
+   const formattedAddress = address?.toLowerCase()
+   const isProposer = formattedAddress == prop.proposer
+   const isUnclaimed = prop.admin == zeroAddress
    const canPost =
       prop &&
       isConnected &&
       correctChain &&
-      (address?.toLowerCase() == prop.admin.toLowerCase() ||
-         address?.toLowerCase() == prop.pendingAdmin.toLowerCase())
+      (formattedAddress == prop.admin || (isProposer && isUnclaimed))
 
    if (loading) {
       return (

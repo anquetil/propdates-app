@@ -43,7 +43,7 @@ export async function generateMetadata({
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.9/gn'
+      process.env.GRAPHQL_API ?? ""
    const queryBody = {
       query: `
    query propQuery {

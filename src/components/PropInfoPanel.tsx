@@ -5,7 +5,7 @@ import AddressDisplay from './AddressDisplay'
 const PropInfoPanel: React.FC<{
    prop: Proposal
 }> = ({ prop }) => {
-   const { admin, pendingAdmin, transferPending, proposer, isCompleted } = prop
+   const { admin, proposer, isCompleted } = prop
    return (
       <div className='sm:sticky flex flex-col sm:top-10 py-3 pl-4 pr-16 border rounded shrink h-fit w-full sm:w-fit bg-white shadow-sm'>
          {isCompleted && (
@@ -23,13 +23,6 @@ const PropInfoPanel: React.FC<{
                <div className='font-base'>Admin</div>
                <AddressDisplay blue={true} address={admin} />
             </div>
-
-            {transferPending && (
-               <div className='flex flex-col'>
-                  <div className='font-base'>Pending Admin</div>
-                  <AddressDisplay blue={true} address={pendingAdmin} />
-               </div>
-            )}
          </div>
       </div>
    )
