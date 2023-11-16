@@ -61,7 +61,7 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
 
    return (
       <div>
-         <div className='flex flex-col items-start space-y-2 mt-4'>
+         <div className='flex flex-col items-start space-y-2'>
             <div className='font-medium text-lg'>Update</div>
             <textarea
                className='mt-1 mb-4 rounded border border-neutral-200 w-full font-light text-base align-text-top overflow-auto p-2 h-32'
