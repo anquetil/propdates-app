@@ -42,8 +42,7 @@ export async function generateMetadata({
 }
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
-   const endpoint =
-      process.env.GRAPHQL_API ?? ""
+   const endpoint = process.env.GRAPHQL_API ?? ''
    const queryBody = {
       query: `
    query propQuery {

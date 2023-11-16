@@ -28,8 +28,7 @@ export async function generateMetadata(
 }
 
 async function getPropInfo(prop: string): Promise<Proposal> {
-   const endpoint =
-      process.env.GRAPHQL_API ?? ""
+   const endpoint = process.env.GRAPHQL_API ?? ''
    const queryBody = `query propQuery {
       proposal(
             id: ${prop}

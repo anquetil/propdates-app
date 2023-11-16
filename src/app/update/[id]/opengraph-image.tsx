@@ -62,8 +62,7 @@ async function getFonts(): Promise<Font[]> {
 }
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
-   const endpoint =
-      process.env.GRAPHQL_API ?? ""
+   const endpoint = process.env.GRAPHQL_API ?? ''
    const queryBody = {
       query: `
    query propQuery {

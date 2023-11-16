@@ -11,7 +11,6 @@ export function AdminPanel({
    actions: Action[]
    address: Address
 }) {
-
    const sortedActions = [...actions]
       .sort((a, b) => Number(b.executed) - Number(a.executed))
       .sort((a, b) => Number(b.isCompleted) - Number(a.isCompleted))
@@ -30,7 +29,8 @@ export function AdminPanel({
          a.admin == zeroAddress &&
          a.proposer.toLowerCase() == address.toLowerCase()
       const isProposer = a.proposer.toLowerCase() == address.toLowerCase()
-      const isDefactoAdmin = a.admin.toLowerCase() == address.toLowerCase() || isUnclaimed
+      const isDefactoAdmin =
+         a.admin.toLowerCase() == address.toLowerCase() || isUnclaimed
       tags.push({
          isCompleted: a.isCompleted,
          isProposer,
@@ -48,14 +48,11 @@ export function AdminPanel({
          ) : (
             <div className='w-full lg:w-4/5 xl:w-1/2'>
                <div className='divide-y border'>
-                     {sortedActions.map((a, i) => {
-                        return (
-                           <AdminPanelAction
-                              key={i}
-                              action={a}
-                              tag={tags[i]} 
-                           />)
-                     })}
+                  {sortedActions.map((a, i) => {
+                     return (
+                        <AdminPanelAction key={i} action={a} tag={tags[i]} />
+                     )
+                  })}
                </div>
             </div>
          )}

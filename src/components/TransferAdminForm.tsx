@@ -48,10 +48,10 @@ export function TransferAdminForm({
       return (
          <div className='text-gray-700'>
             <div>
-               You are the admin of this proposal. You can transfer the role
-               to someone else. Once they accept it, you will no longer be
-               able to change the admin. They will be able to transfer it to
-               whoever they want.
+               You are the admin of this proposal. You can transfer the role to
+               someone else. Once they accept it, you will no longer be able to
+               change the admin. They will be able to transfer it to whoever
+               they want.
             </div>
 
             <div className='flex flex-col items-start mt-4'>
@@ -90,12 +90,12 @@ export function TransferAdminForm({
             </div>
          </div>
       )
-   }  else {
+   } else {
       return (
          <div className='text-gray-700'>
-            Only the admin can transfer this role or write updates. If
-            not yet claimed, the proposer will need to claim or transfer the
-            admin role to another address.
+            Only the admin can transfer this role or write updates. If not yet
+            claimed, the proposer will need to claim or transfer the admin role
+            to another address.
          </div>
       )
    }

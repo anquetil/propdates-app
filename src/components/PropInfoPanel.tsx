@@ -15,12 +15,16 @@ const PropInfoPanel: React.FC<{
          )}
          <div className='flex flex-col text-md text-gray-600 space-y-4'>
             <div className='flex flex-col'>
-               <div className='font-base uppercase text-sm text-gray-400'>Proposer</div>
+               <div className='font-base uppercase text-sm text-gray-400'>
+                  Proposer
+               </div>
                <AddressDisplay blue={true} address={proposer} />
             </div>
 
             <div className='flex flex-col'>
-               <div className='font-base uppercase text-sm text-gray-400'>Admin</div>
+               <div className='font-base uppercase text-sm text-gray-400'>
+                  Admin
+               </div>
                <AddressDisplay blue={true} address={admin} />
             </div>
          </div>
