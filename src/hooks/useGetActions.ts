@@ -29,7 +29,6 @@ export function useGetActions(address: Address, enabled: boolean) {
    })
 
    const actions: Action[] = data ? data.proposals : undefined
-   console.log(actions, enabled, data)
    return {
       actions,
       loading,
