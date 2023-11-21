@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import useGetProps from '@/hooks/useGetProps'
 import { MinimalProp } from '@/utils/types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function getStatus(prop: MinimalProp) {
    if (prop.count == 0) {
@@ -15,7 +15,17 @@ function getStatus(prop: MinimalProp) {
 
 export function ProposalList({ mini = false }: { mini?: boolean }) {
    const [searchText, setSearchText] = useState<string>('')
+   const [counts, setCounts] = useState([0,0,0]); // completed, no updates, in progerss
    const { proposals } = useGetProps()
+
+   useEffect(() => {
+      console.log('in use effect', proposals)
+      if(proposals){
+         let filteredProps = [...proposals].filter((p) => p.executed)
+         setCounts([filteredProps.filter((p) => p.isCompleted).length, filteredProps.filter((p) => p.count == 0).length, filteredProps.filter((p) => !p.isCompleted && p.count > 0).length])
+      }
+      }, [proposals])
+
    if (!proposals) {
       return <></>
    }
@@ -53,6 +63,20 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
             }`}
       >
          <div className='font-medium'>All Proposals</div>
+         <div className='flex flex-row my-2'>
+            <div className='flex flex-col items-center w-1/3'>
+               <div className='text-sm text-gray-700 font-semibold'>{counts[0]}</div>
+               <div className='text-xs text-gray-500'>Completed</div>
+            </div>
+            <div className='flex flex-col items-center w-1/3'>
+               <div className='text-sm text-gray-700 font-semibold'>{counts[1]}</div>
+               <div className='text-xs text-gray-500'>No Updates</div>
+            </div>
+            <div className='flex flex-col items-center w-1/3'>
+               <div className='text-sm text-gray-700 font-semibold'>{counts[2]}</div>
+               <div className='text-xs text-gray-500'>In Progress</div>
+            </div>
+         </div>
          <input
             className='bg-gray-50 p-1 text-sm my-2 border focus:outline-0 focus:ring-[1px] focus:ring-gray-200 rounded-sm
           placeholder:text-gray-400'
@@ -75,7 +99,7 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
                   </Link>
                   {
                      <div
-                        className={`w-[90px] text-center text-xs md:shrink-0 rounded py-[2px] ${
+                        className={`w-[20px] text-center text-xs md:shrink-0 rounded py-[2px] ${
                            getStatus(a) == 'COMPLETED'
                               ? 'text-green-500 bg-green-100'
                               : getStatus(a) == 'IN PROGRESS'
@@ -83,7 +107,7 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
                               : 'bg-red-100 text-red-500'
                         }`}
                      >
-                        {getStatus(a)}
+                        {getStatus(a) == 'COMPLETED' ? '✅' : getStatus(a) == 'IN PROGRESS' ? '⏳' : '∅'}
                      </div>
                   }
                </div>
