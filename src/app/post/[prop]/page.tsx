@@ -15,7 +15,6 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    const { isConnected, address } = useAccount()
    const { chain } = useNetwork()
    const correctChain = chain?.id === 1
-   console.log(prop)
    const formattedAddress = address?.toLowerCase()
    const isProposer = prop && formattedAddress == prop.proposer
    const isUnclaimed = prop && prop.admin == zeroAddress
@@ -33,7 +32,6 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          </div>
       )
    }
-   console.log(prop)
    return (
       <div>
          <PageTitle title={`Manage Prop #${propId}`} />

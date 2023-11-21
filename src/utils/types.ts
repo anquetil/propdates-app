@@ -23,7 +23,7 @@ export type Proposal = {
    admin: Address
    isCompleted: boolean
    updates: PropUpdate[]
-   count: Number
+   count: number
 }
 
 export type MinimalProp = {
@@ -33,16 +33,5 @@ export type MinimalProp = {
    admin: Address
    executed: boolean
    isCompleted: boolean
-   updates: {
-      id: string
-   }[]
-}
-
-export type Action = {
-   id: string
-   title: string
-   admin: Address
-   proposer: Address
-   isCompleted: boolean
-   executed: boolean
+   count: number
 }

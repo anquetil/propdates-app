@@ -64,7 +64,6 @@ async function getPropInfo(prop: string): Promise<Proposal> {
 
 export default async function PropPage({ params }: { params: { id: string } }) {
    const prop = await getPropInfo(params.id)
-   console.log(prop)
 
    const unclaimed = prop.admin == zeroAddress
 

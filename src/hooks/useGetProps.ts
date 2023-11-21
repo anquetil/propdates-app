@@ -11,9 +11,7 @@ export function useGetProps(enabled = true) {
             admin
             executed
             isCompleted
-            updates {
-               id
-            }
+            count
          }
       }
    `

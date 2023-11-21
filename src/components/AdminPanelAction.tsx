@@ -1,11 +1,11 @@
-import { Action } from '@/utils/types'
+import { MinimalProp } from '@/utils/types'
 import Link from 'next/link'
 
 export function AdminPanelAction({
    action,
    tag,
 }: {
-   action: Action
+   action: MinimalProp
    tag: {
       isCompleted: boolean
       isProposer: boolean
