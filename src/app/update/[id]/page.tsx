@@ -2,7 +2,7 @@ import { PropUpdate } from '@/utils/types'
 import { PageTitle } from '@/components/PageTitle'
 import { PropUpdateCard } from '@/components/PropUpdateCard'
 import { Metadata } from 'next'
-import { formatTitle, getUpdateNumFromID, ordinals } from '@/utils/funcs'
+import { formatTitle, getUpdateNumFromID, isMainnet, ordinals } from '@/utils/funcs'
 
 export async function generateMetadata({
    params,
@@ -42,26 +42,26 @@ export async function generateMetadata({
 }
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
-   const endpoint = process.env.GRAPHQL_API ?? ''
+   const endpoint = (isMainnet() ? process.env.NEXT_PUBLIC_GRAPHQL_API : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
    const queryBody = {
       query: `
-   query propQuery {
-      propUpdate(
-            id: "${id}"
-      ){
-         id 
-         admin
-         prop {
-            id
-            proposer
-            title
-        	}
-         isCompleted
-         update
-         transactionHash
-         blockTimestamp
-      }
-   }`,
+      query propQuery {
+         propUpdate(
+               id: "${id}"
+         ){
+            id 
+            admin
+            prop {
+               id
+               proposer
+               title
+            }
+            isCompleted
+            update
+            transactionHash
+            blockTimestamp
+         }
+      }`,
    }
 
    const headers = {

@@ -15,7 +15,7 @@ export function PageTitle({
    const home = tab == 'HOME'
    const proposals = tab == 'PROPOSALS'
    const leaderboard = tab == 'LEADERBOARD'
-   const about = tab == 'HOW IT WORKS'
+   const about = tab == 'ABOUT'
    let updateNum = 0
    if (updateObj) {
       updateNum = Number(getUpdateNumFromID(updateObj.id))
@@ -66,10 +66,19 @@ export function PageTitle({
                         : 'text-gray-400 hover:text-gray-800'
                   }`}
                >
-                  HOW IT WORKS
+                  ABOUT
                </Link>
             </div>
-            <CustomConnectButton />
+            <div className='flex flex-row gap-x-2 items-center'>
+               <Link
+                  href='/settings'
+                  className='px-3 py-2 bg-blue-700 text-gray-50 hover:bg-blue-600 
+                  rounded shadow ease-in-out transition-all duration-300 text-sm'
+               >
+                  Post an Update
+               </Link>
+               <CustomConnectButton />
+            </div>
          </div>
 
          <div
@@ -120,7 +129,7 @@ export function PageTitle({
                </div>
                <Link
                   href='/settings'
-                  className='px-4 py-2 bg-blue-700 text-gray-50 hover:bg-blue-600 active:bg-blue-500
+                  className='px-4 py-2 bg-blue-700 text-gray-50 hover:bg-blue-600 
                   rounded shadow ease-in-out transition-all duration-300'
                >
                   Post an Update

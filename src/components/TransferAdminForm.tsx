@@ -5,6 +5,8 @@ import { Address } from 'wagmi'
 import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
 import { isAddress } from 'viem'
+import { LoadingNoggles } from './LoadingNoggles'
+import Link from 'next/link'
 
 export function TransferAdminForm({
    connectedAddress,
@@ -23,22 +25,30 @@ export function TransferAdminForm({
    const canTransfer = (!unclaimed && isAdmin) || (unclaimed && isProposer)
 
    const enableWrite = isAdmin || (unclaimed && isProposer)
-   const { write, isSuccess, transactionData } = useTransferAdmin(
+   const { write, isSuccess, transactionData, isLoading } = useTransferAdmin(
       Number(id),
       newAdmin,
       enableWrite
    )
 
-   if (isSuccess) {
+   if (isLoading) {
       return (
-         <div className='font-bold'>
-            {`Success! Transaction: `}
-            <a
-               className='underline text-blue-500 hover:text-blue-700'
+         <div className='mt-4 w-36 flex items-start flex-col'>
+            <LoadingNoggles />
+            <div className='text-neutral-400'>Transfering role... </div>
+         </div>
+      )
+   } else if (isSuccess) {
+      return (
+         <div className='w-2/3 mt-4 flex flex-col items-center bg-green-100 border-green-300 border py-5 px-12 gap-y-2 rounded'>
+            <div className='text-green-800 text-lg'>{`Role transfered!`}</div>
+            <Link
+               target='_blank'
                href={`https://etherscan.io/tx/${transactionData?.transactionHash}`}
+               className='text-green-800 underline hover:cursor-pointer text-sm font-medium'
             >
-               {transactionData?.transactionHash}
-            </a>
+               Txn Receipt
+            </Link>
          </div>
       )
    }

@@ -16,7 +16,7 @@ export function AdminPanelAction({
    return (
       <div
          className={`flex flex-col md:flex-row justify-between items-start md:items-center w-full
-          bg-white hover:bg-gray-50 ease-in-out transition-all px-6 p-4 md:gap-x-6`}
+          bg-white  ease-in-out transition-all px-6 p-4 md:gap-x-6`}
       >
          <div className='flex flex-col md:flex-row gap-x-3 md:flex-grow max-w-full'>
             <Link
@@ -48,14 +48,14 @@ export function AdminPanelAction({
             <div className='flex flex-row gap-x-2 w-fit shrink-0'>
                <Link
                   href={`/manage/${action.id}`}
-                  className='w-fit bg-gray-800 hover:bg-gray-700 active:bg-gray-600 text-white text-center text-sm  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] border-gray-600 border'
+                  className='w-fit bg-gray-800 hover:bg-gray-700  text-white text-center text-sm  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] border-gray-600 border'
                >
                   {`Transfer Admin`}
                </Link>
 
                <Link
                   href={`/post/${action.id}`}
-                  className='w-fit bg-white text-center text-sm  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] text-black border'
+                  className='w-fit bg-white hover:bg-gray-100 text-center text-sm  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] text-black border'
                >
                   Post
                </Link>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Proposal } from '@/utils/types'
 import AddressDisplay from './AddressDisplay'
+import { zeroAddress } from 'viem'
 
 const PropInfoPanel: React.FC<{
    prop: Proposal
@@ -25,7 +26,7 @@ const PropInfoPanel: React.FC<{
                <div className='font-base uppercase text-sm text-gray-400'>
                   Admin
                </div>
-               <AddressDisplay blue={true} address={admin} />
+               <AddressDisplay blue={true} address={admin == zeroAddress ? proposer : admin} />
             </div>
          </div>
       </div>

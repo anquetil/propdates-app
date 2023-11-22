@@ -12,7 +12,7 @@ export function AdminPanel({
    actions: MinimalProp[]
    address: Address
 }) {
-   const [showRelevant, setShowRelevant] = useState(true)
+   const [showRelevant, setShowRelevant] = useState(false)
 
    const sortedActions = [...actions].sort(
       (a, b) => Number(a.id) - Number(b.id)
@@ -41,13 +41,11 @@ export function AdminPanel({
       })
    }
 
-   console.log('showRelevant: ', showRelevant)
-
    return (
       <div className='w-full space-y-8'>
          {sortedActions.length == 0 ? (
             <div className='text-gray-600 mb-3'>
-               You are not the admin or proposer of any proposals.
+               {`You are not the admin or proposer of any proposals. Make sure you're connected with the right adress!`}
             </div>
          ) : (
             <div className='flex flex-col w-full lg:w-4/5 xl:w-1/2'>

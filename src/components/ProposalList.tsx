@@ -38,43 +38,31 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
             p.id.includes(searchText) ||
             p.title.toLowerCase().includes(searchText.toLowerCase())
       )
-   }
-
-   const completed = []
-   const posted = []
-   const none = []
-   for (const p of sortedProps) {
-      if (p.isCompleted) {
-         completed.push(p)
-      } else if (p.count > 0) {
-         posted.push(p)
-      } else {
-         none.push(p)
-      }
+      console.log('filtering')
    }
 
    return (
       <div
-         className={`flex flex-col h-fit md:px-6 bg-white border gap-x-2 p-4 shadow-sm rounded-sm 
+         className={`flex flex-col h-fit lg:px-6 bg-white border gap-x-2 p-4 shadow-sm rounded-sm 
             ${
                mini
-                  ? `sticky top-10 hidden md:flex shrink  min-w-[350px]`
+                  ? `sticky top-10 hidden md:flex shrink w-1/3 max-w-[350px]`
                   : `flex`
             }`}
       >
-         <div className='font-medium'>All Proposals</div>
+         <div className='font-medium'>Find a Proposal</div>
          <div className='flex flex-row my-2'>
             <div className='flex flex-col items-center w-1/3'>
                <div className='text-sm text-gray-700 font-semibold'>{counts[0]}</div>
-               <div className='text-xs text-gray-500'>Completed</div>
+               <div className='text-xs text-gray-500 text-center'>Completed</div>
             </div>
             <div className='flex flex-col items-center w-1/3'>
                <div className='text-sm text-gray-700 font-semibold'>{counts[1]}</div>
-               <div className='text-xs text-gray-500'>No Updates</div>
+               <div className='text-xs text-gray-500 text-center'>No Updates</div>
             </div>
             <div className='flex flex-col items-center w-1/3'>
                <div className='text-sm text-gray-700 font-semibold'>{counts[2]}</div>
-               <div className='text-xs text-gray-500'>In Progress</div>
+               <div className='text-xs text-gray-500 text-center'>In Progress</div>
             </div>
          </div>
          <input

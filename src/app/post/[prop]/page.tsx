@@ -13,8 +13,8 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    const { prop, loading } = useGetProp(Number(propId), propId != -1000)
 
    const { isConnected, address } = useAccount()
-   const { chain } = useNetwork()
-   const correctChain = chain?.id === 1
+   const { chain, chains } = useNetwork()
+   const correctChain = chain?.id === chains[0].id
    const formattedAddress = address?.toLowerCase()
    const isProposer = prop && formattedAddress == prop.proposer
    const isUnclaimed = prop && prop.admin == zeroAddress
@@ -32,6 +32,8 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          </div>
       )
    }
+
+   console.log(canPost)
    return (
       <div>
          <PageTitle title={`Manage Prop #${propId}`} />

@@ -4,6 +4,7 @@
    "private": true,
    "scripts": {
       "dev": "next dev",
+      "dev-sepolia": "NEXT_PUBLIC_CHAIN=SEPOLIA next dev",
       "build": "npx prettier . --write && next build",
       "start": "next start",
       "lint": "npx prettier . --write && next lint"

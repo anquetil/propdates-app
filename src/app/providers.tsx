@@ -7,18 +7,21 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { Analytics } from '@vercel/analytics/react'
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { configureChains, createConfig, WagmiConfig } from 'wagmi'
+import { configureChains, createConfig, sepolia, WagmiConfig } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
+import { isMainnet } from '@/utils/funcs'
+
+const chain = isMainnet() ? mainnet : sepolia
 
 const client = new ApolloClient({
-   uri: process.env.NEXT_PUBLIC_GRAPHQL_API ?? '',
+   uri: chain.id == 1 ? (process.env.NEXT_PUBLIC_GRAPHQL_API) : (process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA),
    cache: new InMemoryCache(),
 })
 
 const { chains, publicClient } = configureChains(
-   [mainnet],
+   [chain],
    [
       alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID ?? '' }),
       publicProvider(),
