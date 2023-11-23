@@ -17,6 +17,7 @@ export function PageTitle({
    const myprops = tab == 'MY PROPS'
    const leaderboard = tab == 'LEADERBOARD'
    const about = tab == 'ABOUT'
+   const propPage = title.startsWith("#")
    let updateNum = 0
    if (updateObj) {
       updateNum = Number(getUpdateNumFromID(updateObj.id))
@@ -117,7 +118,29 @@ export function PageTitle({
                      : 'text-blue-800'
                }`}
             >
-               {title}
+               <div className='flex flex-row items-center gap-x-2'>
+                  <div>{title}</div>
+                  {
+                     propPage &&
+                     <Link href={`https://www.nouns.camp/proposals/${title.substring(1, title.indexOf(':'))}`} target='_blank'>
+                        <svg
+                           xmlns='http://www.w3.org/2000/svg'
+                           fill='none'
+                           viewBox='0 0 24 24'
+                           strokeWidth={1.5}
+                           stroke='currentColor'
+                           className='w-5 h-5 text-gray-400 hover:cursor-pointer hover:text-gray-600 ease-in-out transition-all'
+                        >
+                           <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              d='M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244'
+                           />
+                        </svg>
+                     </Link>
+                  }
+               </div>
+
                {updateObj && (
                   <div className='text-gray-500 font-normal text-base'>
                      {ordinals(updateNum)} Update
