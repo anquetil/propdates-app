@@ -10,6 +10,10 @@
    min-width: 100%;
 }
 
+.propUpdateMarkdown {
+   max-width: 100% !important;
+}
+
 .propUpdateMarkdown a {
    color: theme('colors.blue.600');
 }
@@ -78,15 +82,6 @@ td {
 
 .aboutPage a:hover {
    text-decoration: underline;
-}
-
-.task-list-item::marker {
-   content: '';
-}
-
-.task-list-item {
-   height: fit-content;
-   padding-left: 0px;
 }
 
 .propUpdateMarkdown ::before {
