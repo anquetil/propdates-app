@@ -28,19 +28,23 @@
    cursor: pointer;
 }
 
-.editor :where(.prose > ul > li > *:last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+.editor
+   :where(.prose > ul > li > *:last-child):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+   ) {
    padding-left: 16px !important;
 }
 
-button[type=submit] {
+button[type='submit'] {
    background: hsl(208, 100%, 47.3%) !important;
 }
 
-button[type=reset] {
+button[type='reset'] {
    background-color: hsl(206, 5.8%, 52.3%) !important;
 }
 
-button[type=submit], button[type=reset]:hover {
+button[type='submit'],
+button[type='reset']:hover {
    cursor: pointer;
 }
 
@@ -77,7 +81,7 @@ td {
 }
 
 .task-list-item::marker {
-   content: "";
+   content: '';
 }
 
 .task-list-item {

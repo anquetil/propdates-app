@@ -7,6 +7,7 @@ import { formatTimestampString } from '@/utils/funcs'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useState } from 'react'
+import remarkBreaks from 'remark-breaks'
 
 export function PropUpdateCard({
    update,
@@ -132,9 +133,9 @@ export function PropUpdateCard({
                }`}
             >
                <ReactMarkdown
-                  className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2'
+                  className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2 prose'
                   linkTarget={'_blank'}
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm, remarkBreaks]}
                >
                   {textUpdate}
                </ReactMarkdown>

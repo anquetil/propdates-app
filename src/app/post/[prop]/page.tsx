@@ -25,7 +25,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
    if (loading) {
       return (
          <div>
-            <PageTitle title={`Manage Prop #${propId}`} />
+            <PageTitle title={`Post Update for Prop #${propId}`} />
             <LoadingNoggles />
          </div>
       )
@@ -33,7 +33,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
 
    return (
       <div>
-         <PageTitle title={`Manage Prop #${propId}`} />
+         <PageTitle title={`Post Update for Prop #${propId}`} />
          <div className='px-6 sm:px-10 flex flex-col-reverse gap-y-4 sm:flex-row max-w-full gap-x-10'>
             <div className='w-full sm:w-2/3 max-w-[900px] gap-y-4'>
                {canPost && <PostUpdateForm prop={prop} />}
