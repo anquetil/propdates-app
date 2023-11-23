@@ -20,8 +20,8 @@ export function formatTimestampString(ts: string): string {
    return monthNames[month] + ' ' + day + ', ' + year
 }
 
-export function isMainnet(){
-   return process.env.NEXT_PUBLIC_CHAIN != "SEPOLIA"
+export function isMainnet() {
+   return process.env.NEXT_PUBLIC_CHAIN != 'SEPOLIA'
 }
 
 export function formatDate(d: Date): string {

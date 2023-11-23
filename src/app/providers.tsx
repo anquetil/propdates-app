@@ -16,7 +16,10 @@ import { isMainnet } from '@/utils/funcs'
 const chain = isMainnet() ? mainnet : sepolia
 
 const client = new ApolloClient({
-   uri: chain.id == 1 ? (process.env.NEXT_PUBLIC_GRAPHQL_API) : (process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA),
+   uri:
+      chain.id == 1
+         ? process.env.NEXT_PUBLIC_GRAPHQL_API
+         : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA,
    cache: new InMemoryCache(),
 })
 

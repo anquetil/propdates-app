@@ -38,7 +38,10 @@ export async function generateMetadata(
 }
 
 async function getPropInfo(prop: string): Promise<Proposal> {
-   const endpoint = (isMainnet() ? process.env.GRAPHQL_API :  process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
+   const endpoint =
+      (isMainnet()
+         ? process.env.GRAPHQL_API
+         : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
    const queryBody = `query propQuery {
       proposal(
             id: ${prop}
@@ -74,7 +77,7 @@ async function getPropInfo(prop: string): Promise<Proposal> {
 
 export default async function PropPage({ params }: { params: { id: string } }) {
    const prop = await getPropInfo(params.id)
-   if(prop == null){
+   if (prop == null) {
       return (
          <div className='pb-8'>
             <PageTitle title={`Prop Not Found`} />
@@ -103,7 +106,15 @@ export default async function PropPage({ params }: { params: { id: string } }) {
                            </div>
                            <div className='mb-2'>
                               {`Can't get in touch with the person who put your proposal onchain? Message `}
-                              <a className='underline font-medium' href="https://twitter.com/anquetil" target='_blank'> Martin</a> {`and he can transfer the prop to you!`}
+                              <a
+                                 className='underline font-medium'
+                                 href='https://twitter.com/anquetil'
+                                 target='_blank'
+                              >
+                                 {' '}
+                                 Martin
+                              </a>{' '}
+                              {`and he can transfer the prop to you!`}
                            </div>
                            <Link
                               className='text-white text-sm rounded bg-gray-800 hover:bg-gray-700 px-2 py-1 w-fit shadow-sm ease-in-out transition-all'

@@ -2,523 +2,523 @@ export const v2ABI = [
    {
       inputs: [
          {
-            internalType: "address",
-            name: "target",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'target',
+            type: 'address',
+         },
       ],
-      name: "AddressEmptyCode",
-      type: "error"
+      name: 'AddressEmptyCode',
+      type: 'error',
    },
    {
       inputs: [
          {
-            internalType: "address",
-            name: "implementation",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'implementation',
+            type: 'address',
+         },
       ],
-      name: "ERC1967InvalidImplementation",
-      type: "error"
+      name: 'ERC1967InvalidImplementation',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "ERC1967NonPayable",
-      type: "error"
+      name: 'ERC1967NonPayable',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "FailedInnerCall",
-      type: "error"
+      name: 'FailedInnerCall',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "InvalidInitialization",
-      type: "error"
+      name: 'InvalidInitialization',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "MismatchedLengths",
-      type: "error"
+      name: 'MismatchedLengths',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "NoZeroAddress",
-      type: "error"
+      name: 'NoZeroAddress',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "NotInitializing",
-      type: "error"
+      name: 'NotInitializing',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "OnlyPropUpdateAdmin",
-      type: "error"
+      name: 'OnlyPropUpdateAdmin',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "OnlyPropUpdateAdminOrSuperAdmin",
-      type: "error"
+      name: 'OnlyPropUpdateAdminOrSuperAdmin',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "OnlySuperAdmin",
-      type: "error"
+      name: 'OnlySuperAdmin',
+      type: 'error',
    },
    {
       inputs: [
          {
-            internalType: "address",
-            name: "owner",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'owner',
+            type: 'address',
+         },
       ],
-      name: "OwnableInvalidOwner",
-      type: "error"
+      name: 'OwnableInvalidOwner',
+      type: 'error',
    },
    {
       inputs: [
          {
-            internalType: "address",
-            name: "account",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'account',
+            type: 'address',
+         },
       ],
-      name: "OwnableUnauthorizedAccount",
-      type: "error"
+      name: 'OwnableUnauthorizedAccount',
+      type: 'error',
    },
    {
       inputs: [],
-      name: "UUPSUnauthorizedCallContext",
-      type: "error"
+      name: 'UUPSUnauthorizedCallContext',
+      type: 'error',
    },
    {
       inputs: [
          {
-            internalType: "bytes32",
-            name: "slot",
-            type: "bytes32"
-         }
+            internalType: 'bytes32',
+            name: 'slot',
+            type: 'bytes32',
+         },
       ],
-      name: "UUPSUnsupportedProxiableUUID",
-      type: "error"
+      name: 'UUPSUnsupportedProxiableUUID',
+      type: 'error',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: false,
-            internalType: "uint64",
-            name: "version",
-            type: "uint64"
-         }
+            internalType: 'uint64',
+            name: 'version',
+            type: 'uint64',
+         },
       ],
-      name: "Initialized",
-      type: "event"
+      name: 'Initialized',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "address",
-            name: "previousOwner",
-            type: "address"
+            internalType: 'address',
+            name: 'previousOwner',
+            type: 'address',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "newOwner",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newOwner',
+            type: 'address',
+         },
       ],
-      name: "OwnershipTransferred",
-      type: "event"
+      name: 'OwnershipTransferred',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
             indexed: true,
-            internalType: "bool",
-            name: "isCompleted",
-            type: "bool"
+            internalType: 'bool',
+            name: 'isCompleted',
+            type: 'bool',
          },
          {
             indexed: false,
-            internalType: "string",
-            name: "update",
-            type: "string"
-         }
+            internalType: 'string',
+            name: 'update',
+            type: 'string',
+         },
       ],
-      name: "PostUpdate",
-      type: "event"
+      name: 'PostUpdate',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "oldAdmin",
-            type: "address"
+            internalType: 'address',
+            name: 'oldAdmin',
+            type: 'address',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "newAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newAdmin',
+            type: 'address',
+         },
       ],
-      name: "PropUpdateAdminMigrated",
-      type: "event"
+      name: 'PropUpdateAdminMigrated',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "oldAdmin",
-            type: "address"
+            internalType: 'address',
+            name: 'oldAdmin',
+            type: 'address',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "newAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newAdmin',
+            type: 'address',
+         },
       ],
-      name: "PropUpdateAdminRecovered",
-      type: "event"
+      name: 'PropUpdateAdminRecovered',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "oldAdmin",
-            type: "address"
+            internalType: 'address',
+            name: 'oldAdmin',
+            type: 'address',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "newAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newAdmin',
+            type: 'address',
+         },
       ],
-      name: "PropUpdateAdminTransferred",
-      type: "event"
+      name: 'PropUpdateAdminTransferred',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "address",
-            name: "oldSuperAdmin",
-            type: "address"
+            internalType: 'address',
+            name: 'oldSuperAdmin',
+            type: 'address',
          },
          {
             indexed: true,
-            internalType: "address",
-            name: "newSuperAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newSuperAdmin',
+            type: 'address',
+         },
       ],
-      name: "SuperAdminTransferred",
-      type: "event"
+      name: 'SuperAdminTransferred',
+      type: 'event',
    },
    {
       anonymous: false,
       inputs: [
          {
             indexed: true,
-            internalType: "address",
-            name: "implementation",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'implementation',
+            type: 'address',
+         },
       ],
-      name: "Upgraded",
-      type: "event"
+      name: 'Upgraded',
+      type: 'event',
    },
    {
       inputs: [],
-      name: "NOUNS_DAO",
+      name: 'NOUNS_DAO',
       outputs: [
          {
-            internalType: "address payable",
-            name: "",
-            type: "address"
-         }
+            internalType: 'address payable',
+            name: '',
+            type: 'address',
+         },
       ],
-      stateMutability: "view",
-      type: "function"
+      stateMutability: 'view',
+      type: 'function',
    },
    {
       inputs: [],
-      name: "UPGRADE_INTERFACE_VERSION",
+      name: 'UPGRADE_INTERFACE_VERSION',
       outputs: [
          {
-            internalType: "string",
-            name: "",
-            type: "string"
-         }
+            internalType: 'string',
+            name: '',
+            type: 'string',
+         },
       ],
-      stateMutability: "view",
-      type: "function"
+      stateMutability: 'view',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "uint256[]",
-            name: "propIds",
-            type: "uint256[]"
+            internalType: 'uint256[]',
+            name: 'propIds',
+            type: 'uint256[]',
          },
          {
-            internalType: "address[]",
-            name: "newAdmins",
-            type: "address[]"
-         }
+            internalType: 'address[]',
+            name: 'newAdmins',
+            type: 'address[]',
+         },
       ],
-      name: "batchTransferPropUpdateAdmins",
+      name: 'batchTransferPropUpdateAdmins',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [],
-      name: "initialize",
+      name: 'initialize',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [],
-      name: "owner",
+      name: 'owner',
       outputs: [
          {
-            internalType: "address",
-            name: "",
-            type: "address"
-         }
+            internalType: 'address',
+            name: '',
+            type: 'address',
+         },
       ],
-      stateMutability: "view",
-      type: "function"
+      stateMutability: 'view',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
-            internalType: "bool",
-            name: "isCompleted",
-            type: "bool"
+            internalType: 'bool',
+            name: 'isCompleted',
+            type: 'bool',
          },
          {
-            internalType: "string",
-            name: "update",
-            type: "string"
-         }
+            internalType: 'string',
+            name: 'update',
+            type: 'string',
+         },
       ],
-      name: "postUpdate",
+      name: 'postUpdate',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
-         }
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
+         },
       ],
-      name: "propdateInfo",
+      name: 'propdateInfo',
       outputs: [
          {
             components: [
                {
-                  internalType: "address",
-                  name: "propUpdateAdmin",
-                  type: "address"
+                  internalType: 'address',
+                  name: 'propUpdateAdmin',
+                  type: 'address',
                },
                {
-                  internalType: "uint88",
-                  name: "lastUpdated",
-                  type: "uint88"
+                  internalType: 'uint88',
+                  name: 'lastUpdated',
+                  type: 'uint88',
                },
                {
-                  internalType: "bool",
-                  name: "isCompleted",
-                  type: "bool"
-               }
+                  internalType: 'bool',
+                  name: 'isCompleted',
+                  type: 'bool',
+               },
             ],
-            internalType: "struct PropdatesV2.PropdateInfo",
-            name: "",
-            type: "tuple"
-         }
+            internalType: 'struct PropdatesV2.PropdateInfo',
+            name: '',
+            type: 'tuple',
+         },
       ],
-      stateMutability: "view",
-      type: "function"
+      stateMutability: 'view',
+      type: 'function',
    },
    {
       inputs: [],
-      name: "proxiableUUID",
+      name: 'proxiableUUID',
       outputs: [
          {
-            internalType: "bytes32",
-            name: "",
-            type: "bytes32"
-         }
+            internalType: 'bytes32',
+            name: '',
+            type: 'bytes32',
+         },
       ],
-      stateMutability: "view",
-      type: "function"
+      stateMutability: 'view',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
-            internalType: "address",
-            name: "newAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newAdmin',
+            type: 'address',
+         },
       ],
-      name: "recoverPropUpdateAdmin",
+      name: 'recoverPropUpdateAdmin',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [],
-      name: "renounceOwnership",
+      name: 'renounceOwnership',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "address",
-            name: "_newSuperAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: '_newSuperAdmin',
+            type: 'address',
+         },
       ],
-      name: "setSuperAdmin",
+      name: 'setSuperAdmin',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [],
-      name: "superAdmin",
+      name: 'superAdmin',
       outputs: [
          {
-            internalType: "address",
-            name: "",
-            type: "address"
-         }
+            internalType: 'address',
+            name: '',
+            type: 'address',
+         },
       ],
-      stateMutability: "view",
-      type: "function"
+      stateMutability: 'view',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "address",
-            name: "newOwner",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newOwner',
+            type: 'address',
+         },
       ],
-      name: "transferOwnership",
+      name: 'transferOwnership',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "uint256",
-            name: "propId",
-            type: "uint256"
+            internalType: 'uint256',
+            name: 'propId',
+            type: 'uint256',
          },
          {
-            internalType: "address",
-            name: "newAdmin",
-            type: "address"
-         }
+            internalType: 'address',
+            name: 'newAdmin',
+            type: 'address',
+         },
       ],
-      name: "transferPropUpdateAdmin",
+      name: 'transferPropUpdateAdmin',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "address",
-            name: "newImplementation",
-            type: "address"
+            internalType: 'address',
+            name: 'newImplementation',
+            type: 'address',
          },
          {
-            internalType: "bytes",
-            name: "data",
-            type: "bytes"
-         }
+            internalType: 'bytes',
+            name: 'data',
+            type: 'bytes',
+         },
       ],
-      name: "upgradeToAndCall",
+      name: 'upgradeToAndCall',
       outputs: [],
-      stateMutability: "payable",
-      type: "function"
+      stateMutability: 'payable',
+      type: 'function',
    },
    {
       inputs: [
          {
-            internalType: "address payable",
-            name: "_to",
-            type: "address"
-         }
+            internalType: 'address payable',
+            name: '_to',
+            type: 'address',
+         },
       ],
-      name: "withdraw",
+      name: 'withdraw',
       outputs: [],
-      stateMutability: "nonpayable",
-      type: "function"
+      stateMutability: 'nonpayable',
+      type: 'function',
    },
    {
-      stateMutability: "payable",
-      type: "receive"
-   }
-] as const;
+      stateMutability: 'payable',
+      type: 'receive',
+   },
+] as const

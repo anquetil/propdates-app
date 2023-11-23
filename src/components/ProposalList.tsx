@@ -15,16 +15,20 @@ function getStatus(prop: MinimalProp) {
 
 export function ProposalList({ mini = false }: { mini?: boolean }) {
    const [searchText, setSearchText] = useState<string>('')
-   const [counts, setCounts] = useState([0,0,0]); // completed, no updates, in progerss
+   const [counts, setCounts] = useState([0, 0, 0]) // completed, no updates, in progerss
    const { proposals } = useGetProps()
 
    useEffect(() => {
       console.log('in use effect', proposals)
-      if(proposals){
+      if (proposals) {
          let filteredProps = [...proposals].filter((p) => p.executed)
-         setCounts([filteredProps.filter((p) => p.isCompleted).length, filteredProps.filter((p) => p.count == 0).length, filteredProps.filter((p) => !p.isCompleted && p.count > 0).length])
+         setCounts([
+            filteredProps.filter((p) => p.isCompleted).length,
+            filteredProps.filter((p) => p.count == 0).length,
+            filteredProps.filter((p) => !p.isCompleted && p.count > 0).length,
+         ])
       }
-      }, [proposals])
+   }, [proposals])
 
    if (!proposals) {
       return <></>
@@ -53,16 +57,28 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
          <div className='font-medium'>Find a Proposal</div>
          <div className='flex flex-row my-2'>
             <div className='flex flex-col items-center w-1/3'>
-               <div className='text-sm text-gray-700 font-semibold'>{counts[0]}</div>
-               <div className='text-xs text-gray-500 text-center'>Completed</div>
+               <div className='text-sm text-gray-700 font-semibold'>
+                  {counts[0]}
+               </div>
+               <div className='text-xs text-gray-500 text-center'>
+                  Completed
+               </div>
             </div>
             <div className='flex flex-col items-center w-1/3'>
-               <div className='text-sm text-gray-700 font-semibold'>{counts[1]}</div>
-               <div className='text-xs text-gray-500 text-center'>No Updates</div>
+               <div className='text-sm text-gray-700 font-semibold'>
+                  {counts[1]}
+               </div>
+               <div className='text-xs text-gray-500 text-center'>
+                  No Updates
+               </div>
             </div>
             <div className='flex flex-col items-center w-1/3'>
-               <div className='text-sm text-gray-700 font-semibold'>{counts[2]}</div>
-               <div className='text-xs text-gray-500 text-center'>In Progress</div>
+               <div className='text-sm text-gray-700 font-semibold'>
+                  {counts[2]}
+               </div>
+               <div className='text-xs text-gray-500 text-center'>
+                  In Progress
+               </div>
             </div>
          </div>
          <input
@@ -95,7 +111,11 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
                               : 'bg-red-100 text-red-500'
                         }`}
                      >
-                        {getStatus(a) == 'COMPLETED' ? '✅' : getStatus(a) == 'IN PROGRESS' ? '⏳' : '∅'}
+                        {getStatus(a) == 'COMPLETED'
+                           ? '✅'
+                           : getStatus(a) == 'IN PROGRESS'
+                           ? '⏳'
+                           : '∅'}
                      </div>
                   }
                </div>

@@ -7,11 +7,11 @@ export const TEST_ADDRESS = {
 
 export const CONTRACT_ADDRESSES = {
    1: {
-      V1: "0x94b4fb16893C0Fb4E470eEf2559C24FD87FEd5F1" as Address,
-      V2: "" as Address
+      V1: '0x94b4fb16893C0Fb4E470eEf2559C24FD87FEd5F1' as Address,
+      V2: '' as Address,
    },
    11155111: {
-      V1: "0xb06813FbE1Ff52DCef4F425bD5b4f17a79D7b4D8" as Address,
-      V2: "0xa5Bf9A9b8f60CFD98b1cCB592f2F9F37Bb0033a4" as Address
-   }
+      V1: '0xb06813FbE1Ff52DCef4F425bD5b4f17a79D7b4D8' as Address,
+      V2: '0xa5Bf9A9b8f60CFD98b1cCB592f2F9F37Bb0033a4' as Address,
+   },
 }
