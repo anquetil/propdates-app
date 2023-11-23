@@ -24,7 +24,7 @@ export default function AdminPage() {
 
    return (
       <div>
-         <PageTitle title={`Settings`} />
+         <PageTitle title={`Settings`} tab={'MY PROPS'} />
          <div className='px-6 sm:px-10'>
             {isConnected && correctChain ? (
                actions ? (
