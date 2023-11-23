@@ -110,7 +110,7 @@ export default async function UpdatePage({
       <div>
          <PageTitle title={`#${prop.id}: ${prop?.title}`} updateObj={update} />
          <div className='px-6 sm:px-10'>
-            <PropUpdateCard update={update} collapsing={false} />
+            <PropUpdateCard update={update} forceFull={true} />
          </div>
       </div>
    )

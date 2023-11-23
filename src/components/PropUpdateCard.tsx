@@ -6,21 +6,47 @@ import Link from 'next/link'
 import { formatTimestampString } from '@/utils/funcs'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import remarkBreaks from 'remark-breaks'
 
 export function PropUpdateCard({
    update,
    context = false,
-   collapsing = true,
+   forceFull = false,
 }: {
    update: PropUpdate
    context?: boolean
-   collapsing?: boolean
+   forceFull?: boolean
 }) {
    const [toast, setToast] = useState<boolean>(false)
+
    function copyToClipboard(id: string, nav: Navigator) {
       void nav.clipboard.writeText(`updates.wtf/update/${id}`)
    }
+
+   const parentDivRef = useRef<HTMLDivElement>(null)
+   const [collapsed, setCollapsed] = useState<boolean>(!forceFull)
+   const [showExpandButton, setShowExpandButton] = useState(false)
+
+   useEffect(() => {
+      console.log(parentDivRef.current?.scrollHeight)
+      const checkHeight = () => {
+         if (forceFull || (parentDivRef.current?.scrollHeight || 0) < 192) {
+            setShowExpandButton(false)
+         } else {
+            setShowExpandButton(true)
+         }
+      }
+
+      console.log(forceFull)
+
+      // Check the height on mount and on window resize
+      checkHeight()
+      window.addEventListener('resize', checkHeight)
+
+      // Clean up the event listener
+      return () => window.removeEventListener('resize', checkHeight)
+   }, [forceFull])
 
    function handleClick() {
       copyToClipboard(id, navigator)
@@ -30,7 +56,6 @@ export function PropUpdateCard({
       }, 1000)
    }
 
-   const [collapsed, setCollapsed] = useState<boolean>(collapsing)
    const { data: ensName } = useEnsName({
       address: update.admin as Address,
    })
@@ -49,7 +74,6 @@ export function PropUpdateCard({
       update: textUpdate,
    } = update
 
-   const long = textUpdate.length > 400 || textUpdate.includes('![')
    return (
       <div className='w-full flex flex-col'>
          {context && (
@@ -126,20 +150,21 @@ export function PropUpdateCard({
             </div>
 
             <div
-               className={`propUpdateMarkdown w-full bg-[#fcfcfc] text-sm text-gray-600 p-4 font-mono
+               ref={parentDivRef}
+               className={` w-full bg-[#fcfcfc] text-gray-600 p-4 font-mono
                ${collapsed && 'max-h-48 overflow-hidden'} ${
-                  (!collapsing || !long) && 'rounded-b-xl'
+                  !forceFull && 'rounded-b-xl'
                }`}
             >
                <ReactMarkdown
-                  className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2'
+                  className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2 prose propUpdateMarkdown  text-sm'
                   linkTarget={'_blank'}
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm, remarkBreaks]}
                >
                   {textUpdate}
                </ReactMarkdown>
             </div>
-            {collapsing && long && (
+            {showExpandButton && (
                <div
                   className='flex flex-row justify-center items-center w-full h-7 rounded-b-xl  text-slate-400 bg-slate-100 hover:bg-slate-200 hover:cursor-pointer ease-in-out transition-all duration-200'
                   onClick={() => setCollapsed(!collapsed)}
