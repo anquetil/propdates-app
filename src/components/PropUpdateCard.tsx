@@ -19,7 +19,7 @@ export function PropUpdateCard({
 }) {
    const [toast, setToast] = useState<boolean>(false)
    function copyToClipboard(id: string, nav: Navigator) {
-      void nav.clipboard.writeText(`updates.wtf/update/${id}`)
+      void nav.clipboard.writeText(`https://updates.wtf/update/${id}`)
    }
 
    function handleClick() {
