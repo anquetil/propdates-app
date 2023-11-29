@@ -11,7 +11,7 @@ import { zeroAddress } from 'viem'
 export default function PropPage({ params }: { params: { prop: string } }) {
    const propId = Number(params.prop)
    const { prop, loading } = useGetProp(Number(propId), propId != -1000)
-
+   const isCompleted =  prop ? prop.isCompleted : false
    const { isConnected, address } = useAccount()
    const { chain, chains } = useNetwork()
    const correctChain = chain?.id === chains[0].id
@@ -39,7 +39,7 @@ export default function PropPage({ params }: { params: { prop: string } }) {
          <PageTitle title={`Post Update for Prop #${propId}`} />
          <div className='px-6 sm:px-10 flex flex-col-reverse gap-y-4 sm:flex-row max-w-full gap-x-10'>
             <div className='w-full sm:w-2/3 max-w-[900px] gap-y-4'>
-               {canPost && <PostUpdateForm prop={prop} />}
+               {canPost && <PostUpdateForm prop={prop} isCompleted={isCompleted} />}
             </div>
             <PropInfoPanel prop={prop} />
          </div>

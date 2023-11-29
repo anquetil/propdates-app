@@ -64,7 +64,7 @@ async function getFonts(): Promise<Font[]> {
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
    const endpoint =
       (isMainnet()
-         ? process.env.GRAPHQL_API
+         ? process.env.NEXT_PUBLIC_GRAPHQL_API
          : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
    const queryBody = {
       query: `

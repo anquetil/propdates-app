@@ -40,7 +40,7 @@ export async function generateMetadata(
 async function getPropInfo(prop: string): Promise<Proposal> {
    const endpoint =
       (isMainnet()
-         ? process.env.GRAPHQL_API
+         ? process.env.NEXT_PUBLIC_GRAPHQL_API
          : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
    const queryBody = `query propQuery {
       proposal(

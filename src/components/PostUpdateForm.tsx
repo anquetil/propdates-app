@@ -10,7 +10,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 
-export function PostUpdateForm({ prop }: { prop: Proposal }) {
+export function PostUpdateForm({ prop, isCompleted }: { prop: Proposal, isCompleted: boolean }) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
    const [showPreview, setShowPreview] = useState<boolean>(false)
@@ -116,20 +116,25 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                </ReactMarkdown>
             )}
 
-            <div className='flex flex-row space-x-2 mb-4'>
-               <input
-                  type='checkbox'
-                  className='w-fit rounded border border-neutral-200'
-                  onChange={(e) => {
-                     setCompleted(e.currentTarget.checked)
-                  }}
-               />
-               <div className='text-gray-400'>
-                  {`Mark proposal as completed.`}
-                  <br></br>
-                  {`This can't be undone, but you'll be able to keep posting updates`}
+            {
+               !isCompleted &&
+               <div className='flex flex-row space-x-2 mb-4'>
+                  <input
+                     type='checkbox'
+                     className='w-fit rounded border border-neutral-200'
+                     onChange={(e) => {
+                        setCompleted(e.currentTarget.checked)
+                     }}
+                  />
+                  <div className='text-gray-400'>
+                     {`Mark proposal as completed.`}
+                     <br></br>
+                     {`This can't be undone, but you'll be able to keep posting updates`}
+                  </div>
                </div>
-            </div>
+            }
+
+
 
             <button
                className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
