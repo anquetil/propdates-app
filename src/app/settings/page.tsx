@@ -12,8 +12,8 @@ export default function AdminPage() {
 
    const accountData = useAccount()
    const { isConnected, address } = accountData
-   const { chain } = useNetwork()
-   const correctChain = chain?.id === 1
+   const { chain, chains } = useNetwork()
+   const correctChain = chain?.id === chains[0].id
    const { actions } = useGetActions(address!, isConnected)
    if (data == undefined)
       return (
@@ -24,7 +24,7 @@ export default function AdminPage() {
 
    return (
       <div>
-         <PageTitle title={`Settings`} />
+         <PageTitle title={`Settings`} tab={'MY PROPS'} />
          <div className='px-6 sm:px-10'>
             {isConnected && correctChain ? (
                actions ? (

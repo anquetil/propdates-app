@@ -3,7 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { type Address } from 'wagmi'
-import useGetName from '../hooks/useGetName'
+import useGetName from '@/hooks/useGetName'
 
 const AddressDisplay: React.FC<{
    address: Address
@@ -16,7 +16,7 @@ const AddressDisplay: React.FC<{
          className={`hover:underline underline-offset-2 ${
             blue && 'text-blue-700'
          }`}
-         href={`https://mogu.wtf/address/${address}`}
+         href={`https://etherscan.io/address/${address}`}
       >
          {isLoading
             ? guarantee

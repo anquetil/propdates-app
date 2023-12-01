@@ -4,7 +4,9 @@ import {
    usePrepareContractWrite,
    useWaitForTransaction,
 } from 'wagmi'
-import { propdatesAddress, propdatesABI } from '@/generated'
+import { CONTRACT_ADDRESSES } from '@/utils/addresses'
+import { v2ABI } from '@/utils/propdatesV2ABI'
+import { isMainnet } from '@/utils/funcs'
 
 export function useTransferAdmin(
    propID: number,
@@ -12,8 +14,8 @@ export function useTransferAdmin(
    enabled: boolean
 ) {
    const { config } = usePrepareContractWrite({
-      address: propdatesAddress[1],
-      abi: propdatesABI,
+      address: CONTRACT_ADDRESSES[isMainnet() ? 1 : 11155111].V2,
+      abi: v2ABI,
       functionName: 'transferPropUpdateAdmin',
       args: [BigInt(propID), newAdmin],
       enabled: enabled,

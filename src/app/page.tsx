@@ -3,6 +3,7 @@
 import { AllUpdates } from '@/components/AllUpdates'
 import { LoadingNoggles } from '@/components/LoadingNoggles'
 import { PageTitle } from '@/components/PageTitle'
+import { ProposalList } from '@/components/ProposalList'
 import useGetUpdates from '@/hooks/useGetUpdates'
 
 export default function Home() {
@@ -22,9 +23,7 @@ export default function Home() {
                   )}
                </div>
 
-               {/* remove for now, need to put a better updates dash
                <ProposalList mini={true} />
-                  */}
             </div>
          </div>
       </div>

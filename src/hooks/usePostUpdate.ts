@@ -3,7 +3,9 @@ import {
    usePrepareContractWrite,
    useWaitForTransaction,
 } from 'wagmi'
-import { propdatesAddress, propdatesABI } from '@/generated'
+import { v2ABI } from '@/utils/propdatesV2ABI'
+import { CONTRACT_ADDRESSES } from '@/utils/addresses'
+import { isMainnet } from '@/utils/funcs'
 
 export function usePostUpdate(
    propID: number,
@@ -11,14 +13,13 @@ export function usePostUpdate(
    completed: boolean
 ) {
    const { config } = usePrepareContractWrite({
-      address: propdatesAddress[1],
-      abi: propdatesABI,
+      address: CONTRACT_ADDRESSES[isMainnet() ? 1 : 11155111].V2,
+      abi: v2ABI,
       functionName: 'postUpdate',
       args: [BigInt(propID), completed, updateText],
       enabled: true,
    })
 
-   console.log(config)
    const { write, data } = useContractWrite(config)
 
    const {

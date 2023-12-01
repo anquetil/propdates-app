@@ -3,7 +3,7 @@ import { PropUpdate } from '@/utils/types'
 import { Address, createPublicClient, http } from 'viem'
 import { mainnet } from 'viem/chains'
 import { type Font } from 'satori'
-import { formatTimestampString, shortenHex } from '@/utils/funcs'
+import { formatTimestampString, isMainnet, shortenHex } from '@/utils/funcs'
 
 type Params = { params: { id: string } }
 
@@ -63,7 +63,9 @@ async function getFonts(): Promise<Font[]> {
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.9/gn'
+      (isMainnet()
+         ? process.env.NEXT_PUBLIC_GRAPHQL_API
+         : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
    const queryBody = {
       query: `
    query propQuery {

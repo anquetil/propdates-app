@@ -5,6 +5,7 @@ import { Address } from 'wagmi'
 import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
 import { isAddress } from 'viem'
+import { LoadingNoggles } from './LoadingNoggles'
 import Link from 'next/link'
 
 export function TransferAdminForm({
@@ -17,31 +18,37 @@ export function TransferAdminForm({
    //
    const [error, setError] = useState<boolean>(false)
    const [newAdmin, setNewAdmin] = useState<Address>(connectedAddress)
-   const { id, admin, pendingAdmin, transferPending, proposer } = prop
+   const { id, admin, proposer } = prop
    const unclaimed = admin == zeroAddress
    const isAdmin = connectedAddress.toLowerCase() == admin.toLowerCase()
    const isProposer = connectedAddress.toLowerCase() == proposer.toLowerCase()
-   const isPendingAdmin =
-      connectedAddress.toLowerCase() == pendingAdmin.toLowerCase()
    const canTransfer = (!unclaimed && isAdmin) || (unclaimed && isProposer)
 
    const enableWrite = isAdmin || (unclaimed && isProposer)
-   const { write, isSuccess, transactionData } = useTransferAdmin(
+   const { write, isSuccess, transactionData, isLoading } = useTransferAdmin(
       Number(id),
       newAdmin,
       enableWrite
    )
 
-   if (isSuccess) {
+   if (isLoading) {
       return (
-         <div className='font-bold'>
-            {`Success! Transaction: `}
-            <a
-               className='underline text-blue-500 hover:text-blue-700'
+         <div className='mt-4 w-36 flex items-start flex-col'>
+            <LoadingNoggles />
+            <div className='text-neutral-400'>Transfering role... </div>
+         </div>
+      )
+   } else if (isSuccess) {
+      return (
+         <div className='w-2/3 mt-4 flex flex-col items-center bg-green-100 border-green-300 border py-5 px-12 gap-y-2 rounded'>
+            <div className='text-green-800 text-lg'>{`Role transfered!`}</div>
+            <Link
+               target='_blank'
                href={`https://etherscan.io/tx/${transactionData?.transactionHash}`}
+               className='text-green-800 underline hover:cursor-pointer text-sm font-medium'
             >
-               {transactionData?.transactionHash}
-            </a>
+               Txn Receipt
+            </Link>
          </div>
       )
    }
@@ -50,24 +57,12 @@ export function TransferAdminForm({
       // is proposer pre-claim or admin
       return (
          <div className='text-gray-700'>
-            {unclaimed ? (
-               <div>
-                  The admin is not yet set for this proposal. As the proposer,
-                  you need to claim it for yourself or transfer it to someone
-                  else.
-               </div>
-            ) : (
-               <div>
-                  You are the admin of this proposal. You can transfer the role
-                  to someone else. Once they accept it, you will no longer be
-                  able to change the admin. They will be able to transfer it to
-                  whoever they want.
-               </div>
-            )}
-
-            {transferPending && (
-               <div>{`There currently is an admin transfer pending to ${pendingAdmin}. Initiating a new one will cancel it.`}</div>
-            )}
+            <div>
+               You are the admin of this proposal. You can transfer the role to
+               someone else. Once they accept it, you will no longer be able to
+               change the admin. They will be able to transfer it to whoever
+               they want.
+            </div>
 
             <div className='flex flex-col items-start mt-4'>
                <div className='font-medium'>New Admin:</div>
@@ -105,26 +100,12 @@ export function TransferAdminForm({
             </div>
          </div>
       )
-   } else if (isPendingAdmin) {
-      return (
-         <div className='text-gray-700 flex flex-col gap-y-1'>
-            You are the pending admin. To accept the role, you just need to post
-            an update
-            <Link
-               href={`/post/${id}`}
-               className='bg-white text-center text-sm w-fit  transition-all ease-in-out shadow-sm hover:shadow rounded-lg py-2 sm:py-1 px-[14px] text-black border'
-            >
-               Post an update
-            </Link>
-         </div>
-      )
    } else {
       return (
          <div className='text-gray-700'>
-            Only the current admin can transfer this role or write updates. If
-            not yet claimed, the proposer will need to claim or transfer the
-            admin role to another address. The pending admin can then post,
-            which will finish the transfer.
+            Only the admin can transfer this role or write updates. If not yet
+            claimed, the proposer will need to claim or transfer the admin role
+            to another address.
          </div>
       )
    }

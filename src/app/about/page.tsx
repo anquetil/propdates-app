@@ -49,12 +49,13 @@ function makeTableArray(
 }
 
 export default function AboutPage() {
-   let md = `Propdates is a contract built by [wilson](https://twitter.com/WilsonCusack) and a front-end built by [martin](https://twitter.com/anquetil). Its goal is to make it easier for proposers to keep the Nouns community updated on their work.`
+   let md = `Propdates enables Nouns DAO to stay updated on its contributors' work.`
    md += '\n\n## How it works'
    md +=
-      '\nTo claim a proposal, the **_initial, onchain proposer_** needs to claim the admin role or transfer it to another address via the [admin page](/settings). Once transfered, the receiver is "pending admin" until they accept the transfer, either by posting or manually accepting it.'
+      '\nThe proposer of any onchain proposal can post updates or transfer the admin role via the [settings page](/settings).'
    md +=
-      'Once they are the admin, they can transfer the role to anyone else. The gas fees of all proposals updates are automatically refunded by the contract.'
+      ' Once someone is the admin, they can transfer the role to anyone else. The gas fees of all proposals updates are automatically refunded by the contract.'
+   md += `\n\n**Can't get in touch with the person who initially put your proposal onchain? DM [Martin](https://twitter.com/anquetil) on Twitter and he can transfer the prop to you!**`
    md += `\n\nContract: [0x94b4...d5f1](https://etherscan.io/address/0x94b4fb16893c0fb4e470eef2559c24fd87fed5f1)`
 
    const { updates } = useGetUpdates()
@@ -63,7 +64,7 @@ export default function AboutPage() {
 
    return (
       <div className=''>
-         <PageTitle title={'What is Propdates?'} tab={'HOW IT WORKS'} />
+         <PageTitle title={'What is Propdates?'} tab={'ABOUT'} />
 
          <div className='text-gray-600 ml-6 sm:ml-10 w-4/5 sm:w-3/5 pb-6'>
             <ReactMarkdown

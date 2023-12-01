@@ -1,4 +1,4 @@
-import { Action } from '@/utils/types'
+import { MinimalProp } from '@/utils/types'
 import { gql, useQuery } from '@apollo/client'
 import { Address } from 'viem'
 
@@ -11,19 +11,17 @@ export function useGetActions(address: Address, enabled: boolean) {
                   {proposer:"${address}"},
                   {admin: "0x0000000000000000000000000000000000000000"}
                ]},
-               {pendingAdmin:"${address}"}               
                {admin:"${address}"}
             ]
          }
       ){
          id
          title
-         admin
          proposer
-         transferPending
-         pendingAdmin
-         isCompleted
+         admin
          executed
+         isCompleted
+         count
       }
    }`
 
@@ -31,8 +29,7 @@ export function useGetActions(address: Address, enabled: boolean) {
       skip: !enabled,
    })
 
-   const actions: Action[] = data ? data.proposals : undefined
-   console.log(actions, enabled, data)
+   const actions: MinimalProp[] = data ? data.proposals : undefined
    return {
       actions,
       loading,

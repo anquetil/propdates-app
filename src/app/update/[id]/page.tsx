@@ -2,7 +2,12 @@ import { PropUpdate } from '@/utils/types'
 import { PageTitle } from '@/components/PageTitle'
 import { PropUpdateCard } from '@/components/PropUpdateCard'
 import { Metadata } from 'next'
-import { formatTitle, getUpdateNumFromID, ordinals } from '@/utils/funcs'
+import {
+   formatTitle,
+   getUpdateNumFromID,
+   isMainnet,
+   ordinals,
+} from '@/utils/funcs'
 
 export async function generateMetadata({
    params,
@@ -43,26 +48,28 @@ export async function generateMetadata({
 
 async function getUpdateInfo(id: string): Promise<PropUpdate> {
    const endpoint =
-      'https://api.goldsky.com/api/public/project_clljsl74d0h5u38txbc9y8cil/subgraphs/propdates-subgraph/1.1.9/gn'
+      (isMainnet()
+         ? process.env.NEXT_PUBLIC_GRAPHQL_API
+         : process.env.NEXT_PUBLIC_GRAPHQL_API_SEPOLIA) ?? ''
    const queryBody = {
       query: `
-   query propQuery {
-      propUpdate(
-            id: "${id}"
-      ){
-         id 
-         admin
-         prop {
-            id
-            proposer
-            title
-        	}
-         isCompleted
-         update
-         transactionHash
-         blockTimestamp
-      }
-   }`,
+      query propQuery {
+         propUpdate(
+               id: "${id}"
+         ){
+            id 
+            admin
+            prop {
+               id
+               proposer
+               title
+            }
+            isCompleted
+            update
+            transactionHash
+            blockTimestamp
+         }
+      }`,
    }
 
    const headers = {
@@ -103,7 +110,7 @@ export default async function UpdatePage({
       <div>
          <PageTitle title={`#${prop.id}: ${prop?.title}`} updateObj={update} />
          <div className='px-6 sm:px-10'>
-            <PropUpdateCard update={update} collapsing={false} />
+            <PropUpdateCard update={update} forceFull={true} />
          </div>
       </div>
    )

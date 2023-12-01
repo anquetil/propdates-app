@@ -8,8 +8,15 @@ import Link from 'next/link'
 import { CaretDownIcon } from '@radix-ui/react-icons'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import remarkBreaks from 'remark-breaks'
 
-export function PostUpdateForm({ prop }: { prop: Proposal }) {
+export function PostUpdateForm({
+   prop,
+   isCompleted,
+}: {
+   prop: Proposal
+   isCompleted: boolean
+}) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
    const [showPreview, setShowPreview] = useState<boolean>(false)
@@ -70,12 +77,32 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
       )
    }
 
+   console.log(updateText)
    return (
       <div>
          <div className='flex flex-col items-start space-y-2 mt-4'>
-            <div className='font-medium text-lg'>Update</div>
+            <div className='text-gray-800'>
+               Updates are formatted in{' '}
+               <Link
+                  className='text-gray-500 hover:underline'
+                  href='https://www.markdownguide.org/basic-syntax/'
+                  target='_blank'
+               >
+                  Markdown
+               </Link>
+               . You can see a preview of your update below, or use another
+               editor like{' '}
+               <Link
+                  className='text-gray-500 hover:underline'
+                  href='https://stackedit.io/app#'
+                  target='_blank'
+               >
+                  StackEdit
+               </Link>
+               .
+            </div>
             <textarea
-               className='mt-1 mb-4 rounded border border-neutral-200 w-full font-light text-base align-text-top overflow-auto p-2 h-32'
+               className='mt-1 mb-4 rounded border border-neutral-200 w-full font-mono text-sm align-text-top overflow-auto p-3 h-32'
                name='updateText'
                id='updateText'
                onChange={(e) => {
@@ -97,29 +124,31 @@ export function PostUpdateForm({ prop }: { prop: Proposal }) {
                />
             </div>
             {showPreview && (
-               <div
-                  className={`propUpdateMarkdown w-full bg-white text-sm text-gray-600 p-4 font-mono`}
+               <ReactMarkdown
+                  className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2 propUpdateMarkdown prose w-full bg-white text-sm text-gray-600 p-4 font-mono'
+                  linkTarget={'_blank'}
+                  remarkPlugins={[remarkGfm, remarkBreaks]}
                >
-                  <ReactMarkdown
-                     className='space-y-3 [&>*]:break-words [&>ul>li]:ml-2'
-                     linkTarget={'_blank'}
-                     remarkPlugins={[remarkGfm]}
-                  >
-                     {updateText}
-                  </ReactMarkdown>
-               </div>
+                  {updateText}
+               </ReactMarkdown>
             )}
 
-            <div className='flex flex-row space-x-2 mb-4'>
-               <input
-                  type='checkbox'
-                  className='w-fit rounded border border-neutral-200'
-                  onChange={(e) => {
-                     setCompleted(e.currentTarget.checked)
-                  }}
-               />
-               <div className='text-gray-500 font-light'>{`Mark proposal work as completed (this can't be undone)`}</div>
-            </div>
+            {!isCompleted && (
+               <div className='flex flex-row space-x-2 mb-4'>
+                  <input
+                     type='checkbox'
+                     className='w-fit rounded border border-neutral-200'
+                     onChange={(e) => {
+                        setCompleted(e.currentTarget.checked)
+                     }}
+                  />
+                  <div className='text-gray-400'>
+                     {`Mark proposal as completed.`}
+                     <br></br>
+                     {`This can't be undone, but you'll be able to keep posting updates`}
+                  </div>
+               </div>
+            )}
 
             <button
                className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'

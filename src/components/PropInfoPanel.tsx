@@ -1,11 +1,12 @@
 import React from 'react'
 import { Proposal } from '@/utils/types'
 import AddressDisplay from './AddressDisplay'
+import { zeroAddress } from 'viem'
 
 const PropInfoPanel: React.FC<{
    prop: Proposal
 }> = ({ prop }) => {
-   const { admin, pendingAdmin, transferPending, proposer, isCompleted } = prop
+   const { admin, proposer, isCompleted } = prop
    return (
       <div className='sm:sticky flex flex-col sm:top-10 py-3 pl-4 pr-16 border rounded shrink h-fit w-full sm:w-fit bg-white shadow-sm'>
          {isCompleted && (
@@ -15,21 +16,21 @@ const PropInfoPanel: React.FC<{
          )}
          <div className='flex flex-col text-md text-gray-600 space-y-4'>
             <div className='flex flex-col'>
-               <div className='font-base'>Proposer</div>
+               <div className='font-base uppercase text-sm text-gray-400'>
+                  Proposer
+               </div>
                <AddressDisplay blue={true} address={proposer} />
             </div>
 
             <div className='flex flex-col'>
-               <div className='font-base'>Admin</div>
-               <AddressDisplay blue={true} address={admin} />
-            </div>
-
-            {transferPending && (
-               <div className='flex flex-col'>
-                  <div className='font-base'>Pending Admin</div>
-                  <AddressDisplay blue={true} address={pendingAdmin} />
+               <div className='font-base uppercase text-sm text-gray-400'>
+                  Admin
                </div>
-            )}
+               <AddressDisplay
+                  blue={true}
+                  address={admin == zeroAddress ? proposer : admin}
+               />
+            </div>
          </div>
       </div>
    )
