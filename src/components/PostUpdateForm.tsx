@@ -10,7 +10,13 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkBreaks from 'remark-breaks'
 
-export function PostUpdateForm({ prop, isCompleted }: { prop: Proposal, isCompleted: boolean }) {
+export function PostUpdateForm({
+   prop,
+   isCompleted,
+}: {
+   prop: Proposal
+   isCompleted: boolean
+}) {
    const [updateText, setUpdateText] = useState<string>('')
    const [completed, setCompleted] = useState<boolean>(false)
    const [showPreview, setShowPreview] = useState<boolean>(false)
@@ -116,8 +122,7 @@ export function PostUpdateForm({ prop, isCompleted }: { prop: Proposal, isComple
                </ReactMarkdown>
             )}
 
-            {
-               !isCompleted &&
+            {!isCompleted && (
                <div className='flex flex-row space-x-2 mb-4'>
                   <input
                      type='checkbox'
@@ -132,9 +137,7 @@ export function PostUpdateForm({ prop, isCompleted }: { prop: Proposal, isComple
                      {`This can't be undone, but you'll be able to keep posting updates`}
                   </div>
                </div>
-            }
-
-
+            )}
 
             <button
                className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'

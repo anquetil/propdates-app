@@ -17,7 +17,7 @@ export function PageTitle({
    const myprops = tab == 'MY PROPS'
    const leaderboard = tab == 'LEADERBOARD'
    const about = tab == 'ABOUT'
-   const propPage = title.startsWith("#")
+   const propPage = title.startsWith('#')
    let updateNum = 0
    if (updateObj) {
       updateNum = Number(getUpdateNumFromID(updateObj.id))
@@ -120,9 +120,14 @@ export function PageTitle({
             >
                <div className='flex flex-row items-center gap-x-2'>
                   <div>{title}</div>
-                  {
-                     propPage &&
-                     <Link href={`https://www.nouns.camp/proposals/${title.substring(1, title.indexOf(':'))}`} target='_blank'>
+                  {propPage && (
+                     <Link
+                        href={`https://www.nouns.camp/proposals/${title.substring(
+                           1,
+                           title.indexOf(':')
+                        )}`}
+                        target='_blank'
+                     >
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            fill='none'
@@ -138,7 +143,7 @@ export function PageTitle({
                            />
                         </svg>
                      </Link>
-                  }
+                  )}
                </div>
 
                {updateObj && (
