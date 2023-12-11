@@ -19,7 +19,6 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
    const { proposals } = useGetProps()
 
    useEffect(() => {
-      console.log('in use effect', proposals)
       if (proposals) {
          let filteredProps = [...proposals].filter((p) => p.executed)
          setCounts([
