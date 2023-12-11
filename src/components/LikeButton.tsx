@@ -9,10 +9,9 @@ import { useAccount } from 'wagmi'
 export function LikeButton({ updateId }: { updateId: string }) {
    const [forceFill, setForceFill] = useState(false)
    const { address, isConnected } = useAccount()
-   const { data, isLoading, isError } = useLikesQuery(updateId)
+   const { data } = useLikesQuery(updateId)
    let count = 0
    let userLiked = false
-   console.log(data, isLoading, isError)
 
    const likeMutation = useLikeMutation(updateId, address ?? '0x0')
 
@@ -20,14 +19,6 @@ export function LikeButton({ updateId }: { updateId: string }) {
       count = data.length
       userLiked = data.some(
          (l) => isConnected && l.liker.toLowerCase() == address?.toLowerCase()
-      )
-      console.log(
-         'count: ',
-         count,
-         'address: ',
-         address,
-         'userLiked: ',
-         userLiked
       )
    }
 

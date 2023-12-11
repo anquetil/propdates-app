@@ -13,8 +13,5 @@ export function useLikeMutation(updateId: string, liker: Address) {
          .single()
          .then((result) => result.data)
    }
-
-   console.log('in mutation')
-
    return useMutation({ mutationFn })
 }
