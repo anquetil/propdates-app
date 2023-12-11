@@ -31,13 +31,14 @@ export function LikeButton({ updateId }: { updateId: string }) {
                </div>
             ) : (
                <div className='relative group'>
-                 <div
-                     className={`z-100 text-xs bottom-5 -translate-x-[40%] whitespace-nowrap py-1 w-fit absolute 
+                     {!isConnected && <div
+                        className={` z-50 text-xs bottom-5 -translate-x-[40%] whitespace-nowrap py-1 w-fit absolute 
                      px-2 bg-black rounded-sm text-white ease-in-out transition-all duration-200 
                      group-hover:bg-opacity-90 group-hover:text-opacity-90 bg-opacity-0 text-opacity-0`}
                      >
                         {`Connect your wallet to like!`}
-                     </div>
+                     </div>}
+
                      <div
                         onClick={() => {
                            if (isConnected) {

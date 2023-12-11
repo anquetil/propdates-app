@@ -49,7 +49,7 @@ export function ProposalList({ mini = false }: { mini?: boolean }) {
          className={`flex flex-col h-fit lg:px-6 bg-white border gap-x-2 p-4 shadow-sm rounded-sm 
             ${
                mini
-                  ? `sticky top-10 hidden md:flex shrink w-1/3 max-w-[350px]`
+                  ? `sticky top-10 z-40 hidden md:flex shrink w-1/3 max-w-[350px]`
                   : `flex`
             }`}
       >
