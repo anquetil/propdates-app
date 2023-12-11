@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useEffect, useRef, useState } from 'react'
 import remarkBreaks from 'remark-breaks'
+import { LikeButton } from './LikeButton'
 
 export function PropUpdateCard({
    update,
@@ -29,7 +30,6 @@ export function PropUpdateCard({
    const [showExpandButton, setShowExpandButton] = useState(false)
 
    useEffect(() => {
-      console.log(parentDivRef.current?.scrollHeight)
       const checkHeight = () => {
          if (forceFull || (parentDivRef.current?.scrollHeight || 0) < 192) {
             setShowExpandButton(false)
@@ -37,8 +37,6 @@ export function PropUpdateCard({
             setShowExpandButton(true)
          }
       }
-
-      console.log(forceFull)
 
       // Check the height on mount and on window resize
       checkHeight()
@@ -146,6 +144,7 @@ export function PropUpdateCard({
                   >
                      {formatTimestampString(blockTimestamp)}
                   </Link>
+                  <LikeButton updateId={update.id} />
                </div>
             </div>
 

@@ -12,6 +12,8 @@ import { mainnet } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 import { isMainnet } from '@/utils/funcs'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
 const chain = isMainnet() ? mainnet : sepolia
 
@@ -47,13 +49,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
    const [mounted, setMounted] = React.useState(false)
    React.useEffect(() => setMounted(true), [])
    return (
-      <ApolloProvider client={client}>
-         <WagmiConfig config={wagmiConfig}>
-            <RainbowKitProvider chains={chains} initialChain={mainnet}>
-               {mounted && children}
-               <Analytics />
-            </RainbowKitProvider>
-         </WagmiConfig>
-      </ApolloProvider>
+      <QueryClientProvider client={queryClient}>
+         <ApolloProvider client={client}>
+            <WagmiConfig config={wagmiConfig}>
+               <RainbowKitProvider chains={chains} initialChain={mainnet}>
+                  {mounted && children}
+                  <Analytics />
+               </RainbowKitProvider>
+            </WagmiConfig>
+         </ApolloProvider>
+      </QueryClientProvider>
    )
 }

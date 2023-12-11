@@ -16,8 +16,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
    // fetch data
    const update = await getUpdateInfo(params.id)
-   console.log(params.id)
-   console.log('got update: ', update)
    if (update == null) {
       //wait until i fixe memoization
       return {
