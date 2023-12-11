@@ -46,8 +46,8 @@ export function LikeButton({ updateId }: { updateId: string }) {
                               likeMutation.mutate()
                            }
                         }}
-                        className={`text-gray-600 ${isConnected &&
-                           'hover:cursor-pointer active:text-red-600 active:scale-125 ease-in-out transition-all'
+                        className={`text-gray-400 ${isConnected &&
+                           'hover:cursor-pointer hover:text-gray-500 active:text-red-600 active:scale-125 ease-in-out transition-all'
                            }`}
                      >
 
@@ -57,7 +57,7 @@ export function LikeButton({ updateId }: { updateId: string }) {
 
             )}
          </div>
-         <div className={userLiked ? 'text-red-600' : 'text-gray-600'}>
+         <div className={`${userLiked ? 'text-red-600' : 'text-gray-500'} text-sm`}>
             {count + (forceFill ? 1 : 0)}
          </div>
       </div>
