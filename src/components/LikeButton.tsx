@@ -32,8 +32,10 @@ export function LikeButton({ updateId }: { updateId: string }) {
             ) : (
                <div
                   onClick={() => {
-                     setForceFill(true)
-                     likeMutation.mutate()
+                     if(isConnected){
+                        setForceFill(true)
+                        likeMutation.mutate()
+                     }
                   }}
                   className={`text-gray-600 ${
                      isConnected &&
