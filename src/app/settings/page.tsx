@@ -12,9 +12,6 @@ export default function AdminPage() {
    const { isConnected, address } = accountData
    const { chain, chains } = useNetwork()
    const { actions } = useGetActions(address!, isConnected)
-   console.log('admin page actions:', actions)
-   console.log('correct chain', chain?.id === chains[0]?.id)
-   console.log('isConnected: ', isConnected)
    return (
       <div>
          <PageTitle title={`Settings`} tab={'MY PROPS'} />
