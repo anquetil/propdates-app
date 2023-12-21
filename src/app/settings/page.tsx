@@ -11,16 +11,15 @@ export default function AdminPage() {
    const accountData = useAccount()
    const { isConnected, address } = accountData
    const { chain, chains } = useNetwork()
-   const correctChain = chain?.id === chains[0].id
    const { actions } = useGetActions(address!, isConnected)
    console.log('admin page actions:', actions)
-   console.log('correct chain', correctChain)
+   console.log('correct chain', chain?.id === chains[0]?.id)
    console.log('isConnected: ', isConnected)
    return (
       <div>
          <PageTitle title={`Settings`} tab={'MY PROPS'} />
          <div className='px-6 sm:px-10'>
-            {isConnected && correctChain ? (
+            {isConnected && chain?.id === chains[0]?.id ? (
                actions ? (
                   <AdminPanel actions={actions} address={address!} />
                ) : (
