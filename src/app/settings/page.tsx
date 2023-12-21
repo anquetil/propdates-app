@@ -8,20 +8,14 @@ import { PageTitle } from '@/components/PageTitle'
 import { CustomConnectButton } from '@/components/CustomConnectButton'
 
 export default function AdminPage() {
-   const data = 0
-
    const accountData = useAccount()
    const { isConnected, address } = accountData
    const { chain, chains } = useNetwork()
    const correctChain = chain?.id === chains[0].id
    const { actions } = useGetActions(address!, isConnected)
-   if (data == undefined)
-      return (
-         <div>
-            <LoadingNoggles />
-         </div>
-      )
-
+   console.log('admin page actions:', actions)
+   console.log('correct chain', correctChain)
+   console.log('isConnected: ', isConnected)
    return (
       <div>
          <PageTitle title={`Settings`} tab={'MY PROPS'} />
