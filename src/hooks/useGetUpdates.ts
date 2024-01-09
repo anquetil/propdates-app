@@ -13,6 +13,7 @@ export function useGetUpdates(prop?: number, enabled = true) {
          }
          orderBy: blockNumber, 
          orderDirection: desc
+         first: 800
       ){
          id
          admin
