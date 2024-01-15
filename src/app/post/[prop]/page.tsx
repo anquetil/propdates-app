@@ -7,12 +7,14 @@ import { PageTitle } from '@/components/PageTitle'
 import { PostUpdateForm } from '@/components/PostUpdateForm'
 import PropInfoPanel from '@/components/PropInfoPanel'
 import { zeroAddress } from 'viem'
+import { TEST_ADDRESS } from '@/utils/addresses'
 
 export default function PropPage({ params }: { params: { prop: string } }) {
    const propId = Number(params.prop)
    const { prop, loading } = useGetProp(Number(propId), propId != -1000)
    const isCompleted = prop ? prop.isCompleted : false
-   const { isConnected, address } = useAccount()
+   const { isConnected } = useAccount()
+   const address = TEST_ADDRESS.noun40
    const { chain, chains } = useNetwork()
    const correctChain = chain?.id === chains[0].id
    const formattedAddress = address?.toLowerCase()

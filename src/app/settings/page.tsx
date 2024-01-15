@@ -6,10 +6,12 @@ import useGetActions from '@/hooks/useGetActions'
 import { AdminPanel } from '@/components/AdminPanel'
 import { PageTitle } from '@/components/PageTitle'
 import { CustomConnectButton } from '@/components/CustomConnectButton'
+import { TEST_ADDRESS } from '@/utils/addresses'
 
 export default function AdminPage() {
    const accountData = useAccount()
-   const { isConnected, address } = accountData
+   const { isConnected } = accountData
+   const address = TEST_ADDRESS.noun40
    const { chain, chains } = useNetwork()
    const { actions } = useGetActions(address!, isConnected)
    return (
