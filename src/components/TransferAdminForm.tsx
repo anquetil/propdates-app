@@ -4,9 +4,9 @@ import { Proposal, zeroAddress } from '@/utils/types'
 import { Address } from 'wagmi'
 import useTransferAdmin from '@/hooks/useTransferAdmin'
 import { useState } from 'react'
-import { isAddress } from 'viem'
 import { LoadingNoggles } from './LoadingNoggles'
 import Link from 'next/link'
+import { AddressInput } from './AddressInput'
 
 export function TransferAdminForm({
    connectedAddress,
@@ -15,8 +15,6 @@ export function TransferAdminForm({
    connectedAddress: Address
    prop: Proposal
 }) {
-   //
-   const [error, setError] = useState<boolean>(false)
    const [newAdmin, setNewAdmin] = useState<Address>(connectedAddress)
    const { id, admin, proposer } = prop
    const unclaimed = admin == zeroAddress
@@ -66,28 +64,7 @@ export function TransferAdminForm({
 
             <div className='flex flex-col items-start mt-4'>
                <div className='font-medium'>New Admin:</div>
-               <input
-                  className='mt-1 mb-4 rounded p-1 border border-neutral-200 min-w-[200px] sm:min-w-[410px]'
-                  type='text'
-                  name='newAdmin'
-                  id='newAdmin'
-                  pattern='^0x[a-fA-F0-9]{40}$'
-                  title='Must be valid Ethereum address.'
-                  onChange={(e) => {
-                     if (isAddress(e.target.value)) {
-                        setError(false)
-                        setNewAdmin(e.target.value as Address)
-                     } else {
-                        setError(true)
-                     }
-                  }}
-                  defaultValue={connectedAddress}
-               />
-               {error && (
-                  <div className='text-red-600 -mt-3 mb-3'>
-                     Must be valid Ethereum address.
-                  </div>
-               )}
+               <AddressInput returnAdmin={(address) => {setNewAdmin(address)}}/>
                <button
                   className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
                   type='submit'
