@@ -64,7 +64,11 @@ export function TransferAdminForm({
 
             <div className='flex flex-col items-start mt-4'>
                <div className='font-medium'>New Admin:</div>
-               <AddressInput returnAdmin={(address) => {setNewAdmin(address)}}/>
+               <AddressInput
+                  returnAdmin={(address) => {
+                     setNewAdmin(address)
+                  }}
+               />
                <button
                   className='bg-blue-500  border hover:opacity-95 transition-all ease-in-out shadow-sm rounded-md py-[3px] px-[14px] text-white'
                   type='submit'
